@@ -1,0 +1,30 @@
+=====================================
+Simple Documentation Tutorial: Doctut   
+=====================================
+
+---------------------
+Another Simple Header
+---------------------
+
+Here is some text explaining some very complicated stuff.::
+
+    print 'hello world'
+    >>> hello world
+
+Guide:
+^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+
+   ArchLinux/arch_intro
+   License/license
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+

@@ -1,0 +1,14 @@
+=========
+ArchLinux
+=========
+
+Installation
+++++++++++++
+
+This is all about Archlinux and things that I found that helped me
+
+.. toctree::
+   :maxdepth: 2
+
+   arch_install
+
