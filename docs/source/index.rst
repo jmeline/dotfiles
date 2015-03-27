@@ -6,10 +6,8 @@ Learn how to use rst by example from read the docs
 
 * Read the Docs: `readthedocs`_
 
-
----------------------
 Another Simple Header
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 Here is some text explaining some very complicated stuff.::
 
@@ -22,8 +20,8 @@ Guide:
 .. toctree::
    :maxdepth: 2
 
-   ArchLinux/arch_intro
-   License/license
+   ArchLinux <archlinux/arch>
+   License <license/license>
 
 
 Indices and tables
