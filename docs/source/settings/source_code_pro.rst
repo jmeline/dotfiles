@@ -1,8 +1,6 @@
 Source Code Pro
 ===============
 
-If you want to give it a try, here’s what you do:
-
 * Download the `Source Code Pro`_ and unzip the file.
 * Make sure you have `Sublime Text`_ (if preferred)
 
