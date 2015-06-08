@@ -18,11 +18,12 @@ Guide:
 ------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
    ArchLinux <archlinux/arch>
-   License <license/license>
+   My Settings <settings/index>
    Python <python/py>
+   License <license/license>
 
 
 Indices and tables

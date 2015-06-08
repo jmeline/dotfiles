@@ -24,7 +24,7 @@ UEFI
 .. toctree::
    :maxdepth: 2
 
-   ArchLinux <installing/*>
+   ArchLinux <installing/simple_install_virtualbox>
 
 More interesting stuff about UEFI
 
