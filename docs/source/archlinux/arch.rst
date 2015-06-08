@@ -13,3 +13,26 @@ Installation
 
 This is all about Archlinux and things that I found that helped me
 
+Partitioning
+************
+
+Interesting stuff will go here
+
+UEFI
+~~~~
+
+.. toctree::
+   :maxdepth: 2
+
+   ArchLinux <installing/*>
+
+More interesting stuff about UEFI
+
+BIOS
+~~~~
+
+Creating Filesystem
+-------------------
+
+More interesting stuff about BIOS
+
