@@ -22,7 +22,7 @@ UEFI
 ~~~~
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
    ArchLinux <installing/simple_install_virtualbox>
 

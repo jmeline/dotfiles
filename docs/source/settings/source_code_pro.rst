@@ -3,18 +3,15 @@ Source Code Pro
 
 If you want to give it a try, here’s what you do:
 
-* Download the Source Code Pro font and unzip the file.
-* Install the font…
+* Download the `Source Code Pro`_ and unzip the file.
+* Make sure you have `Sublime Text`_ (if preferred)
 
-Mac
----
+**Mac**
 
 * Open the Font Book application.
 * Click on the + button under the Font column.
-* Navigate to the fonts you want to install (I installed the OpenType version).
 
-Windows
--------
+**Windows**
 
 * Navigate to the folder containing the fonts you want to install.
 
@@ -22,4 +19,18 @@ Windows
 
 * Right-click and select Install.
 
-* Follow these instructions for changing your font in Sublime Text 2.
+**Sublime Text**
+
+In the **Preferences/Settings - User**, add the following JSON
+
+::
+
+	{
+		"font_face": "Source Code Pro Light",
+		"font_size": 14
+	}
+
+.. _Source Code Pro: https://github.com/adobe-fonts/source-code-pro/archive/1.017R.zip
+
+.. _Sublime Text: http://www.sublimetext.com/3
+

@@ -1,9 +1,6 @@
 Settings
 ========
 
-Mac OSX
--------
-
 .. toctree::
    :maxdepth: 2
 
