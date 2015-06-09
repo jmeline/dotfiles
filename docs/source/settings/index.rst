@@ -1,7 +1,11 @@
+========
 Settings
 ========
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
+   bash
    source_code_pro
+   vim
+

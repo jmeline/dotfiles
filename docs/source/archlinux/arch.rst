@@ -11,14 +11,6 @@ see more images from Xyne_
 Installation
 ------------
 
-.. toctree::
-   :maxdepth: 2
-
-   ArchLinux <archlinux/arch>
-   License <license/license>
-   Python <python/py>
-
-
 This is all about Archlinux and things that I found that helped me
 
 Partitioning
