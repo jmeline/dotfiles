@@ -1,46 +1,32 @@
+" My .vimrc
+" http://pastebin.com/u7b5gZj6
+" I got a lot of the settings from this pastebin. Thanks!
 " VUNDLE-------------------------------------------------------------------
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-Plugin 'Raimondi/delimitMate'
+" Functional:
 Plugin 'bling/vim-airline'
-
-" plugin on GitHub repo
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-" Plugin 'user/L9', {'name': 'newL9'}
+Plugin 'tpope/vim-surround'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+" Pretty:
+Plugin 'mkitt/tabline.vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'CaffeineViking/gruvbox'
+
+call vundle#end()
+" Airline:
 if !exists('g:airline_symbols')
-      let g:airline_symbols = {}
-  endif
-  let g:airline_symbols.space = "\ua0"
-set t_Co=256
-set encoding=utf-8
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
 
-"" Pathogen-------------------------------------------------------------------
-"execute pathogen#infect()
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
@@ -50,75 +36,13 @@ set nocompatible
 " and for plugins that are filetype specific.
 filetype indent plugin on
 
-" Enable syntax highlighting
-syntax on
-
-"------------------------------------------------------------
-" Must have options {{{1
-"
-" These are highly recommended options.
-
-" Vim with default settings does not allow easy switching between multiple files
-" in the same editor window. Users can use multiple split windows or multiple
-" tab pages to edit multiple files, but it is still best to enable an option to
-" allow easier switching between files.
-"
-" One such option is the 'hidden' option, which allows you to re-use the same
-" window and switch from an unsaved buffer without saving it first. Also allows
-" you to keep an undo history for multiple files when re-using the same window
-" in this way. Note that using persistent undo also lets you undo in multiple
-" files even in the same window, but is less efficient and is actually designed
-" for keeping undo history after closing Vim entirely. Vim will complain if you
-" try to quit without saving, and swap files will keep you safe if your computer
-" crashes.
-set hidden
-
-" Note that not everyone likes working this way (with the hidden option).
-" Alternatives include using tabs or split windows instead of re-using the same
-" window as mentioned above, and/or either of the following options:
-" set confirm
-" set autowriteall
-
-" Better command-line completion
-set wildmenu
-
 " Show partial commands in the last line of the screen
 set showcmd
 
-" Highlight searches (use <C-L> to temporarily turn off highlighting; see the
-" mapping of <C-L> below)
-set hlsearch
-
-"------------------------------------------------------------
-" Usability options {{{1
-"
-" These are options that users frequently set in their .vimrc. Some of them
-" change Vim's behaviour in ways which deviate from the true Vi way, but
-" which are considered to add usability. Which, if any, of these options to
-" use is very much a personal preference, but they are harmless.
-
-" Use case insensitive search, except when using capital letters
-set ignorecase
-set smartcase
-
-" Allow backspacing over autoindent, line breaks and start of insert action
-set backspace=indent,eol,start
-
-" When opening a new line and no filetype-specific indenting is enabled, keep
-" the same indent as the line you're currently on. Useful for READMEs, etc.
-set autoindent
-
-" Stop certain movements from always going to the first character of a line.
+"Stop certain movements from always going to the first character of a line.
 " While this behaviour deviates from that of Vi, it does what most users
 " coming from other editors would expect.
 set nostartofline
-
-" Display the cursor position on the last line of the screen or in the status
-" line of a window
-set ruler
-
-" Always display the status line, even if only one window is displayed
-set laststatus=2
 
 " Instead of failing a command because of unsaved changes, instead raise a
 " dialogue asking if you wish to save changed files.
@@ -135,48 +59,88 @@ set t_vb=
 " Enable use of the mouse for all modes
 set mouse=a
 
-" Set the command window height to 2 lines, to avoid many cases of having to
-" "press <Enter> to continue"
-set cmdheight=2
-
-" Display line numbers on the left
-set number
-
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
 
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
 
+" General: {
+    set autoread " Reload file when changed externally.
+    set nobackup " No need for .bkp files when version control exist.
+    set nowritebackup " If Vim crashes often then turn backups on again, look at docs for more information.
+    set noswapfile " Don't create swap files, nowadays we should have enough memory to store a text file.
 
-"------------------------------------------------------------
-" Indentation options {{{1
-"
-" Indentation settings according to personal preference.
+    "set undodir=~/.vim_undodir " Where do we store all this awesomeness?!?!
+    set undofile " Persistent undos are awesome!
 
-" Indentation settings for using 4 spaces instead of tabs.
-" Do not change 'tabstop' from its default value of 8 with this setup.
-set shiftwidth=4
-set softtabstop=4
-set expandtab
+    let mapleader=',' " Map <leader> to the ',' key. This is used to extend Vims functionality without overwriting any standard bindings.
+    let g:mapleader=',' " Do this globally too.
+    set history=1000 " Defines the number of stored commands that Vim can remember, we have so much memory today it doesn't even matter.
+" }
 
-"------------------------------------------------------------
-" Mappings {{{1
-"
-" Useful mappings
+" Formatting: {
+    set expandtab " Expand tab characters to space characters.
+    set shiftwidth=4 " One tab is now 4 spaces.
+    set shiftround " Always round up to the nearest tab.
+    set tabstop=4 " This one is also needed to acheive the desired effect.
+    set softtabstop=4 " Enables easy removal of an indentation level.
 
-" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
-" which is the default
-map Y y$
+    set autoindent " Automatically copy the previous indent level. Don't use smartindent.
+    set backspace=indent,eol,start
+    set wrap " Wrap text. This is also quite optional, replace with textwidth=80 is you don't want this behaviour.
+    set lazyredraw " Good performance boost when executing macros.
+    set viminfo^=% " Remember some info on close.
+" }
 
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-nnoremap <C-L> :nohl<CR><C-L>
+" Searching: {
+    set ignorecase " Search is not case sensitive.
+    set smartcase " Will override some ignorecase properties, when using caps it will do a special search.
+    set incsearch " Enables the user to step through each search 'hit'.
+    set hlsearch " Will stop highlighting current search 'hits' when another search is performed.
+    set magic " Enables regular expressions. They are a bit like magic.
+" }
 
-" Easier Split navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-"------------------------------------------------------------
+" UI: {
+    set ffs=unix,dos,mac " Prioritize unix as the standard file type.
+    set encoding=utf-8 " Vim can now work with a whole bunch more characters.
+    set scrolloff=7 " The screen will only scroll when the cursor is 7 characters from the top/bottom.
+    set foldmethod=indent
 
+    set wildmenu " Enable the 'autocomplete' menu when in command mode (':').
+    set cursorline " For easier cursor spotting. Completly optional though.
+    set shortmess=a " Shorten some command mode messages, will keep you from having to hit ENTER all the time.
+    set cmdheight=2 " Will also reduce the frequency of having to press ENTER.
+    set stal=2 " Always show tabs.
+
+    set showmatch " Will highlight matching brackets.
+    set mat=2 " How long the highlight will last.
+    set number " Show line numbers on left side.
+    "set relativenumber " Enables the user to easilty see the relative distance between cursor and target line.
+    set ttyfast " Will send characters over a terminal connection faster. We do have pretty fast computers after all.
+    set ruler " Always show current cursor position.
+    set hidden " Abandon buffer when closed.
+
+    syntax on " The most important feature when coding. Please give!.
+    set laststatus=2 " Always have a status line, this is required in order for Lightline to work correctly.
+    set noshowmode " Disables standard -INSERT-, -NORMAL-, etc... Lightline will provide a better looking one for us.
+    set t_Co=256 " This will 'force' terminals to use 256 colors, enabling Lightline and the colorscheme to look correct.
+    set background=dark " Cool programmers only use dark themes.
+    colorscheme gruvbox " I love this theme. Big kudos to the developer of this theme.
+
+    let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
+    "
+
+" Mapping:{
+    map Y y$ " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
+
+    nnoremap <C-L> :nohl<CR><C-L> " Map <C-L> (redraw screen) to also turn off search highlighting until the
+
+    nnoremap <C-J> <C-W><C-J>
+    nnoremap <C-K> <C-W><C-K>
+    nnoremap <C-L> <C-W><C-L>
+    nnoremap <C-H> <C-W><C-H>
+" }
