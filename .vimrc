@@ -1,31 +1,35 @@
 " My .vimrc
 " http://pastebin.com/u7b5gZj6
 " I got a lot of the settings from this pastebin. Thanks!
-" VUNDLE-------------------------------------------------------------------
-set nocompatible              " be iMproved, required
-filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
+" VUNDLE: {
+    set nocompatible
+    filetype off
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+    Plugin 'gmarik/Vundle.vim'
 
-" Functional:
-Plugin 'bling/vim-airline'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
+    " Functional:
+    Plugin 'bling/vim-airline'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'scrooloose/syntastic'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-surround'
 
-" Pretty:
-Plugin 'mkitt/tabline.vim'
-Plugin 'itchyny/lightline.vim'
-Plugin 'CaffeineViking/gruvbox'
+    " Pretty:
+    Plugin 'mkitt/tabline.vim'
+    Plugin 'itchyny/lightline.vim'
+    Plugin 'morhetz/gruvbox'
+    Plugin 'zeis/vim-kolor'
 
-call vundle#end()
-" Airline:
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
+    call vundle#end()
+    " }
+
+" Airline: {
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
+    let g:airline_symbols.space = "\ua0"
+" }
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
@@ -47,17 +51,7 @@ set nostartofline
 " Instead of failing a command because of unsaved changes, instead raise a
 " dialogue asking if you wish to save changed files.
 set confirm
-
-" Use visual bell instead of beeping when doing something wrong
-set visualbell
-
-" And reset the terminal code for the visual bell. If visualbell is set, and
-" this line is also included, vim will neither flash nor beep. If visualbell
-" is unset, this does nothing.
-set t_vb=
-
-" Enable use of the mouse for all modes
-set mouse=a
+set visualbell " Use visual bell instead of beeping when doing something wrong
 
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
@@ -77,6 +71,12 @@ set pastetoggle=<F11>
     let mapleader=',' " Map <leader> to the ',' key. This is used to extend Vims functionality without overwriting any standard bindings.
     let g:mapleader=',' " Do this globally too.
     set history=1000 " Defines the number of stored commands that Vim can remember, we have so much memory today it doesn't even matter.
+
+    " And reset the terminal code for the visual bell. If visualbell is set, and
+    " this line is also included, vim will neither flash nor beep. If visualbell
+    " is unset, this does nothing.
+    set t_vb=
+    set mouse=a " Enable use of the mouse for all modes
 " }
 
 " Formatting: {
@@ -126,7 +126,12 @@ set pastetoggle=<F11>
     set noshowmode " Disables standard -INSERT-, -NORMAL-, etc... Lightline will provide a better looking one for us.
     set t_Co=256 " This will 'force' terminals to use 256 colors, enabling Lightline and the colorscheme to look correct.
     set background=dark " Cool programmers only use dark themes.
-    colorscheme gruvbox " I love this theme. Big kudos to the developer of this theme.
+
+    let g:kolor_italic=1                    " Enable italic. Default: 1
+    let g:kolor_bold=1                      " Enable bold. Default: 1
+    let g:kolor_underlined=0                " Enable underline. Default: 0
+    let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
+    colorscheme kolor " I love this theme. Big kudos to the developer of this theme.
 
     let g:lightline = {
       \ 'colorscheme': 'jellybeans',
@@ -143,4 +148,16 @@ set pastetoggle=<F11>
     nnoremap <C-K> <C-W><C-K>
     nnoremap <C-L> <C-W><C-L>
     nnoremap <C-H> <C-W><C-H>
+" }
+
+" Custom Functions: {
+    fun! <SID>StripTrailingWhitespaces()
+        let l = line(".")
+        let c = col(".")
+        %s/\s\+$//e
+        call cursor(l, c)
+    endfun
+    " autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+    "
+    autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() "Removes trailing whitespace on any filetype
 " }
