@@ -1,5 +1,6 @@
 " My .vimrc
 " http://pastebin.com/u7b5gZj6
+" https://raw.githubusercontent.com/nvie/vimrc/master/vimrc
 " I got a lot of the settings from this pastebin. Thanks!
 " VUNDLE: {
     set nocompatible
@@ -14,6 +15,7 @@
     Plugin 'scrooloose/syntastic'
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-surround'
+    Plugin 'Raimondi/delimitMate'
 
     " Pretty:
     Plugin 'mkitt/tabline.vim'
@@ -65,78 +67,83 @@ set notimeout ttimeout ttimeoutlen=200
 set pastetoggle=<F11>
 
 " General: {
-    set autoread " Reload file when changed externally.
-    set nobackup " No need for .bkp files when version control exist.
-    set nowritebackup " If Vim crashes often then turn backups on again, look at docs for more information.
-    set noswapfile " Don't create swap files, nowadays we should have enough memory to store a text file.
+    set autoread                    " Reload file when changed externally.
+    set nobackup                    " No need for .bkp files when version control exist.
+    set nowritebackup               " If Vim crashes often then turn backups on again, look at docs for more information.
+    set noswapfile                  " Don't create swap files, nowadays we should have enough memory to store a text file.
 
-    "set undodir=~/.vim_undodir " Where do we store all this awesomeness?!?!
-    set undofile " Persistent undos are awesome!
+    set undodir=~/.vim_undodir      " Where do we store all this awesomeness?!?!
+    set undofile                    " Persistent undos are awesome!
 
-    let mapleader=',' " Map <leader> to the ',' key. This is used to extend Vims functionality without overwriting any standard bindings.
-    let g:mapleader=',' " Do this globally too.
-    set history=1000 " Defines the number of stored commands that Vim can remember, we have so much memory today it doesn't even matter.
+    set history=1000                " Defines the number of stored commands that Vim can remember, we have so much memory today it doesn't even matter.
+    set undolevels=1000             " use many muchos levels of undo
+    let mapleader=','               " Map <leader> to the ',' key. This is used to extend Vims functionality without overwriting any standard bindings.
+    let g:mapleader=','             " Do this globally too.
 
     " And reset the terminal code for the visual bell. If visualbell is set, and
     " this line is also included, vim will neither flash nor beep. If visualbell
     " is unset, this does nothing.
     set t_vb=
-    set mouse=a " Enable use of the mouse for all modes
+    set mouse=a                     " Enable use of the mouse for all modes
+    set shortmess+=I                " hide the launch screen
+    set clipboard=unnamed           " normal OS clipboard interaction
 " }
 
 " Formatting: {
-    set expandtab " Expand tab characters to space characters.
-    set shiftwidth=4 " One tab is now 4 spaces.
-    set shiftround " Always round up to the nearest tab.
-    set tabstop=4 " This one is also needed to acheive the desired effect.
-    set softtabstop=4 " Enables easy removal of an indentation level.
+    set expandtab                   " Expand tab characters to space characters.
+    set shiftwidth=4                " One tab is now 4 spaces.
+    set shiftround                  " Always round up to the nearest tab.
+    set tabstop=4                   " This one is also needed to acheive the desired effect.
+    set softtabstop=4               " Enables easy removal of an indentation level.
+    set smarttab                    "Insert tabs on the start of a line according to shiftwidth, not tabstop
 
-    set autoindent " Automatically copy the previous indent level. Don't use smartindent.
+    set autoindent                  " Automatically copy the previous indent level. Don't use smartindent.
     set backspace=indent,eol,start
-    set wrap " Wrap text. This is also quite optional, replace with textwidth=80 is you don't want this behaviour.
-    set lazyredraw " Good performance boost when executing macros.
-    set viminfo^=% " Remember some info on close.
+    set wrap                        " Wrap text. This is also quite optional, replace with textwidth=80 is you don't want this behaviour.
+    set lazyredraw                  " Good performance boost when executing macros.
+    set viminfo^=%                  " Remember some info on close.
 " }
 
 " Searching: {
-    set ignorecase " Search is not case sensitive.
-    set smartcase " Will override some ignorecase properties, when using caps it will do a special search.
-    set incsearch " Enables the user to step through each search 'hit'.
-    set hlsearch " Will stop highlighting current search 'hits' when another search is performed.
-    set magic " Enables regular expressions. They are a bit like magic.
+    set ignorecase                  " Search is not case sensitive.
+    set smartcase                   " Will override some ignorecase properties, when using caps it will do a special search.
+    set incsearch                   " Enables the user to step through each search 'hit'.
+    set hlsearch                    " Will stop highlighting current search 'hits' when another search is performed.
+    set magic                       " Enables regular expressions. They are a bit like magic.
 " }
 
 " UI: {
-    set ffs=unix,dos,mac " Prioritize unix as the standard file type.
-    set encoding=utf-8 " Vim can now work with a whole bunch more characters.
-    set scrolloff=7 " The screen will only scroll when the cursor is 7 characters from the top/bottom.
+    set ffs=unix,dos,mac            " Prioritize unix as the standard file type.
+    set encoding=utf-8              " Vim can now work with a whole bunch more characters.
+    set scrolloff=7                 " The screen will only scroll when the cursor is 7 characters from the top/bottom.
     " set foldmethod=indent
 
-    set wildmenu " Enable the 'autocomplete' menu when in command mode (':').
-    set cursorline " For easier cursor spotting. Completly optional though.
-    set shortmess=a " Shorten some command mode messages, will keep you from having to hit ENTER all the time.
-    set cmdheight=2 " Will also reduce the frequency of having to press ENTER.
-    set stal=2 " Always show tabs.
+    set wildmenu                    " Enable the 'autocomplete' menu when in command mode (':'). make tab completion for files/buffers act like bash
+    set wildmode=list:full          " Show a list when pressing tab and complete first full match
+    set cursorline                  " For easier cursor spotting. Completly optional though. Underline the current line
+    set shortmess=a                 " Shorten some command mode messages, will keep you from having to hit ENTER all the time.
+    set cmdheight=2                 " Will also reduce the frequency of having to press ENTER.
+    set stal=2                      " Always show tabs.
 
-    set showmatch " Will highlight matching brackets.
-    set mat=2 " How long the highlight will last.
-    set number " Show line numbers on left side.
-    "set relativenumber " Enables the user to easilty see the relative distance between cursor and target line.
-    set ttyfast " Will send characters over a terminal connection faster. We do have pretty fast computers after all.
-    set ruler " Always show current cursor position.
-    set hidden " Abandon buffer when closed.
+    set showmatch                   " Will highlight matching brackets.
+    set mat=2                       " How long the highlight will last.
+    set number                      " Show line numbers on left side.
+    "set relativenumber             " Enables the user to easilty see the relative distance between cursor and target line.
+    set ttyfast                     " Will send characters over a terminal connection faster. We do have pretty fast computers after all.
+    set ruler                       " Always show current cursor position.
+    set hidden                      " Abandon buffer when closed.
 
-    syntax on " The most important feature when coding. Please give!.
-    set laststatus=2 " Always have a status line, this is required in order for Lightline to work correctly.
-    set noshowmode " Disables standard -INSERT-, -NORMAL-, etc... Lightline will provide a better looking one for us.
-    set t_Co=256 " This will 'force' terminals to use 256 colors, enabling Lightline and the colorscheme to look correct.
-    set background=dark " Cool programmers only use dark themes.
+    syntax on                       " The most important feature when coding. Please give!.
+    set laststatus=2                " Always have a status line, this is required in order for Lightline to work correctly.
+    set noshowmode                  " Disables standard -INSERT-, -NORMAL-, etc... Lightline will provide a better looking one for us.
+    set t_Co=256                    " This will 'force' terminals to use 256 colors, enabling Lightline and the colorscheme to look correct.
+    set background=dark             " Cool programmers only use dark themes.
 
     let g:kolor_italic=1                    " Enable italic. Default: 1
     let g:kolor_bold=1                      " Enable bold. Default: 1
     let g:kolor_underlined=0                " Enable underline. Default: 0
     let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
-    colorscheme kolor " I love this theme. Big kudos to the developer of this theme.
+    colorscheme kolor
 
     let g:lightline = {
       \ 'colorscheme': 'jellybeans',
@@ -149,6 +156,7 @@ set pastetoggle=<F11>
 
     nnoremap <C-L> :nohl<CR><C-L> " Map <C-L> (redraw screen) to also turn off search highlighting until the
 
+    " Easy window navigation
     nnoremap <C-J> <C-W><C-J>
     nnoremap <C-K> <C-W><C-K>
     nnoremap <C-L> <C-W><C-L>
@@ -163,6 +171,46 @@ set pastetoggle=<F11>
     nmap <leader>s<right>  :rightbelow vnew<CR>
     nmap <leader>s<up>     :leftabove  new<CR>
     nmap <leader>s<down>   :rightbelow new<CR>
+
+    " Speed up scrolling of the viewport slightly
+    nnoremap <C-e> 2<C-e>
+    nnoremap <C-y> 2<C-y>
+
+    " Use the hjkl keys only!
+    noremap <Up> <NOP>
+    noremap <Down> <NOP>
+    noremap <Left> <NOP>
+    noremap <Right> <NOP>
+
+    " NERDTree settings {{{
+    nnoremap <leader>n :NERDTreeFocus<CR>
+    nnoremap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
+    nnoremap <leader>N :NERDTreeClose<CR>
+    " Store the bookmarks file
+    let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
+
+    " Show the bookmarks table on startup
+    let NERDTreeShowBookmarks=1
+
+    " Show hidden files, too
+    let NERDTreeShowFiles=1
+    let NERDTreeShowHidden=1
+
+    " Quit on opening files from the tree
+    let NERDTreeQuitOnOpen=1
+
+    " Highlight the selected entry in the tree
+    let NERDTreeHighlightCursorline=1
+
+    " Use a single click to fold/unfold directories and a double click to open files
+    let NERDTreeMouseMode=2
+
+    " Don't display these kinds of files
+    let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
+                 \ '\.o$', '\.so$', '\.egg$', '^\.git$', '__pycache__',
+                 \ '\.DS_Store' ]
+    " }}}
+    "
 " }
 
 " Custom Functions: {
