@@ -23,6 +23,9 @@
 
     " Language:
     "   Python:
+
+    "   Javascript:
+    Bundle "wookiehangover/jshint.vim"
     call vundle#end()
     " }
 
