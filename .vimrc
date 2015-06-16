@@ -28,6 +28,9 @@
 
     "   Javascript:
     Bundle "wookiehangover/jshint.vim"
+
+    " Latex:
+    Plugin 'lervag/vimtex'
     call vundle#end()
     " }
 
