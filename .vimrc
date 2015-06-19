@@ -16,6 +16,10 @@
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-surround'
     Plugin 'Raimondi/delimitMate'
+    Plugin 'tomtom/tcomment_vim'
+
+    " Motion:
+    Plugin 'Lokaltog/vim-easymotion'
 
     " Pretty:
     Plugin 'mkitt/tabline.vim'
@@ -81,7 +85,7 @@ set pastetoggle=<F11>
     set history=1000                " Defines the number of stored commands that Vim can remember, we have so much memory today it doesn't even matter.
     set undolevels=1000             " use many muchos levels of undo
     let mapleader=','               " Map <leader> to the ',' key. This is used to extend Vims functionality without overwriting any standard bindings.
-    let g:mapleader=','             " Do this globally too.
+    " let g:mapleader=','             " Do this globally too.
 
     " And reset the terminal code for the visual bell. If visualbell is set, and
     " this line is also included, vim will neither flash nor beep. If visualbell
@@ -158,6 +162,9 @@ set pastetoggle=<F11>
     map Y y$ " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
 
     nnoremap <C-L> :nohl<CR><C-L> " Map <C-L> (redraw screen) to also turn off search highlighting until the
+
+    " Faster shortcut for commenting lines using tcomment
+    map <leader>c <c-_><c-_>
 
     " Easy window navigation
     nnoremap <C-J> <C-W><C-J>
