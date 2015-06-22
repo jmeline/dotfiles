@@ -32,6 +32,8 @@
 
     "   Javascript:
     Bundle "wookiehangover/jshint.vim"
+    "   C++:
+    Bundle "vim-scripts/c.vim"
 
     " Latex:
     Plugin 'lervag/vimtex'
@@ -44,6 +46,14 @@
     endif
     let g:airline_symbols.space = "\ua0"
 " }
+
+" using Source Code Pro
+" After setting your font manually using the Font window, if you are unsure exactly what to put type:
+" set guifont
+" This will show you the exact string value you need to put in your .vimrc file, including the typeface.
+
+set anti enc=utf-8
+set guifont=Source\ Code\ Pro\ Medium:h13
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
@@ -93,7 +103,7 @@ set pastetoggle=<F11>
     set t_vb=
     set mouse=a                     " Enable use of the mouse for all modes
     set shortmess+=I                " hide the launch screen
-    set clipboard=unnamed           " normal OS clipboard interaction
+    set clipboard=unnamedplus       " normal OS clipboard interaction
 " }
 
 " Formatting: {
@@ -154,8 +164,23 @@ set pastetoggle=<F11>
 
     let g:lightline = {
       \ 'colorscheme': 'jellybeans',
-      \ 'subseparator': { 'left': '', 'right': '' }
+      \ 'active':{
+      \     'fugitive': 'MyFugitive',
+      \  },
+      \ 'subseparator': { 'left': '|', 'right': '|' }
       \ }
+
+    function! MyFugitive()
+	  try
+	    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+	      let mark = ''  " edit here for cool mark
+	      let _ = fugitive#head()
+	      return strlen(_) ? mark._ : ''
+	    endif
+	  catch
+	  endtry
+	  return ''
+	endfunction
     "
 
 " Mapping:{
