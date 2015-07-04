@@ -32,6 +32,8 @@
 
     "   Javascript:
     Bundle "wookiehangover/jshint.vim"
+    Plugin 'digitaltoad/vim-jade'
+
     "   C++:
     Bundle "vim-scripts/c.vim"
 

@@ -12,6 +12,7 @@ REVERSE="$(tput rev)"
 RESET="$(tput sgr0)"
 
 echo "${BOLD}${MAGENTA}**********************************************************${RESET}"
+echo ""
 echo "${BOLD}${CYAN}Current Directory: ${BLUE}$(pwd)${RESET}"
 echo "${BOLD}${CYAN}Term settings: ${BLUE}$TERM${RESET}"
 perl 256color.pl
@@ -35,7 +36,7 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim -E -u NONE +PluginInstall +qall > /dev/null
 
 
-echo "$(tput setaf 5)**********************************************************"
+echo "${BOLD}${MAGENTA}*********************************************************${RESET}*"
 echo "Done!"
 
 
