@@ -25,16 +25,20 @@
     Plugin 'mkitt/tabline.vim'
     Plugin 'itchyny/lightline.vim'
     Plugin 'morhetz/gruvbox'
+
+    " ColorSchemes:
     Plugin 'zeis/vim-kolor'
 
-    " Language:
+    """""""""""""""""""""""
+    " Language Specifics: "
+    """""""""""""""""""""""
     "   Python:
 
     "   Javascript:
-    Bundle "wookiehangover/jshint.vim"
-    Plugin 'digitaltoad/vim-jade'
+    Plugin 'pangloss/vim-javascript' " Required by vim-jsx
+    Plugin 'mxw/vim-jsx'
 
-    "   C++:
+    "   CPlusPlus:
     Bundle "vim-scripts/c.vim"
 
     " Latex:
@@ -42,13 +46,17 @@
     call vundle#end()
     " }
 
-" Airline: {
-    if !exists('g:airline_symbols')
-        let g:airline_symbols = {}
-    endif
-    let g:airline_symbols.space = "\ua0"
+" " Airline: {
+"     if !exists('g:airline_symbols')
+"         let g:airline_symbols = {}
+"     endif
+"     let g:airline_symbols.space = "\ua0"
 " }
 
+
+""""""""""""""""""""""""""""""""""""""""
+"   Vimrc Settings and Configurations  "
+""""""""""""""""""""""""""""""""""""""""
 " using Source Code Pro
 " After setting your font manually using the Font window, if you are unsure exactly what to put type:
 " set guifont
@@ -158,20 +166,9 @@ set pastetoggle=<F11>
     set t_Co=256                    " This will 'force' terminals to use 256 colors, enabling Lightline and the colorscheme to look correct.
     set background=dark             " Cool programmers only use dark themes.
 
-    let g:kolor_italic=1                    " Enable italic. Default: 1
-    let g:kolor_bold=1                      " Enable bold. Default: 1
-    let g:kolor_underlined=0                " Enable underline. Default: 0
-    let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
-    colorscheme kolor
-
-    let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
-      \ 'active':{
-      \     'fugitive': 'MyFugitive',
-      \  },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
-      \ }
-
+    """""""""""""""""""""
+    " Fugitive Settings "
+    """""""""""""""""""""
     function! MyFugitive()
 	  try
 	    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
@@ -183,15 +180,69 @@ set pastetoggle=<F11>
 	  endtry
 	  return ''
 	endfunction
+
+    """"""""""""""""""""
+    " vim-JSX Settings "
+    """"""""""""""""""""
+    let g:jsx_ext_required = 0              " jsx syntax highlighting for all javascript files
+
+    """"""""""""""""""
+    " Kolor Settings "
+    """"""""""""""""""
+    colorscheme kolor
+    let g:kolor_italic=1                    " Enable italic. Default: 1
+    let g:kolor_bold=1                      " Enable bold. Default: 1
+    let g:kolor_underlined=0                " Enable underline. Default: 0
+    let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
+
+    """"""""""""""""""""""
+    " lightline Settings "
+    """"""""""""""""""""""
+    let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ 'active':{
+      \     'fugitive': 'MyFugitive',
+      \  },
+      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ }
+
+    """""""""""""""""""""
+    " NerdTree Settings "
+    """""""""""""""""""""
+    " Store the bookmarks file
+    let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
+    let NERDTreeShowBookmarks=1         " Show the bookmarks table on startup
+    let NERDTreeShowFiles=1             " Show hidden files, too
+    let NERDTreeShowHidden=1
+    let NERDTreeQuitOnOpen=1            " Quit on opening files from the tree
+    let NERDTreeHighlightCursorline=1   " Highlight the selected entry in the tree
+
+    " Use a single click to fold/unfold directories and a double click to open files
+    let NERDTreeMouseMode=2
+
+    " Don't display these kinds of files
+    let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
+                 \ '\.o$', '\.so$', '\.egg$', '^\.git$', '__pycache__',
+                 \ '\.DS_Store' ]
+    " }}}
     "
 
 " Mapping:{
     map Y y$ " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
 
-    nnoremap <C-L> :nohl<CR><C-L> " Map <C-L> (redraw screen) to also turn off search highlighting until the
+    " Map <C-L> (redraw screen) to also turn off search highlighting until the
+    nnoremap <C-L> :nohl<CR><C-L>
 
     " Faster shortcut for commenting lines using tcomment
     map <leader>c <c-_><c-_>
+
+    " line navigation ignores line wrap. Great for working with long lines in  vim
+    map j gj
+    map k gk
+
+    " Map <Esc> to jk for faster getting out of insert mode
+    inoremap jk <esc>
+    inoremap <esc> <nop>
 
     " Easy window navigation
     nnoremap <C-J> <C-W><C-J>
@@ -223,31 +274,7 @@ set pastetoggle=<F11>
     nnoremap <leader>n :NERDTreeFocus<CR>
     nnoremap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
     nnoremap <leader>N :NERDTreeClose<CR>
-    " Store the bookmarks file
-    let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
 
-    " Show the bookmarks table on startup
-    let NERDTreeShowBookmarks=1
-
-    " Show hidden files, too
-    let NERDTreeShowFiles=1
-    let NERDTreeShowHidden=1
-
-    " Quit on opening files from the tree
-    let NERDTreeQuitOnOpen=1
-
-    " Highlight the selected entry in the tree
-    let NERDTreeHighlightCursorline=1
-
-    " Use a single click to fold/unfold directories and a double click to open files
-    let NERDTreeMouseMode=2
-
-    " Don't display these kinds of files
-    let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
-                 \ '\.o$', '\.so$', '\.egg$', '^\.git$', '__pycache__',
-                 \ '\.DS_Store' ]
-    " }}}
-    "
 " }
 
 " Custom Functions: {
@@ -260,4 +287,5 @@ set pastetoggle=<F11>
     " autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
     "
     autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() "Removes trailing whitespace on any filetype
+    au BufRead *.html,*.ejs set filetype=htmlm4
 " }
