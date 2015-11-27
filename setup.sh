@@ -17,14 +17,32 @@ echo "${BOLD}${CYAN}Current Directory: ${BLUE}$(pwd)${RESET}"
 echo "${BOLD}${CYAN}Term settings: ${BLUE}$TERM${RESET}"
 perl 256color.pl
 
-echo "Copying Vim settings to ~/.vimrc && Installing Vundle"
-if [ -a ~/.vimrc ]
-then
-    echo "~/.vimrc already exists, making a copy then copying over the new .vimrc"
-    mv ~/.vimrc ~/.vimrc.bak
-fi
+# List of configurations that I care about
+CONFIGS=(~/.bashrc ~/.bash ~/.vimrc )
+DATE=`date +%Y-%m-%d`
+OLDCONFIGS=.old
 
-cp .vimrc ~/.vimrc
+for config in ${CONFIGS[@]}; do
+    echo $config
+    if [ -e $config ]; then
+        if [ ! -d $OLDCONFIGS ]; then
+            mkdir $OLDCONFIGS
+        fi
+        echo $config " is being moved to " $OLDCONFIGS
+        NEWNAME=$config "_" $DATE
+        mv $config $NEWNAME
+        mv $NEWNAME $OLDCONFIGS
+    fi
+done
+
+echo "Copying Bash settings to ~/.bashrc"
+cp bash/.bashrc ~/.bashrc
+if [ ! -a ~/.bash ]; then mkdir ~/.bash fi
+cp bash/.aliases ~/.bash
+cp bash/.bash_profile ~/.bash_profile
+
+echo "Copying Vim settings to ~/.vimrc && Installing Vundle"
+cp vim/.vimrc ~/.vimrc
 if [ -a ~/.vim/bundle/Vundle.vim ]
 then
     rm ~/.vim/bundle/Vundle.vim
@@ -34,7 +52,6 @@ fi
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # vim -E -u NONE -S ~/.vim/vundle.vim +PluginInstall +qall > /dev/null
 vim -E -u NONE +PluginInstall +qall > /dev/null
-
 
 echo "${BOLD}${MAGENTA}*********************************************************${RESET}*"
 echo "Done!"

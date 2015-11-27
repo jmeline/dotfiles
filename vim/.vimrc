@@ -155,7 +155,7 @@ set pastetoggle=<F11>
     set showmatch                   " Will highlight matching brackets.
     set mat=2                       " How long the highlight will last.
     set number                      " Show line numbers on left side.
-    "set relativenumber             " Enables the user to easilty see the relative distance between cursor and target line.
+    set relativenumber             " Enables the user to easilty see the relative distance between cursor and target line.
     set ttyfast                     " Will send characters over a terminal connection faster. We do have pretty fast computers after all.
     set ruler                       " Always show current cursor position.
     set hidden                      " Abandon buffer when closed.
@@ -228,7 +228,8 @@ set pastetoggle=<F11>
     "
 
 " Mapping:{
-    map Y y$ " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
+    " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
+    map Y y$
 
     " Map <C-L> (redraw screen) to also turn off search highlighting until the
     nnoremap <C-L> :nohl<CR><C-L>
@@ -243,6 +244,19 @@ set pastetoggle=<F11>
     " Map <Esc> to jk for faster getting out of insert mode
     inoremap jk <esc>
     inoremap <esc> <nop>
+
+    " Common mistyping, saves rage
+    nnoremap ; :
+
+    " Stupid shift key fixes
+    cmap W w
+    cmap Wq wq
+    cmap WQ wq
+    cmap wQ wq
+    cmap Q q
+
+    " Standard save method. Simpler and shorter
+    map <c-s> :w<CR>
 
     " Easy window navigation
     nnoremap <C-J> <C-W><C-J>
@@ -285,7 +299,8 @@ set pastetoggle=<F11>
         call cursor(l, c)
     endfun
     " autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-    "
+
     autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() "Removes trailing whitespace on any filetype
     au BufRead *.html,*.ejs set filetype=htmlm4
+    au BufRead .aliasrc set filetype=bash
 " }

@@ -1,0 +1,91 @@
+#!/bin/bash
+
+# aliases
+alias ls='ls --color=auto --group-directories-first'
+alias ll='ls -lAh --color=auto --group-directories-first'
+alias l='ls --color=auto --group-directories-first'
+alias la='ls -lA --color=auto --group-directories-first'
+
+pacclean (){
+    set -x
+    sudo pacman -Syy
+    sudo pacman -Scc
+    sudo pacman -Suu
+    sudo pacman -Rsn $(pacman -Qqdt)
+    set +x
+}
+paclist(){
+    pacman -Qei | awk '/^Name/ { name=$3 } /^Groups/ { if ( $3 != "base" && $3 != "base-devel" ) { print name } }'
+}
+#SSD TRIM {{{
+# http://www.webupd8.org/2013/01/enable-trim-on-ssd-solid-state-drives.html
+trim-check() {
+    sudo hdparm -I /dev/"$1" | awk '/.*TRIM supported.*/{ if ($1 == "*") print "Yes, TRIM is enabled"; else print "No, TRIM is not enabled." ;}'
+    }
+trim-fstrim() { sudo fstrim -v "$1" ;}
+gen-cron-trim() { sudo cp ~/.scripts/trim /etc/cron.daily/ ;}
+# }}}
+
+date-global() {
+# use tzselect to find timezone listing
+local SHOWTIMEZONE="$(
+    alias date='date +"%a %D %l:%M %p"'
+    echo "Current Location:" "$(date)"
+    echo "USA LosAngeles:" "$(TZ='America/Los_Angeles' date)"
+    echo "USA NewYork:" "$(TZ='America/New_York' date)"
+    echo "EU London:" "$(TZ='Europe/London' date)"
+    echo "Bangladesh Dhaka:" "$(TZ='Asia/Dhaka' date)"
+    echo "China Xinjiang:" "$(TZ='Asia/Urumqi' date)"
+    echo "Vietnam Saigon:" "$(TZ='Asia/Ho_Chi_Minh' date)"
+    echo "China Beijing:" "$(TZ='Asia/Shanghai' date)"
+    echo "HK HongKong:" "$(TZ='Asia/Hong_Kong' date)"
+    echo "Japan Tokyo:" "$(TZ='Asia/Tokyo' date)"
+    )"
+    echo "$SHOWTIMEZONE" | column -t
+}
+
+# Easy extract
+function extract {
+   if [ -z "$1" ]; then
+        # display usage if no parameters given
+        echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+    else
+        if [ -f "$1" ] ; then
+            NAME=${1%.*}
+            #mkdir $NAME && cd $NAME
+            case "$1" in
+            *.tar.bz2)   tar xvjf ./"$1"    ;;
+            *.tar.gz)    tar xvzf ./"$1"    ;;
+            *.tar.xz)    tar xvJf ./"$1"    ;;
+            *.lzma)      unlzma ./"$1"      ;;
+            *.bz2)       bunzip2 ./"$1"     ;;
+            *.rar)       unrar x -ad ./"$1" ;;
+            *.gz)        gunzip ./"$1"      ;;
+            *.tar)       tar xvf ./"$1"     ;;
+            *.tbz2)      tar xvjf ./"$1"    ;;
+            *.tgz)       tar xvzf ./"$1"    ;;
+            *.zip)       unzip ./"$1"       ;;
+            *.Z)         uncompress ./"$1"  ;;
+            *.7z)        7z x ./"$1"        ;;
+            *.xz)        unxz ./"$1"        ;;
+            *.exe)       cabextract ./"$1"  ;;
+            *)           echo "extract: '$1' - unknown archive method" ;;
+            esac
+        else
+            echo "'$1' - file does not exist"
+        fi
+    fi
+}
+
+#internetinfo | Usage: ii
+function ii()   # get current host related info
+{
+    echo -e "\n${RED}Kernel Information:$NC " ; uname -a
+    echo -e "\n${RED}Users logged on:$NC " ; w -h
+    echo -e "\n${RED}Current date :$NC " ; date
+    echo -e "\n${RED}Machine stats :$NC " ; uptime
+    echo -e "\n${RED}Memory stats :$NC " ; free
+    echo -e "\n${RED}Disk Usage :$NC " ; df -Th
+    echo -e "\n${RED}LAN Information :$NC" ; netinfoLAN
+    echo
+}
