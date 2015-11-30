@@ -17,12 +17,20 @@ pacclean (){
 paclist(){
     pacman -Qei | awk '/^Name/ { name=$3 } /^Groups/ { if ( $3 != "base" && $3 != "base-devel" ) { print name } }'
 }
+
+# Shortcut to generate an updated Arch Linux mirrorlist - requires reflector
+reflector-generate() {
+    reflector --country "United States" -l 200 -p http --sort rate --save "$1"
+}
+
+yts-game-cinemassacre() { youtube-viewer -u cinemassacre ;}
 #SSD TRIM {{{
 # http://www.webupd8.org/2013/01/enable-trim-on-ssd-solid-state-drives.html
 trim-check() {
     sudo hdparm -I /dev/"$1" | awk '/.*TRIM supported.*/{ if ($1 == "*") print "Yes, TRIM is enabled"; else print "No, TRIM is not enabled." ;}'
     }
 trim-fstrim() { sudo fstrim -v "$1" ;}
+zombie-process() { ps aux | awk '{ print $8 " " $2 }' | grep -w Z ;}
 gen-cron-trim() { sudo cp ~/.scripts/trim /etc/cron.daily/ ;}
 # }}}
 
