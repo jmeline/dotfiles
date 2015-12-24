@@ -9,6 +9,12 @@
 
 archey3
 
+if [ -e /etc/profile.d/autojump.sh ];
+then
+    source /etc/profile.d/autojump.sh
+    echo "Sourced autojump..."
+fi
+
 ## Obtain git-prompt.sh for git
 # ====================================
 if [ ! -e ~/.git-prompt.sh ];
@@ -81,3 +87,6 @@ for f in $(command ls ~/.node-completion); do
 done
 # }}}
 
+
+# added by Miniconda3 3.18.9 installer
+export PATH="/home/jmeline/miniconda3/bin:$PATH"

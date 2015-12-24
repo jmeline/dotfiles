@@ -17,6 +17,8 @@
     Plugin 'tpope/vim-surround'
     Plugin 'Raimondi/delimitMate'
     Plugin 'tomtom/tcomment_vim'
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'vimwiki/vimwiki'
 
     " Motion:
     Plugin 'Lokaltog/vim-easymotion'
@@ -28,6 +30,13 @@
 
     " ColorSchemes:
     Plugin 'zeis/vim-kolor'
+
+    " Fuzzy Finder:
+    Plugin 'L9'
+    Plugin 'FuzzyFinder'
+
+    " Tmux Plugins:
+    Plugin 'christoomey/vim-tmux-navigator'
 
     """""""""""""""""""""""
     " Language Specifics: "
@@ -247,6 +256,8 @@ set pastetoggle=<F11>
 
     " Common mistyping, saves rage
     nnoremap ; :
+
+    noremap <Space> :<c-u>noh<CR>:echo<CR>
 
     " Stupid shift key fixes
     cmap W w
