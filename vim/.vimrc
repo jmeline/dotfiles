@@ -17,8 +17,7 @@
     Plugin 'tpope/vim-surround'
     Plugin 'Raimondi/delimitMate'
     Plugin 'tomtom/tcomment_vim'
-    Plugin 'Valloric/YouCompleteMe'
-    Plugin 'vimwiki/vimwiki'
+    Plugin 'ctrlpvim/ctrlp.vim'
 
     " Motion:
     Plugin 'Lokaltog/vim-easymotion'
@@ -30,13 +29,6 @@
 
     " ColorSchemes:
     Plugin 'zeis/vim-kolor'
-
-    " Fuzzy Finder:
-    Plugin 'L9'
-    Plugin 'FuzzyFinder'
-
-    " Tmux Plugins:
-    Plugin 'christoomey/vim-tmux-navigator'
 
     """""""""""""""""""""""
     " Language Specifics: "
@@ -215,6 +207,18 @@ set pastetoggle=<F11>
       \ 'subseparator': { 'left': '|', 'right': '|' }
       \ }
 
+    """"""""""""""""""
+    " ctrlp Settings "
+    """"""""""""""""""
+    let g:ctrlp_map = '<c-p>'
+    let g:ctrlp_cmd = 'CtrlP'
+    " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc
+    " --exclude-standard']
+    let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+    " let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
+    " set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
     """""""""""""""""""""
     " NerdTree Settings "
     """""""""""""""""""""
@@ -239,7 +243,6 @@ set pastetoggle=<F11>
 " Mapping:{
     " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
     map Y y$
-
     " Map <C-L> (redraw screen) to also turn off search highlighting until the
     nnoremap <C-L> :nohl<CR><C-L>
 
@@ -256,8 +259,6 @@ set pastetoggle=<F11>
 
     " Common mistyping, saves rage
     nnoremap ; :
-
-    noremap <Space> :<c-u>noh<CR>:echo<CR>
 
     " Stupid shift key fixes
     cmap W w
