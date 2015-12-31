@@ -53,6 +53,9 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # vim -E -u NONE -S ~/.vim/vundle.vim +PluginInstall +qall > /dev/null
 vim -E -u NONE +PluginInstall +qall > /dev/null
 
+## Get all of the base16 colors from chriskempson's repository
+git clone https://github.com/chriskempson/base16-xfce4-terminal colors/base16-xfce4-terminal
+
 echo "${BOLD}${MAGENTA}*********************************************************${RESET}*"
 echo "Done!"
 
