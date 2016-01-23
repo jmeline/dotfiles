@@ -10,25 +10,36 @@
     Plugin 'gmarik/Vundle.vim'
 
     " Functional:
-    Plugin 'bling/vim-airline'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-surround'
     Plugin 'Raimondi/delimitMate'
     Plugin 'tomtom/tcomment_vim'
-    Plugin 'ctrlpvim/ctrlp.vim'
+    " Plugin 'Valloric/YouCompleteMe'
+    Plugin 'vimwiki/vimwiki'
 
     " Motion:
     Plugin 'Lokaltog/vim-easymotion'
 
     " Pretty:
     Plugin 'mkitt/tabline.vim'
-    Plugin 'itchyny/lightline.vim'
+    " Plugin 'itchyny/lightline.vim'
+    Plugin 'bling/vim-airline'
+    Plugin 'edkolev/tmuxline.vim'
     Plugin 'morhetz/gruvbox'
 
     " ColorSchemes:
+    " Plugin 'chriskempson/base16-vim'
     Plugin 'zeis/vim-kolor'
+
+    " Fuzzy Finder:
+    Plugin 'L9'
+    Plugin 'FuzzyFinder'
+
+    " Tmux Plugins:
+    Plugin 'tmux-plugins/vim-tmux'
+    Plugin 'christoomey/vim-tmux-navigator'
 
     """""""""""""""""""""""
     " Language Specifics: "
@@ -40,20 +51,12 @@
     Plugin 'mxw/vim-jsx'
 
     "   CPlusPlus:
-    Bundle "vim-scripts/c.vim"
+    " Bundle "vim-scripts/c.vim"
 
     " Latex:
-    Plugin 'lervag/vimtex'
+    " Plugin 'lervag/vimtex'
     call vundle#end()
     " }
-
-" " Airline: {
-"     if !exists('g:airline_symbols')
-"         let g:airline_symbols = {}
-"     endif
-"     let g:airline_symbols.space = "\ua0"
-" }
-
 
 """"""""""""""""""""""""""""""""""""""""
 "   Vimrc Settings and Configurations  "
@@ -118,12 +121,13 @@ set pastetoggle=<F11>
 " }
 
 " Formatting: {
-    set expandtab                   " Expand tab characters to space characters.
-    set shiftwidth=4                " One tab is now 4 spaces.
-    set shiftround                  " Always round up to the nearest tab.
+
     set tabstop=4                   " This one is also needed to acheive the desired effect.
-    set softtabstop=4               " Enables easy removal of an indentation level.
-    set smarttab                    "Insert tabs on the start of a line according to shiftwidth, not tabstop
+    set shiftwidth=4                " One tab is now 4 spaces.
+    set expandtab                   " Expand tab characters to space characters.
+    " set shiftround                  " Always round up to the nearest tab.
+    " set softtabstop=4               " Enables easy removal of an indentation level.
+    " set smarttab                    "Insert tabs on the start of a line according to shiftwidth, not tabstop
 
     set autoindent                  " Automatically copy the previous indent level. Don't use smartindent.
     set backspace=indent,eol,start
@@ -190,6 +194,9 @@ set pastetoggle=<F11>
     """"""""""""""""""
     " Kolor Settings "
     """"""""""""""""""
+    " let base16colorspace=256
+    " colorscheme base16-default
+
     colorscheme kolor
     let g:kolor_italic=1                    " Enable italic. Default: 1
     let g:kolor_bold=1                      " Enable bold. Default: 1
@@ -199,27 +206,49 @@ set pastetoggle=<F11>
     """"""""""""""""""""""
     " lightline Settings "
     """"""""""""""""""""""
-    let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
-      \ 'active':{
-      \     'fugitive': 'MyFugitive',
-      \  },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
-      \ }
+    " let g:lightline = {
+    "   \ 'colorscheme': 'jellybeans',
+    "   \ 'active':{
+    "   \     'fugitive': 'MyFugitive',
+    "   \  },
+    "   \ 'subseparator': { 'left': '|', 'right': '|' }
+    "   \ }
 
-    """"""""""""""""""
-    " ctrlp Settings "
-    """"""""""""""""""
-    let g:ctrlp_map = '<c-p>'
-    let g:ctrlp_cmd = 'CtrlP'
-    " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc
-    " --exclude-standard']
-    let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-    " let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
-    " set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+    """"""""""""""""""""
+    " airline Settings "
+    " """"""""""""""""""
+    " Enable vim-airline
+    let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
+    let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
+    let g:airline#extensions#branch#enabled = 1 " Enable branches
+    let g:airline_theme='dark'
 
-    """""""""""""""""""""
+    " Enable powerline symbols for vim-airline
+    let g:airline_powerline_fonts = 1
+
+    if !exists('g:airlinesymbols')
+        let g:airlinesymbols = {}
+    endif
+
+    let g:airlineleftsep = '»'
+    let g:airlineleftsep = '?'
+    let g:airlinerightsep = '«'
+    let g:airlinerightsep = '?'
+    let g:airlinesymbols.linenr = '?'
+    let g:airlinesymbols.linenr = '?'
+    let g:airlinesymbols.linenr = '¶'
+    let g:airlinesymbols.branch = '?'
+    let g:airlinesymbols.paste = '?'
+    let g:airlinesymbols.paste = 'Þ'
+    let g:airlinesymbols.paste = '?'
+    let g:airlinesymbols.whitespace = '?'
+
+    """""""""""""""""""""""""
+    " tmux-airline Settings "
+    """""""""""""""""""""""""
+
+
+    " """"""""""""""""""
     " NerdTree Settings "
     """""""""""""""""""""
     " Store the bookmarks file
@@ -243,6 +272,7 @@ set pastetoggle=<F11>
 " Mapping:{
     " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
     map Y y$
+
     " Map <C-L> (redraw screen) to also turn off search highlighting until the
     nnoremap <C-L> :nohl<CR><C-L>
 
@@ -259,6 +289,8 @@ set pastetoggle=<F11>
 
     " Common mistyping, saves rage
     nnoremap ; :
+
+    noremap <Space> :<c-u>noh<CR>:echo<CR>
 
     " Stupid shift key fixes
     cmap W w
@@ -316,3 +348,22 @@ set pastetoggle=<F11>
     au BufRead *.html,*.ejs set filetype=htmlm4
     au BufRead .aliasrc set filetype=bash
 " }
+
+" Color Changes
+" .....................................
+" hi LineNr                    ctermfg=green   ctermbg=black
+" hi NERDTreeCWD               ctermfg=black
+" hi NERDTreeLink              ctermfg=cyan
+" hi NERDTreeExecFile          ctermfg=green
+" hi SyntasticStyleWarningSign ctermfg=yellow  ctermbg=black
+" hi SyntasticStyleErrorSign   ctermfg=red     ctermbg=black
+" hi SyntasticWarningSign      ctermfg=yellow  ctermbg=black
+" hi SyntasticErrorSign        ctermfg=red     ctermbg=black
+" hi SignColumn                ctermbg=black
+" hi GitGutterAdd              ctermfg=green   ctermbg=black
+" hi GitGutterChange           ctermfg=yellow  ctermbg=black
+" hi GitGutterDelete           ctermfg=red     ctermbg=black
+" hi GitGutterChangeDelete     ctermfg=blue    ctermbg=black
+" hi vertsplit                 ctermfg=green   ctermbg=green
+" hi Pmenu                                     ctermbg=238
+" hi clear SignColumn

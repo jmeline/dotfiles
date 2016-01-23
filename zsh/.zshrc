@@ -41,10 +41,10 @@ alias ez='vim ~/.zshrc'
 #autoload -U compinit && compinit -u
 
 # Fish-like syntax highlighting
-# If you don't have it, sudo pacman -S zsh-syntax-highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Autojump (best tool I have found)
-# If you don't have it, sudo pacman -S autojump
+# Autojump
 source /etc/profile.d/autojump.zsh
+
+(set -x; sudo mount -t vboxsf -o gid=1000,uid=1000 VBox /home/$(whoami)/Shared)
 
