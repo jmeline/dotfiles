@@ -16,8 +16,9 @@
     Plugin 'tpope/vim-surround'
     Plugin 'Raimondi/delimitMate'
     Plugin 'tomtom/tcomment_vim'
-    " Plugin 'Valloric/YouCompleteMe'
+    Plugin 'Valloric/YouCompleteMe'
     Plugin 'vimwiki/vimwiki'
+    Plugin 'ctrlpvim/ctrlp.vim'
 
     " Motion:
     Plugin 'Lokaltog/vim-easymotion'
@@ -248,6 +249,23 @@ set pastetoggle=<F11>
     """""""""""""""""""""""""
 
 
+    """""""""""""""""""""""""
+    " CtrlP Settings "
+    """""""""""""""""""""""""
+    let g:ctrlp_map = '<c-p>'
+    let g:ctrlp_cmd = 'CtrlP'
+    " unlet g:ctrlp_custom_ignore
+    " let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+    let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+      \ 'file': '\v\.(exe|so|dll)$',
+      \ 'link': 'some_bad_symbolic_links'
+      \ }
+    let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+    let g:ctrlp_working_path_mode = 'ra'
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
     " """"""""""""""""""
     " NerdTree Settings "
     """""""""""""""""""""
@@ -274,7 +292,7 @@ set pastetoggle=<F11>
     map Y y$
 
     " Map <C-L> (redraw screen) to also turn off search highlighting until the
-    nnoremap <C-L> :nohl<CR><C-L>
+    nnoremap <C-L> :noh<CR><C-L>
 
     " Faster shortcut for commenting lines using tcomment
     map <leader>c <c-_><c-_>
