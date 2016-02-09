@@ -10,7 +10,9 @@
     Plugin 'VundleVim/Vundle.vim'
 
     " Functional:
-    Plugin 'bling/vim-airline'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+    " Plugin 'itchyny/lightline.vim'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
     Plugin 'tpope/vim-fugitive'
@@ -24,7 +26,6 @@
 
     " Pretty:
     Plugin 'mkitt/tabline.vim'
-    Plugin 'itchyny/lightline.vim'
     Plugin 'morhetz/gruvbox'
 
     " ColorSchemes:
@@ -43,17 +44,9 @@
     " Bundle "vim-scripts/c.vim"
 
     " Latex:
-    Plugin 'lervag/vimtex'
+    " Plugin 'lervag/vimtex'
     call vundle#end()
     " }
-
-" " Airline: {
-"     if !exists('g:airline_symbols')
-"         let g:airline_symbols = {}
-"     endif
-"     let g:airline_symbols.space = "\ua0"
-" }
-
 
 """"""""""""""""""""""""""""""""""""""""
 "   Vimrc Settings and Configurations  "
@@ -62,10 +55,13 @@
 " After setting your font manually using the Font window, if you are unsure exactly what to put type:
 " set guifont
 " This will show you the exact string value you need to put in your .vimrc file, including the typeface.
+" Note: Patching fonts on windows: Powershell.exe -executionpolicy remotesigned -File install.ps1
+" https://github.com/powerline/fonts.git
 
 " set anti enc=utf-8
 set enc=utf-8
-set guifont=Source\ Code\ Pro\ Medium:h13
+" set guifont=Source\ Code\ Pro\ Medium:h11
+set guifont=DejaVu_Sans_Mono_for_Powerline:h13:cANSI
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
@@ -88,6 +84,7 @@ set nostartofline
 " dialogue asking if you wish to save changed files.
 set confirm
 set visualbell " Use visual bell instead of beeping when doing something wrong
+set noeb vb t_vb=
 
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
@@ -115,15 +112,15 @@ set pastetoggle=<F11>
     set t_vb=
     set mouse=a                     " Enable use of the mouse for all modes
     set shortmess+=I                " hide the launch screen
-    set clipboard=unnamedplus       " normal OS clipboard interaction
+    set clipboard=unnamed           " normal OS clipboard interaction
 " }
 
 " Formatting: {
     set expandtab                   " Expand tab characters to space characters.
-    set shiftwidth=4                " One tab is now 4 spaces.
+    set shiftwidth=2                " One tab is now 4 spaces.
     set shiftround                  " Always round up to the nearest tab.
-    set tabstop=4                   " This one is also needed to acheive the desired effect.
-    set softtabstop=4               " Enables easy removal of an indentation level.
+    set tabstop=2                   " This one is also needed to acheive the desired effect.
+    set softtabstop=2               " Enables easy removal of an indentation level.
     set smarttab                    "Insert tabs on the start of a line according to shiftwidth, not tabstop
 
     set autoindent                  " Automatically copy the previous indent level. Don't use smartindent.
@@ -172,16 +169,16 @@ set pastetoggle=<F11>
     " Fugitive Settings "
     """""""""""""""""""""
     function! MyFugitive()
-	  try
-	    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
-	      let mark = ''  " edit here for cool mark
-	      let _ = fugitive#head()
-	      return strlen(_) ? mark._ : ''
-	    endif
-	  catch
-	  endtry
-	  return ''
-	endfunction
+      try
+        if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+          let mark = ''  " edit here for cool mark
+          let _ = fugitive#head()
+          return strlen(_) ? mark._ : ''
+        endif
+      catch
+      endtry
+      return ''
+    endfunction
 
     """"""""""""""""""""
     " vim-JSX Settings "
@@ -197,31 +194,42 @@ set pastetoggle=<F11>
     let g:kolor_underlined=0                " Enable underline. Default: 0
     let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
 
+    """"""""""""""""""""
+    " airline Settings "
+    """"""""""""""""""""
+    if !exists('g:airline_symbols')
+      let g:airline_symbols = {}
+    endif
+    let g:airline_symbols.space = "\ua0"
+    let g:airline_powerline_fonts = 1
+
     """"""""""""""""""""""
     " lightline Settings "
     """"""""""""""""""""""
-    let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
-      \ 'active':{
-      \     'fugitive': 'MyFugitive',
-      \  },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
-      \ }
-
-    " let g:airline_powerline_fonts = 1
+    " let g:lightline = {
+    "   \ 'colorscheme': 'jellybeans',
+    "   \ 'active':{
+    "   \     'fugitive': 'MyFugitive',
+    "   \  },
+    "   \ 'subseparator': { 'left': '|', 'right': '|' }
+    "   \ }
 
     """"""""""""""""""
     " ctrlp Settings "
     """"""""""""""""""
+    if exists("g:ctrlp_user_command")
+      unlet g:ctrlp_user_command
+    end
+
     let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlP'
-    " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc
-    " --exclude-standard']
-    let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+    " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+    " let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
     " let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
-    " set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
     let g:ctrlp_working_path_mode = '0'
 
     """""""""""""""""""""

@@ -1,0 +1,8 @@
+" colorscheme wombat
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+" set guifont=Source\ Code\ Pro\ Medium:h13
+set vb t_vb=
+" set relativenumber             " Enables the user to easilty see the relativ
+" set number
