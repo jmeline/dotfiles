@@ -2,53 +2,56 @@
 " http://pastebin.com/u7b5gZj6
 " https://raw.githubusercontent.com/nvie/vimrc/master/vimrc
 " I got a lot of the settings from this pastebin. Thanks!
+
+" GVIM: {
+  if has('gui_running')
+    set guioptions-=m
+    set guioptions-=e
+    set guioptions-=T
+    set guioptions-=r
+    set vb noeb novb t_vb=
+  endif
+" }
+
 " VUNDLE: {
     set nocompatible
     filetype off
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
-    Plugin 'gmarik/Vundle.vim'
+    set rtp+=$HOME/vimfiles/bundle/Vundle.vim
+    call vundle#begin('$HOME/vimfiles/bundle')
+    Plugin 'VundleVim/Vundle.vim'
 
     " Functional:
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+    " Plugin 'itchyny/lightline.vim'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-surround'
     Plugin 'Raimondi/delimitMate'
     Plugin 'tomtom/tcomment_vim'
-    Plugin 'Valloric/YouCompleteMe'
-    Plugin 'vimwiki/vimwiki'
     Plugin 'ctrlpvim/ctrlp.vim'
 
     " Motion:
-    Plugin 'Lokaltog/vim-easymotion'
+    " Plugin 'Lokaltog/vim-easymotion'
 
     " Pretty:
     Plugin 'mkitt/tabline.vim'
-    " Plugin 'itchyny/lightline.vim'
-    Plugin 'bling/vim-airline'
-    Plugin 'edkolev/tmuxline.vim'
     Plugin 'morhetz/gruvbox'
 
     " ColorSchemes:
-    " Plugin 'chriskempson/base16-vim'
     Plugin 'zeis/vim-kolor'
-
-    " Fuzzy Finder:
-    Plugin 'L9'
-    Plugin 'FuzzyFinder'
-
-    " Tmux Plugins:
-    Plugin 'tmux-plugins/vim-tmux'
-    Plugin 'christoomey/vim-tmux-navigator'
-
+    Plugin 'elzr/vim-json'            " better json syntax highlighting
     """""""""""""""""""""""
     " Language Specifics: "
     """""""""""""""""""""""
     "   Python:
 
+    "   LESS:
+    Plugin 'groenewege/vim-less'
+
     "   Javascript:
-    Plugin 'pangloss/vim-javascript' " Required by vim-jsx
+    Plugin 'pangloss/vim-javascript'  " Required by vim-jsx
     Plugin 'mxw/vim-jsx'
 
     "   CPlusPlus:
@@ -66,9 +69,13 @@
 " After setting your font manually using the Font window, if you are unsure exactly what to put type:
 " set guifont
 " This will show you the exact string value you need to put in your .vimrc file, including the typeface.
+" Note: Patching fonts on windows: Powershell.exe -executionpolicy remotesigned -File install.ps1
+" https://github.com/powerline/fonts.git
 
-set anti enc=utf-8
-set guifont=Source\ Code\ Pro\ Medium:h13
+" set anti enc=utf-8
+set enc=utf-8
+" set guifont=Source\ Code\ Pro\ Medium:h11
+set guifont=DejaVu_Sans_Mono_for_Powerline:h13:cANSI
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
@@ -90,7 +97,6 @@ set nostartofline
 " Instead of failing a command because of unsaved changes, instead raise a
 " dialogue asking if you wish to save changed files.
 set confirm
-set visualbell " Use visual bell instead of beeping when doing something wrong
 
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
@@ -112,23 +118,18 @@ set pastetoggle=<F11>
     let mapleader=','               " Map <leader> to the ',' key. This is used to extend Vims functionality without overwriting any standard bindings.
     " let g:mapleader=','             " Do this globally too.
 
-    " And reset the terminal code for the visual bell. If visualbell is set, and
-    " this line is also included, vim will neither flash nor beep. If visualbell
-    " is unset, this does nothing.
-    set t_vb=
     set mouse=a                     " Enable use of the mouse for all modes
     set shortmess+=I                " hide the launch screen
-    set clipboard=unnamedplus       " normal OS clipboard interaction
+    set clipboard=unnamed           " normal OS clipboard interaction
 " }
 
 " Formatting: {
-
-    set tabstop=4                   " This one is also needed to acheive the desired effect.
-    set shiftwidth=4                " One tab is now 4 spaces.
     set expandtab                   " Expand tab characters to space characters.
-    " set shiftround                  " Always round up to the nearest tab.
-    " set softtabstop=4               " Enables easy removal of an indentation level.
-    " set smarttab                    "Insert tabs on the start of a line according to shiftwidth, not tabstop
+    set shiftwidth=2                " One tab is now 4 spaces.
+    set shiftround                  " Always round up to the nearest tab.
+    set tabstop=2                   " This one is also needed to acheive the desired effect.
+    set softtabstop=2               " Enables easy removal of an indentation level.
+    set smarttab                    "Insert tabs on the start of a line according to shiftwidth, not tabstop
 
     set autoindent                  " Automatically copy the previous indent level. Don't use smartindent.
     set backspace=indent,eol,start
@@ -161,7 +162,7 @@ set pastetoggle=<F11>
     set showmatch                   " Will highlight matching brackets.
     set mat=2                       " How long the highlight will last.
     set number                      " Show line numbers on left side.
-    set relativenumber             " Enables the user to easilty see the relative distance between cursor and target line.
+    " set relativenumber             " Enables the user to easilty see the relative distance between cursor and target line.
     set ttyfast                     " Will send characters over a terminal connection faster. We do have pretty fast computers after all.
     set ruler                       " Always show current cursor position.
     set hidden                      " Abandon buffer when closed.
@@ -176,16 +177,16 @@ set pastetoggle=<F11>
     " Fugitive Settings "
     """""""""""""""""""""
     function! MyFugitive()
-	  try
-	    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
-	      let mark = ''  " edit here for cool mark
-	      let _ = fugitive#head()
-	      return strlen(_) ? mark._ : ''
-	    endif
-	  catch
-	  endtry
-	  return ''
-	endfunction
+      try
+        if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+          let mark = ''  " edit here for cool mark
+          let _ = fugitive#head()
+          return strlen(_) ? mark._ : ''
+        endif
+      catch
+      endtry
+      return ''
+    endfunction
 
     """"""""""""""""""""
     " vim-JSX Settings "
@@ -195,14 +196,21 @@ set pastetoggle=<F11>
     """"""""""""""""""
     " Kolor Settings "
     """"""""""""""""""
-    " let base16colorspace=256
-    " colorscheme base16-default
-
     colorscheme kolor
     let g:kolor_italic=1                    " Enable italic. Default: 1
     let g:kolor_bold=1                      " Enable bold. Default: 1
     let g:kolor_underlined=0                " Enable underline. Default: 0
     let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
+
+    """"""""""""""""""""
+    " airline Settings "
+    """"""""""""""""""""
+    if !exists('g:airline_symbols')
+      let g:airline_symbols = {}
+    endif
+    let g:airline_symbols.space = "\ua0"
+    let g:airline_powerline_fonts = 1
+    " let g:airline#extensions#tabline#enabled = 1
 
     """"""""""""""""""""""
     " lightline Settings "
@@ -215,58 +223,25 @@ set pastetoggle=<F11>
     "   \ 'subseparator': { 'left': '|', 'right': '|' }
     "   \ }
 
-    """"""""""""""""""""
-    " airline Settings "
-    " """"""""""""""""""
-    " Enable vim-airline
-    let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
-    let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
-    let g:airline#extensions#branch#enabled = 1 " Enable branches
-    let g:airline_theme='dark'
+    """"""""""""""""""
+    " ctrlp Settings "
+    """"""""""""""""""
+    if exists("g:ctrlp_user_command")
+      unlet g:ctrlp_user_command
+    end
 
-    " Enable powerline symbols for vim-airline
-    let g:airline_powerline_fonts = 1
-
-    if !exists('g:airlinesymbols')
-        let g:airlinesymbols = {}
-    endif
-
-    let g:airlineleftsep = '»'
-    let g:airlineleftsep = '?'
-    let g:airlinerightsep = '«'
-    let g:airlinerightsep = '?'
-    let g:airlinesymbols.linenr = '?'
-    let g:airlinesymbols.linenr = '?'
-    let g:airlinesymbols.linenr = '¶'
-    let g:airlinesymbols.branch = '?'
-    let g:airlinesymbols.paste = '?'
-    let g:airlinesymbols.paste = 'Þ'
-    let g:airlinesymbols.paste = '?'
-    let g:airlinesymbols.whitespace = '?'
-
-    """""""""""""""""""""""""
-    " tmux-airline Settings "
-    """""""""""""""""""""""""
-
-
-    """""""""""""""""""""""""
-    " CtrlP Settings "
-    """""""""""""""""""""""""
+    let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlP'
-    " unlet g:ctrlp_custom_ignore
-    " let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-    let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-      \ 'file': '\v\.(exe|so|dll)$',
-      \ 'link': 'some_bad_symbolic_links'
-      \ }
-    let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-    let g:ctrlp_working_path_mode = 'ra'
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+    " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+    " let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+    " let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
     set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+    let g:ctrlp_working_path_mode = '0'
 
-    " """"""""""""""""""
+    """""""""""""""""""""
     " NerdTree Settings "
     """""""""""""""""""""
     " Store the bookmarks file
@@ -284,15 +259,19 @@ set pastetoggle=<F11>
     let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
                  \ '\.o$', '\.so$', '\.egg$', '^\.git$', '__pycache__',
                  \ '\.DS_Store' ]
+
+    let g:NERDTreeDirArrows = 1
+    let g:NERDTreeDirArrowExpandable = '-'
+    let g:NERDTreeDirArrowExpandable = '▸'
+    let g:NERDTreeDirArrowCollapsible = '▾'
     " }}}
     "
 
 " Mapping:{
     " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
     map Y y$
-
     " Map <C-L> (redraw screen) to also turn off search highlighting until the
-    nnoremap <C-L> :noh<CR><C-L>
+    nnoremap <C-L> :nohl<CR><C-L>
 
     " Faster shortcut for commenting lines using tcomment
     map <leader>c <c-_><c-_>
@@ -303,12 +282,10 @@ set pastetoggle=<F11>
 
     " Map <Esc> to jk for faster getting out of insert mode
     inoremap jk <esc>
-    inoremap <esc> <nop>
+    " inoremap <esc> <nop>
 
     " Common mistyping, saves rage
     nnoremap ; :
-
-    noremap <Space> :<c-u>noh<CR>:echo<CR>
 
     " Stupid shift key fixes
     cmap W w
@@ -335,6 +312,11 @@ set pastetoggle=<F11>
     nmap <leader>s<right>  :rightbelow vnew<CR>
     nmap <leader>s<up>     :leftabove  new<CR>
     nmap <leader>s<down>   :rightbelow new<CR>
+
+    " easy buffer navigation and management
+    map gn :bn<cr>
+    map gp :bp<cr>
+    map gd :bd<cr>
 
     " Speed up scrolling of the viewport slightly
     nnoremap <C-e> 2<C-e>
@@ -366,22 +348,3 @@ set pastetoggle=<F11>
     au BufRead *.html,*.ejs set filetype=htmlm4
     au BufRead .aliasrc set filetype=bash
 " }
-
-" Color Changes
-" .....................................
-" hi LineNr                    ctermfg=green   ctermbg=black
-" hi NERDTreeCWD               ctermfg=black
-" hi NERDTreeLink              ctermfg=cyan
-" hi NERDTreeExecFile          ctermfg=green
-" hi SyntasticStyleWarningSign ctermfg=yellow  ctermbg=black
-" hi SyntasticStyleErrorSign   ctermfg=red     ctermbg=black
-" hi SyntasticWarningSign      ctermfg=yellow  ctermbg=black
-" hi SyntasticErrorSign        ctermfg=red     ctermbg=black
-" hi SignColumn                ctermbg=black
-" hi GitGutterAdd              ctermfg=green   ctermbg=black
-" hi GitGutterChange           ctermfg=yellow  ctermbg=black
-" hi GitGutterDelete           ctermfg=red     ctermbg=black
-" hi GitGutterChangeDelete     ctermfg=blue    ctermbg=black
-" hi vertsplit                 ctermfg=green   ctermbg=green
-" hi Pmenu                                     ctermbg=238
-" hi clear SignColumn
