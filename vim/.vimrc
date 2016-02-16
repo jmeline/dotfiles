@@ -151,6 +151,7 @@ set pastetoggle=<F11>
     set encoding=utf-8              " Vim can now work with a whole bunch more characters.
     set scrolloff=7                 " The screen will only scroll when the cursor is 7 characters from the top/bottom.
     " set foldmethod=indent
+    set noeb vb t_vb=
 
     set wildmenu                    " Enable the 'autocomplete' menu when in command mode (':'). make tab completion for files/buffers act like bash
     set wildmode=list:full          " Show a list when pressing tab and complete first full match
