@@ -22,7 +22,7 @@
     Plugin 'ctrlpvim/ctrlp.vim'
 
     " Motion:
-    Plugin 'Lokaltog/vim-easymotion'
+    " Plugin 'Lokaltog/vim-easymotion'
 
     " Pretty:
     Plugin 'mkitt/tabline.vim'
@@ -61,7 +61,8 @@
 " set anti enc=utf-8
 set enc=utf-8
 " set guifont=Source\ Code\ Pro\ Medium:h11
-set guifont=DejaVu_Sans_Mono_for_Powerline:h13:cANSI
+" set guifont=DejaVu_Sans_Mono_for_Powerline:h13:cANSI
+set guifont=Source\ Code\ Pro\ for\ Powerline:h16
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
@@ -219,6 +220,10 @@ set pastetoggle=<F11>
     """"""""""""""""""
     if exists("g:ctrlp_user_command")
       unlet g:ctrlp_user_command
+    end
+
+    if exists("g:ctrlp_custom_ignore")
+      unlet g:ctrlp_custom_ignore
     end
 
     let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'

@@ -1,4 +1,11 @@
-" My .vimrc
+"
+" ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
+" ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
+" ██║   ██║██║██╔████╔██║██████╔╝██║
+" ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
+"  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
+"    ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
+"
 " http://pastebin.com/u7b5gZj6
 " https://raw.githubusercontent.com/nvie/vimrc/master/vimrc
 " I got a lot of the settings from this pastebin. Thanks!
@@ -31,6 +38,9 @@
     Plugin 'Raimondi/delimitMate'
     Plugin 'tomtom/tcomment_vim'
     Plugin 'ctrlpvim/ctrlp.vim'
+    Plugin 'christoomey/vim-tmux-navigator'
+    " Plugin 'ervandew/supertab'
+    Plugin 'Valloric/YouCompleteMe'
 
     " Motion:
     " Plugin 'Lokaltog/vim-easymotion'
@@ -38,10 +48,17 @@
     " Pretty:
     Plugin 'mkitt/tabline.vim'
     Plugin 'morhetz/gruvbox'
+    Plugin 'elzr/vim-json'            " better json syntax highlighting
 
     " ColorSchemes:
     Plugin 'zeis/vim-kolor'
-    Plugin 'elzr/vim-json'            " better json syntax highlighting
+    Plugin 'chriskempson/base16-vim'
+    Plugin 'edkolev/tmuxline.vim'
+
+    " UltiSnippets:
+    Plugin 'SirVer/ultisnips'
+    Plugin 'bentayloruk/vim-react-es6-snippets'
+
     """""""""""""""""""""""
     " Language Specifics: "
     """""""""""""""""""""""
@@ -55,7 +72,7 @@
     Plugin 'mxw/vim-jsx'
 
     "   CPlusPlus:
-    " Bundle "vim-scripts/c.vim"
+    " Bundle 'vim-scripts/c.vim'
 
     " Latex:
     " Plugin 'lervag/vimtex'
@@ -75,7 +92,8 @@
 " set anti enc=utf-8
 set enc=utf-8
 " set guifont=Source\ Code\ Pro\ Medium:h11
-set guifont=DejaVu_Sans_Mono_for_Powerline:h13:cANSI
+" set guifont=DejaVu_Sans_Mono_for_Powerline:h13:cANSI
+set guifont=Sauce\ Code\ Powerline:h15:cANSI
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
@@ -149,13 +167,13 @@ set pastetoggle=<F11>
 " UI: {
     set ffs=unix,dos,mac            " Prioritize unix as the standard file type.
     set encoding=utf-8              " Vim can now work with a whole bunch more characters.
-    set scrolloff=7                 " The screen will only scroll when the cursor is 7 characters from the top/bottom.
+    set scrolloff=10                " The screen will only scroll when the cursor is 7 characters from the top/bottom.
     " set foldmethod=indent
     set noeb vb t_vb=
 
     set wildmenu                    " Enable the 'autocomplete' menu when in command mode (':'). make tab completion for files/buffers act like bash
     set wildmode=list:full          " Show a list when pressing tab and complete first full match
-    set cursorline                  " For easier cursor spotting. Completly optional though. Underline the current line
+    " set cursorline                  " For easier cursor spotting. Completly optional though. Underline the current line
     set shortmess=a                 " Shorten some command mode messages, will keep you from having to hit ENTER all the time.
     set cmdheight=2                 " Will also reduce the frequency of having to press ENTER.
     set stal=2                      " Always show tabs.
@@ -197,21 +215,33 @@ set pastetoggle=<F11>
     """"""""""""""""""
     " Kolor Settings "
     """"""""""""""""""
-    colorscheme kolor
-    let g:kolor_italic=1                    " Enable italic. Default: 1
-    let g:kolor_bold=1                      " Enable bold. Default: 1
-    let g:kolor_underlined=0                " Enable underline. Default: 0
-    let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
+    let base16colorspace=256                  " Access colors present in 256 colorspace
+    " colorscheme base16-tomorrow
+    " colorscheme base16-eighties
+    colorscheme base16-ocean
+    " colorscheme base16-3024
+    " colorscheme base16-default
 
+    " let g:kolor_italic=1                    " Enable italic. Default: 1
+    " let g:kolor_bold=1                      " Enable bold. Default: 1
+    " let g:kolor_underlined=0                " Enable underline. Default: 0
+    " let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
+    " colorscheme kolor
+    "
     """"""""""""""""""""
     " airline Settings "
     """"""""""""""""""""
     if !exists('g:airline_symbols')
       let g:airline_symbols = {}
     endif
+    " let g:airline_theme='base16color'
+    let g:airline_theme='base16_ocean'
     let g:airline_symbols.space = "\ua0"
     let g:airline_powerline_fonts = 1
     " let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tmuxline#enabled = 0
+    let g:airline#extensions#ctrlp#color_template = 'normal'
+    let g:airline#extensions#ctrlp#show_adjacent_modes = 1
 
     """"""""""""""""""""""
     " lightline Settings "
@@ -231,12 +261,29 @@ set pastetoggle=<F11>
       unlet g:ctrlp_user_command
     end
 
-    let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlP'
     " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
     " let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
     let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+
+    " enable faster searching using ag if enabled https://robots.thoughtbot.com/faster-grepping-in-vim
+    if executable('ag')
+      unlet g:ctrlp_user_command
+      " Use ag over grep
+      set grepprg=ag\ --nogroup\ --nocolor
+      " Use ag in CtrlP for listing files. lightning fast and respects .gitignore
+      let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+      " ag is fast enough that CtrlP doesn't need to cache
+      let g:ctrlp_use_caching = 0
+    endif
+
+    " let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+    let g:ctrlp_custom_ignore = {
+          \ 'dir': '\.git$\|\public$\|log\|tmp$\|node_modules$\|Build$',
+          \ 'file': '\.so$\|\.dat$\|\.DS_Store$\|\.dll$\|\.pyc$\|\.cs$|\.xml$'
+          \ }
+
     " let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
     set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
@@ -266,13 +313,48 @@ set pastetoggle=<F11>
     let g:NERDTreeDirArrowExpandable = '▸'
     let g:NERDTreeDirArrowCollapsible = '▾'
     " }}}
-    "
+
+    """"""""""""""""""""""
+    " Syntastic Settings "
+    """"""""""""""""""""""
+    " Override eslint with local version where necessary.
+    " Avoids having to install eslint plugins globally
+    let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
+    if matchstr(local_eslint, "^\/\\w") == ''
+      let local_eslint = getcwd() . "/" . local_eslint
+    endif
+    if executable(local_eslint)
+      let g:syntastic_javascript_eslint_exec = local_eslint
+    endif"
+    let g:syntastic_javascript_checkers = ['eslint']
+    " let g:syntastic_debug = 1;
+    let g:syntastic_enable_signs = 1
+    let g:syntastic_error_symbol = "✗"
+    let g:syntastic_warning_symbol = "⚠"
+
+    """"""""""""""""""""""""""""""""""""""""
+    " Ultisnips and YouCompleteMe Settings "
+    """"""""""""""""""""""""""""""""""""""""
+    " make YCM compatible with UltiSnips (using supertab)
+    " let g:ycm_key_list_select_completion = []
+    " let g:ycm_key_list_previous_completion = []
+    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+    let g:SuperTabDefaultCompletionType = '<C-n>'
+
+    " better key bindings for UltiSnipsExpandTrigger
+    let g:UltiSnipsListSnippets="<c-l>"
+    let g:UltiSnipsExpandTrigger="<tab>"
+    " let g:UltiSnipsJumpForwardTrigger="<tab>"
+    " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+    let g:UltiSnipsEditSplit="vertical"
 
 " Mapping:{
     " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
     map Y y$
     " Map <C-L> (redraw screen) to also turn off search highlighting until the
-    nnoremap <C-L> :nohl<CR><C-L>
+    " nnoremap <C-L> :nohl<CR><C-L>
+    " nnoremap <space> :nohl<CR><C-L>
 
     " Faster shortcut for commenting lines using tcomment
     map <leader>c <c-_><c-_>
@@ -315,9 +397,9 @@ set pastetoggle=<F11>
     nmap <leader>s<down>   :rightbelow new<CR>
 
     " easy buffer navigation and management
-    map gn :bn<cr>
-    map gp :bp<cr>
-    map gd :bd<cr>
+    " map gn :bn<cr>
+    " map gp :bp<cr>
+    " map gd :bd<cr>
 
     " Speed up scrolling of the viewport slightly
     nnoremap <C-e> 2<C-e>
