@@ -27,6 +27,9 @@
     call vundle#begin('$HOME/vimfiles/bundle')
     Plugin 'VundleVim/Vundle.vim'
 
+    " Personal:
+    Plugin 'vimwiki/vimwiki'
+
     " Functional:
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
@@ -57,6 +60,7 @@
 
     " UltiSnippets:
     Plugin 'SirVer/ultisnips'
+    Plugin 'honza/vim-snippets'
     Plugin 'bentayloruk/vim-react-es6-snippets'
 
     """""""""""""""""""""""
@@ -167,7 +171,7 @@ set pastetoggle=<F11>
 " UI: {
     set ffs=unix,dos,mac            " Prioritize unix as the standard file type.
     set encoding=utf-8              " Vim can now work with a whole bunch more characters.
-    set scrolloff=10                " The screen will only scroll when the cursor is 7 characters from the top/bottom.
+    set scrolloff=10                " The screen will only scroll when the cursor is 10 characters from the top/bottom.
     " set foldmethod=indent
     set noeb vb t_vb=
 
@@ -185,6 +189,7 @@ set pastetoggle=<F11>
     set ttyfast                     " Will send characters over a terminal connection faster. We do have pretty fast computers after all.
     set ruler                       " Always show current cursor position.
     set hidden                      " Abandon buffer when closed.
+    set showtabline=0               " Remove tabline across the top. 1: default
 
     syntax on                       " The most important feature when coding. Please give!.
     set laststatus=2                " Always have a status line, this is required in order for Lightline to work correctly.
@@ -210,15 +215,15 @@ set pastetoggle=<F11>
     """"""""""""""""""""
     " vim-JSX Settings "
     """"""""""""""""""""
-    let g:jsx_ext_required = 0              " jsx syntax highlighting for all javascript files
+    let g:jsx_ext_required = 1              " jsx syntax highlighting for all javascript files
 
     """"""""""""""""""
     " Kolor Settings "
     """"""""""""""""""
     let base16colorspace=256                  " Access colors present in 256 colorspace
     " colorscheme base16-tomorrow
-    " colorscheme base16-eighties
-    colorscheme base16-ocean
+    colorscheme base16-eighties
+    " colorscheme base16-ocean
     " colorscheme base16-3024
     " colorscheme base16-default
 
@@ -348,6 +353,14 @@ set pastetoggle=<F11>
     " let g:UltiSnipsJumpForwardTrigger="<tab>"
     " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
     let g:UltiSnipsEditSplit="vertical"
+
+    """""""""""""""""""""""
+    " delimitMate Settings"
+    """""""""""""""""""""""
+    let delimitMate_jump_expansion = 1  " nice feature to have jumping when creating ending braces. Read 'delimitMate_jump_expansion'
+    let delimitMate_expand_inside_quotes = 1
+    let delimitMate_expand_space = 1
+    let delimitMate_expand_cr = 1
 
 " Mapping:{
     " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
