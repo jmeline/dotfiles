@@ -97,7 +97,7 @@
 set enc=utf-8
 " set guifont=Source\ Code\ Pro\ Medium:h11
 " set guifont=DejaVu_Sans_Mono_for_Powerline:h13:cANSI
-set guifont=Sauce\ Code\ Powerline:h15:cANSI
+set guifont=Sauce\ Code\ Powerline:h13:cANSI
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
@@ -215,23 +215,24 @@ set pastetoggle=<F11>
     """"""""""""""""""""
     " vim-JSX Settings "
     """"""""""""""""""""
-    let g:jsx_ext_required = 1              " jsx syntax highlighting for all javascript files
+    let g:javascript_enable_domhtmlcss = 1  " Enables HTML/CSS syntax highlighting in your Javascript file
+    let g:jsx_ext_required = 0              " jsx syntax highlighting for all javascript files
 
     """"""""""""""""""
     " Kolor Settings "
     """"""""""""""""""
-    let base16colorspace=256                  " Access colors present in 256 colorspace
+    " let base16colorspace=256                  " Access colors present in 256 colorspace
+    " colorscheme base16-eighties
     " colorscheme base16-tomorrow
-    colorscheme base16-eighties
     " colorscheme base16-ocean
     " colorscheme base16-3024
     " colorscheme base16-default
 
-    " let g:kolor_italic=1                    " Enable italic. Default: 1
-    " let g:kolor_bold=1                      " Enable bold. Default: 1
-    " let g:kolor_underlined=0                " Enable underline. Default: 0
-    " let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
-    " colorscheme kolor
+    let g:kolor_italic=1                    " Enable italic. Default: 1
+    let g:kolor_bold=1                      " Enable bold. Default: 1
+    let g:kolor_underlined=0                " Enable underline. Default: 0
+    let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
+    colorscheme kolor
     "
     """"""""""""""""""""
     " airline Settings "
@@ -240,7 +241,8 @@ set pastetoggle=<F11>
       let g:airline_symbols = {}
     endif
     " let g:airline_theme='base16color'
-    let g:airline_theme='base16_ocean'
+    " let g:airline_theme='lucius'
+    let g:airline_theme='kolor'
     let g:airline_symbols.space = "\ua0"
     let g:airline_powerline_fonts = 1
     " let g:airline#extensions#tabline#enabled = 1
@@ -361,6 +363,11 @@ set pastetoggle=<F11>
     let delimitMate_expand_inside_quotes = 1
     let delimitMate_expand_space = 1
     let delimitMate_expand_cr = 1
+
+    """""""""""""""""""
+    " Vimwiki Settings"
+    """""""""""""""""""
+    let g:vimwiki_list = [{'path': '~/Projects/journal/vimwiki'}]
 
 " Mapping:{
     " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
