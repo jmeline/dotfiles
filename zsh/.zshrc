@@ -53,7 +53,9 @@ alias ez='vim ~/.zshrc'
 #autoload -U compinit && compinit -u
 
 # Fish-like syntax highlighting
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+## Mac after doing brew install 'zsh-syntax-highlighting'
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+## Linux
 # source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Autojump
@@ -61,4 +63,3 @@ alias ez='vim ~/.zshrc'
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # (set -x; sudo mount -t vboxsf -o gid=1000,uid=1000 VBox /home/$(whoami)/Shared)
-
