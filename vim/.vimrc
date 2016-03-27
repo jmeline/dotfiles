@@ -1,453 +1,462 @@
-"
-" ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
-" ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
-" ██║   ██║██║██╔████╔██║██████╔╝██║
-" ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
-"  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
-"    ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-"
-" http://pastebin.com/u7b5gZj6
-" https://raw.githubusercontent.com/nvie/vimrc/master/vimrc
-" I got a lot of the settings from this pastebin. Thanks!
-
-" GVIM: {
-  if has('gui_running')
-    set guioptions-=m
-    set guioptions-=e
-    set guioptions-=T
-    set guioptions-=r
-    set vb noeb novb t_vb=
-  endif
-" }
-
-" VUNDLE: {
-    set nocompatible
-    filetype off
-    set rtp+=$HOME/vimfiles/bundle/Vundle.vim
-    call vundle#begin('$HOME/vimfiles/bundle')
-    Plugin 'VundleVim/Vundle.vim'
-
-    " Personal:
-    Plugin 'vimwiki/vimwiki'
-
-    " Functional:
-    Plugin 'vim-airline/vim-airline'
-    Plugin 'vim-airline/vim-airline-themes'
-    " Plugin 'itchyny/lightline.vim'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'scrooloose/syntastic'
-    Plugin 'tpope/vim-fugitive'
-    Plugin 'tpope/vim-surround'
-    Plugin 'Raimondi/delimitMate'
-    Plugin 'tomtom/tcomment_vim'
-    Plugin 'ctrlpvim/ctrlp.vim'
-    Plugin 'christoomey/vim-tmux-navigator'
-    " Plugin 'ervandew/supertab'
-    Plugin 'Valloric/YouCompleteMe'
-
-    " Motion:
-    " Plugin 'Lokaltog/vim-easymotion'
-
-    " Pretty:
-    Plugin 'mkitt/tabline.vim'
-    Plugin 'morhetz/gruvbox'
-    Plugin 'elzr/vim-json'            " better json syntax highlighting
-
-    " ColorSchemes:
-    Plugin 'zeis/vim-kolor'
-    Plugin 'chriskempson/base16-vim'
-    Plugin 'edkolev/tmuxline.vim'
-
-    " UltiSnippets:
-    Plugin 'SirVer/ultisnips'
-    Plugin 'honza/vim-snippets'
-    Plugin 'bentayloruk/vim-react-es6-snippets'
-
-    """""""""""""""""""""""
-    " Language Specifics: "
-    """""""""""""""""""""""
-    "   Python:
-
-    "   LESS:
-    Plugin 'groenewege/vim-less'
-
-    "   Javascript:
-    Plugin 'pangloss/vim-javascript'  " Required by vim-jsx
-    Plugin 'mxw/vim-jsx'
-
-    "   CPlusPlus:
-    " Bundle 'vim-scripts/c.vim'
-
-    " Latex:
-    " Plugin 'lervag/vimtex'
-    call vundle#end()
-    " }
-
-""""""""""""""""""""""""""""""""""""""""
-"   Vimrc Settings and Configurations  "
-""""""""""""""""""""""""""""""""""""""""
-" using Source Code Pro
-" After setting your font manually using the Font window, if you are unsure exactly what to put type:
-" set guifont
-" This will show you the exact string value you need to put in your .vimrc file, including the typeface.
-" Note: Patching fonts on windows: Powershell.exe -executionpolicy remotesigned -File install.ps1
-" https://github.com/powerline/fonts.git
-
-" set anti enc=utf-8
-set enc=utf-8
-" set guifont=Source\ Code\ Pro\ Medium:h11
-" set guifont=DejaVu_Sans_Mono_for_Powerline:h13:cANSI
-set guifont=Sauce\ Code\ Powerline:h13:cANSI
-
-" Set 'nocompatible' to ward off unexpected things that your distro might
-" have made, as well as sanely reset options when re-sourcing .vimrc
-set nocompatible
-
-" Attempt to determine the type of a file based on its name and possibly its
-" contents. Use this to allow intelligent auto-indenting for each filetype,
-" and for plugins that are filetype specific.
-filetype indent plugin on
-
-" Show partial commands in the last line of the screen
-set showcmd
-
-"Stop certain movements from always going to the first character of a line.
-" While this behaviour deviates from that of Vi, it does what most users
-" coming from other editors would expect.
-set nostartofline
-
-" Instead of failing a command because of unsaved changes, instead raise a
-" dialogue asking if you wish to save changed files.
-set confirm
-
-" Quickly time out on keycodes, but never time out on mappings
-set notimeout ttimeout ttimeoutlen=200
-
-" Use <F11> to toggle between 'paste' and 'nopaste'
-set pastetoggle=<F11>
-
-" General: {
-    set autoread                    " Reload file when changed externally.
-    set nobackup                    " No need for .bkp files when version control exist.
-    set nowritebackup               " If Vim crashes often then turn backups on again, look at docs for more information.
-    set noswapfile                  " Don't create swap files, nowadays we should have enough memory to store a text file.
-
-    set undodir=~/.vim_undodir      " Where do we store all this awesomeness?!?!
-    set undofile                    " Persistent undos are awesome!
-
-    set history=1000                " Defines the number of stored commands that Vim can remember, we have so much memory today it doesn't even matter.
-    set undolevels=1000             " use many muchos levels of undo
-    let mapleader=','               " Map <leader> to the ',' key. This is used to extend Vims functionality without overwriting any standard bindings.
-    " let g:mapleader=','             " Do this globally too.
-
-    set mouse=a                     " Enable use of the mouse for all modes
-    set shortmess+=I                " hide the launch screen
-    set clipboard=unnamed           " normal OS clipboard interaction
-" }
-
-" Formatting: {
-    set expandtab                   " Expand tab characters to space characters.
-    set shiftwidth=2                " One tab is now 4 spaces.
-    set shiftround                  " Always round up to the nearest tab.
-    set tabstop=2                   " This one is also needed to acheive the desired effect.
-    set softtabstop=2               " Enables easy removal of an indentation level.
-    set smarttab                    "Insert tabs on the start of a line according to shiftwidth, not tabstop
-
-    set autoindent                  " Automatically copy the previous indent level. Don't use smartindent.
-    set backspace=indent,eol,start
-    set wrap                        " Wrap text. This is also quite optional, replace with textwidth=80 is you don't want this behaviour.
-    set lazyredraw                  " Good performance boost when executing macros.
-    set viminfo^=%                  " Remember some info on close.
-" }
-
-" Searching: {
-    set ignorecase                  " Search is not case sensitive.
-    set smartcase                   " Will override some ignorecase properties, when using caps it will do a special search.
-    set incsearch                   " Enables the user to step through each search 'hit'.
-    set hlsearch                    " Will stop highlighting current search 'hits' when another search is performed.
-    set magic                       " Enables regular expressions. They are a bit like magic.
-" }
-
-" UI: {
-    set ffs=unix,dos,mac            " Prioritize unix as the standard file type.
-    set encoding=utf-8              " Vim can now work with a whole bunch more characters.
-    set scrolloff=10                " The screen will only scroll when the cursor is 10 characters from the top/bottom.
-    " set foldmethod=indent
-    set noeb vb t_vb=
-
-    set wildmenu                    " Enable the 'autocomplete' menu when in command mode (':'). make tab completion for files/buffers act like bash
-    set wildmode=list:full          " Show a list when pressing tab and complete first full match
-    " set cursorline                  " For easier cursor spotting. Completly optional though. Underline the current line
-    set shortmess=a                 " Shorten some command mode messages, will keep you from having to hit ENTER all the time.
-    set cmdheight=2                 " Will also reduce the frequency of having to press ENTER.
-    set stal=2                      " Always show tabs.
-
-    set showmatch                   " Will highlight matching brackets.
-    set mat=2                       " How long the highlight will last.
-    set number                      " Show line numbers on left side.
-    " set relativenumber             " Enables the user to easilty see the relative distance between cursor and target line.
-    set ttyfast                     " Will send characters over a terminal connection faster. We do have pretty fast computers after all.
-    set ruler                       " Always show current cursor position.
-    set hidden                      " Abandon buffer when closed.
-    set showtabline=0               " Remove tabline across the top. 1: default
-
-    syntax on                       " The most important feature when coding. Please give!.
-    set laststatus=2                " Always have a status line, this is required in order for Lightline to work correctly.
-    set noshowmode                  " Disables standard -INSERT-, -NORMAL-, etc... Lightline will provide a better looking one for us.
-    set t_Co=256                    " This will 'force' terminals to use 256 colors, enabling Lightline and the colorscheme to look correct.
-    set background=dark             " Cool programmers only use dark themes.
-
-    """""""""""""""""""""
-    " Fugitive Settings "
-    """""""""""""""""""""
-    function! MyFugitive()
-      try
-        if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
-          let mark = ''  " edit here for cool mark
-          let _ = fugitive#head()
-          return strlen(_) ? mark._ : ''
-        endif
-      catch
-      endtry
-      return ''
-    endfunction
-
-    """"""""""""""""""""
-    " vim-JSX Settings "
-    """"""""""""""""""""
-    let g:javascript_enable_domhtmlcss = 1  " Enables HTML/CSS syntax highlighting in your Javascript file
-    let g:jsx_ext_required = 0              " jsx syntax highlighting for all javascript files
-
-    """"""""""""""""""
-    " Kolor Settings "
-    """"""""""""""""""
-    " let base16colorspace=256                  " Access colors present in 256 colorspace
-    " colorscheme base16-eighties
-    " colorscheme base16-tomorrow
-    " colorscheme base16-ocean
-    " colorscheme base16-3024
-    " colorscheme base16-default
-
-    let g:kolor_italic=1                    " Enable italic. Default: 1
-    let g:kolor_bold=1                      " Enable bold. Default: 1
-    let g:kolor_underlined=0                " Enable underline. Default: 0
-    let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
-    colorscheme kolor
-    "
-    """"""""""""""""""""
-    " airline Settings "
-    """"""""""""""""""""
-    if !exists('g:airline_symbols')
-      let g:airline_symbols = {}
-    endif
-    " let g:airline_theme='base16color'
-    " let g:airline_theme='lucius'
-    let g:airline_theme='kolor'
-    let g:airline_symbols.space = "\ua0"
-    let g:airline_powerline_fonts = 1
-    " let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tmuxline#enabled = 0
-    let g:airline#extensions#ctrlp#color_template = 'normal'
-    let g:airline#extensions#ctrlp#show_adjacent_modes = 1
-
-    """"""""""""""""""""""
-    " lightline Settings "
-    """"""""""""""""""""""
-    " let g:lightline = {
-    "   \ 'colorscheme': 'jellybeans',
-    "   \ 'active':{
-    "   \     'fugitive': 'MyFugitive',
-    "   \  },
-    "   \ 'subseparator': { 'left': '|', 'right': '|' }
-    "   \ }
-
-    """"""""""""""""""
-    " ctrlp Settings "
-    """"""""""""""""""
-    if exists("g:ctrlp_user_command")
-      unlet g:ctrlp_user_command
-    end
-
-    let g:ctrlp_map = '<c-p>'
-    let g:ctrlp_cmd = 'CtrlP'
-    " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-    " let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
-
-    " enable faster searching using ag if enabled https://robots.thoughtbot.com/faster-grepping-in-vim
-    if executable('ag')
-      unlet g:ctrlp_user_command
-      " Use ag over grep
-      set grepprg=ag\ --nogroup\ --nocolor
-      " Use ag in CtrlP for listing files. lightning fast and respects .gitignore
-      let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-      " ag is fast enough that CtrlP doesn't need to cache
-      let g:ctrlp_use_caching = 0
-    endif
-
-    " let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
-    let g:ctrlp_custom_ignore = {
-          \ 'dir': '\.git$\|\public$\|log\|tmp$\|node_modules$\|Build$',
-          \ 'file': '\.so$\|\.dat$\|\.DS_Store$\|\.dll$\|\.pyc$\|\.cs$|\.xml$'
-          \ }
-
-    " let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
-    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
-    let g:ctrlp_working_path_mode = '0'
-
-    """""""""""""""""""""
-    " NerdTree Settings "
-    """""""""""""""""""""
-    " Store the bookmarks file
-    let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
-    let NERDTreeShowBookmarks=1         " Show the bookmarks table on startup
-    let NERDTreeShowFiles=1             " Show hidden files, too
-    let NERDTreeShowHidden=1
-    let NERDTreeQuitOnOpen=1            " Quit on opening files from the tree
-    let NERDTreeHighlightCursorline=1   " Highlight the selected entry in the tree
-
-    " Use a single click to fold/unfold directories and a double click to open files
-    let NERDTreeMouseMode=2
-
-    " Don't display these kinds of files
-    let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
-                 \ '\.o$', '\.so$', '\.egg$', '^\.git$', '__pycache__',
-                 \ '\.DS_Store' ]
-
-    let g:NERDTreeDirArrows = 1
-    let g:NERDTreeDirArrowExpandable = '-'
-    let g:NERDTreeDirArrowExpandable = '▸'
-    let g:NERDTreeDirArrowCollapsible = '▾'
-    " }}}
-
-    """"""""""""""""""""""
-    " Syntastic Settings "
-    """"""""""""""""""""""
-    " Override eslint with local version where necessary.
-    " Avoids having to install eslint plugins globally
-    let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
-    if matchstr(local_eslint, "^\/\\w") == ''
-      let local_eslint = getcwd() . "/" . local_eslint
-    endif
-    if executable(local_eslint)
-      let g:syntastic_javascript_eslint_exec = local_eslint
-    endif"
-    let g:syntastic_javascript_checkers = ['eslint']
-    " let g:syntastic_debug = 1;
-    let g:syntastic_enable_signs = 1
-    let g:syntastic_error_symbol = "✗"
-    let g:syntastic_warning_symbol = "⚠"
-
-    """"""""""""""""""""""""""""""""""""""""
-    " Ultisnips and YouCompleteMe Settings "
-    """"""""""""""""""""""""""""""""""""""""
-    " make YCM compatible with UltiSnips (using supertab)
-    " let g:ycm_key_list_select_completion = []
-    " let g:ycm_key_list_previous_completion = []
-    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-    let g:SuperTabDefaultCompletionType = '<C-n>'
-
-    " better key bindings for UltiSnipsExpandTrigger
-    let g:UltiSnipsListSnippets="<c-l>"
-    let g:UltiSnipsExpandTrigger="<tab>"
-    " let g:UltiSnipsJumpForwardTrigger="<tab>"
-    " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-    let g:UltiSnipsEditSplit="vertical"
-
-    """""""""""""""""""""""
-    " delimitMate Settings"
-    """""""""""""""""""""""
-    let delimitMate_jump_expansion = 1  " nice feature to have jumping when creating ending braces. Read 'delimitMate_jump_expansion'
-    let delimitMate_expand_inside_quotes = 1
-    let delimitMate_expand_space = 1
-    let delimitMate_expand_cr = 1
-
-    """""""""""""""""""
-    " Vimwiki Settings"
-    """""""""""""""""""
-    let g:vimwiki_list = [{'path': '~/Projects/journal/vimwiki'}]
-
-" Mapping:{
-    " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
-    map Y y$
-    " Map <C-L> (redraw screen) to also turn off search highlighting until the
-    " nnoremap <C-L> :nohl<CR><C-L>
-    " nnoremap <space> :nohl<CR><C-L>
-
-    " Faster shortcut for commenting lines using tcomment
-    map <leader>c <c-_><c-_>
-
-    " line navigation ignores line wrap. Great for working with long lines in  vim
-    map j gj
-    map k gk
-
-    " Map <Esc> to jk for faster getting out of insert mode
-    inoremap jk <esc>
-    " inoremap <esc> <nop>
-
-    " Common mistyping, saves rage
-    nnoremap ; :
-
-    " Stupid shift key fixes
-    cmap W w
-    cmap Wq wq
-    cmap WQ wq
-    cmap wQ wq
-    cmap Q q
-
-    " Standard save method. Simpler and shorter
-    map <c-s> :w<CR>
-
-    " Easy window navigation
-    nnoremap <C-J> <C-W><C-J>
-    nnoremap <C-K> <C-W><C-K>
-    nnoremap <C-L> <C-W><C-L>
-    nnoremap <C-H> <C-W><C-H>
-    " window
-    nmap <leader>sw<left>  :topleft  vnew<CR>
-    nmap <leader>sw<right> :botright vnew<CR>
-    nmap <leader>sw<up>    :topleft  new<CR>
-    nmap <leader>sw<down>  :botright new<CR>
-    " buffer
-    nmap <leader>s<left>   :leftabove  vnew<CR>
-    nmap <leader>s<right>  :rightbelow vnew<CR>
-    nmap <leader>s<up>     :leftabove  new<CR>
-    nmap <leader>s<down>   :rightbelow new<CR>
-
-    " easy buffer navigation and management
-    " map gn :bn<cr>
-    " map gp :bp<cr>
-    " map gd :bd<cr>
-
-    " Speed up scrolling of the viewport slightly
-    nnoremap <C-e> 2<C-e>
-    nnoremap <C-y> 2<C-y>
-
-    " Use the hjkl keys only!
-    noremap <Up> <NOP>
-    noremap <Down> <NOP>
-    noremap <Left> <NOP>
-    noremap <Right> <NOP>
-
-    " NERDTree settings {{{
-    nnoremap <leader>n :NERDTreeFocus<CR>
-    nnoremap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
-    nnoremap <leader>N :NERDTreeClose<CR>
-
-" }
-
-" Custom Functions: {
-    fun! <SID>StripTrailingWhitespaces()
-        let l = line(".")
-        let c = col(".")
-        %s/\s\+$//e
-        call cursor(l, c)
-    endfun
-    " autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-
-    autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() "Removes trailing whitespace on any filetype
-    au BufRead *.html,*.ejs set filetype=htmlm4
-    au BufRead .aliasrc set filetype=bash
-" }
+ "
+ " ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
+ " ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
+ " ██║   ██║██║██╔████╔██║██████╔╝██║
+ " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
+ "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
+ "    ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
+ "
+ " http://pastebin.com/u7b5gZj6
+ " https://raw.githubusercontent.com/nvie/vimrc/master/vimrc
+ " I got a lot of the settings from this pastebin. Thanks!
+
+
+ " VUNDLE: {{{
+ " Set 'nocompatible' to ward off unexpected things that your distro might
+ " have made, as well as sanely reset options when re-sourcing .vimrc
+ set nocompatible
+ filetype off
+ set rtp+=$HOME/vimfiles/bundle/Vundle.vim
+ call vundle#begin('$HOME/vimfiles/bundle')
+ Plugin 'VundleVim/Vundle.vim'
+
+ " Personal: {{{
+ Plugin 'vimwiki/vimwiki'
+ " }}}
+
+ " Functional:
+ Plugin 'vim-airline/vim-airline'
+ Plugin 'vim-airline/vim-airline-themes'
+ Plugin 'scrooloose/nerdtree'
+ Plugin 'scrooloose/syntastic'
+ Plugin 'tpope/vim-fugitive'
+ Plugin 'tpope/vim-surround'
+ Plugin 'Raimondi/delimitMate'
+ Plugin 'tomtom/tcomment_vim'
+ Plugin 'ctrlpvim/ctrlp.vim'
+ Plugin 'christoomey/vim-tmux-navigator'
+ Plugin 'Valloric/YouCompleteMe'
+
+ " Plugin 'ervandew/supertab'
+ " Plugin 'itchyny/lightline.vim'
+
+ " Motion:
+ " Plugin 'Lokaltog/vim-easymotion'
+
+ " Pretty:
+ Plugin 'mkitt/tabline.vim'
+ Plugin 'morhetz/gruvbox'
+ Plugin 'elzr/vim-json'            " better json syntax highlighting
+
+ " ColorSchemes:
+ Plugin 'zeis/vim-kolor'
+ Plugin 'chriskempson/base16-vim'
+ Plugin 'edkolev/tmuxline.vim'
+
+ " UltiSnippets:
+ Plugin 'SirVer/ultisnips'
+ Plugin 'honza/vim-snippets'
+ Plugin 'bentayloruk/vim-react-es6-snippets'
+
+ """""""""""""""""""""""
+ " Language Specifics: "
+ """""""""""""""""""""""
+ "   Python:
+
+ "   LESS:
+ Plugin 'groenewege/vim-less'
+
+ "   Javascript:
+ Plugin 'pangloss/vim-javascript'  " Required by vim-jsx
+ Plugin 'mxw/vim-jsx'
+
+ "   CPlusPlus:
+ " Bundle 'vim-scripts/c.vim'
+
+ " Latex:
+ " Plugin 'lervag/vimtex'
+ call vundle#end()
+ " }}}
+
+ " Vimrc Settings and Configurations: {{{
+ " using Source Code Pro
+ " After setting your font manually using the Font window, if you are unsure exactly what to put type:
+ " set guifont
+ " This will show you the exact string value you need to put in your .vimrc file, including the typeface.
+ " Note: Patching fonts on windows: Powershell.exe -executionpolicy remotesigned -File install.ps1
+ " https://github.com/powerline/fonts.git
+
+ " set anti enc=utf-8
+"  set enc=utf-8
+ " set guifont=Source\ Code\ Pro\ Medium:h11
+ " set guifont=DejaVu_Sans_Mono_for_Powerline:h13:cANSI
+ set guifont=Sauce\ Code\ Powerline:h13:cANSI
+
+ " Attempt to determine the type of a file based on its name and possibly its
+ " contents. Use this to allow intelligent auto-indenting for each filetype,
+ " and for plugins that are filetype specific.
+ filetype indent plugin on
+
+ " Show partial commands in the last line of the screen
+ set showcmd
+
+ " Stop certain movements from always going to the first character of a line.
+ " While this behaviour deviates from that of Vi, it does what most users
+ " coming from other editors would expect.
+ set nostartofline
+
+ " Instead of failing a command because of unsaved changes, instead raise a
+ " dialogue asking if you wish to save changed files.
+ set confirm
+
+ " Quickly time out on keycodes, but never time out on mappings
+ set notimeout ttimeout ttimeoutlen=0
+
+ " Use <F11> to toggle between 'paste' and 'nopaste'
+ set pastetoggle=<F11>
+
+ " General: {{{
+
+ set autoread                    " Reload file when changed externally.
+ set nobackup                    " No need for .bkp files when version control exist.
+ set nowritebackup               " If Vim crashes often then turn backups on again, look at docs for more information.
+ set noswapfile                  " Don't create swap files, nowadays we should have enough memory to store a text file.
+
+ set undodir=~/.vim_undodir      " Where do we store all this awesomeness?!?!
+ set undofile                    " Persistent undos are awesome!
+
+ set history=1000                " Defines the number of stored commands that Vim can remember, we have so much memory today it doesn't even matter.
+ set undolevels=1000             " use many muchos levels of undo
+ let mapleader=','               " Map <leader> to the ',' key. This is used to extend Vims functionality without overwriting any standard bindings.
+ " let g:mapleader=','             " Do this globally too.
+
+ set mouse=a                     " Enable use of the mouse for all modes
+ set shortmess+=I                " hide the launch screen
+ set clipboard=unnamed           " normal OS clipboard interaction
+ " }}}
+
+ " Formatting: {{{
+     set expandtab                   " Expand tab characters to space characters.
+     set shiftwidth=2                " One tab is now 4 spaces.
+     set shiftround                  " Always round up to the nearest tab.
+     set tabstop=2                   " This one is also needed to acheive the desired effect.
+     set softtabstop=2               " Enables easy removal of an indentation level.
+     set smarttab                    "Insert tabs on the start of a line according to shiftwidth, not tabstop
+
+     set autoindent                  " Automatically copy the previous indent level. Don't use smartindent.
+     set backspace=indent,eol,start
+     set wrap                        " Wrap text. This is also quite optional, replace with textwidth=80 is you don't want this behaviour.
+     set lazyredraw                  " Good performance boost when executing macros.
+     set viminfo^=%                  " Remember some info on close.
+ " }}}
+
+ " Searching: {{{
+     set ignorecase                  " Search is not case sensitive.
+     set smartcase                   " Will override some ignorecase properties, when using caps it will do a special search.
+     set incsearch                   " Enables the user to step through each search 'hit'.
+     set hlsearch                    " Will stop highlighting current search 'hits' when another search is performed.
+     set magic                       " Enables regular expressions. They are a bit like magic.
+ " }}}
+
+ " UI: {{{
+     set ffs=unix,dos,mac            " Prioritize unix as the standard file type.
+     " set encoding=utf-8              " Vim can now work with a whole bunch more characters.
+     set scrolloff=10                " The screen will only scroll when the cursor is 10 characters from the top/bottom.
+     set foldmethod=marker
+     set noeb vb t_vb=
+
+     set wildmenu                    " Enable the 'autocomplete' menu when in command mode (':'). make tab completion for files/buffers act like bash
+     set wildmode=list:full          " Show a list when pressing tab and complete first full match
+     " set cursorline                  " For easier cursor spotting. Completly optional though. Underline the current line
+     set shortmess=a                 " Shorten some command mode messages, will keep you from having to hit ENTER all the time.
+     set cmdheight=2                 " Will also reduce the frequency of having to press ENTER.
+     " set stal=2                      " Always show tabs.
+
+     set showmatch                   " Will highlight matching brackets.
+     set mat=2                       " How long the highlight will last.
+     set number                      " Show line numbers on left side.
+     " set relativenumber             " Enables the user to easilty see the relative distance between cursor and target line.
+     set ttyfast                     " Will send characters over a terminal connection faster. We do have pretty fast computers after all.
+     set ruler                       " Always show current cursor position.
+     set hidden                      " Abandon buffer when closed.
+     set showtabline=0               " Remove tabline across the top. 1: default
+
+     syntax on                       " The most important feature when coding. Please give!.
+     set laststatus=2                " Always have a status line, this is required in order for Lightline to work correctly.
+     set noshowmode                  " Disables standard -INSERT-, -NORMAL-, etc... Lightline will provide a better looking one for us.
+     set t_Co=256                    " This will 'force' terminals to use 256 colors, enabling Lightline and the colorscheme to look correct.
+ " }}}
+
+ " GVIM: {{{
+   if has('gui_running')
+     set guioptions-=m
+     set guioptions-=e
+     set guioptions-=T
+     set guioptions-=r
+     set vb noeb novb t_vb=
+   endif
+ " }}}
+
+     """""""""""""""""""""
+     " Fugitive Settings "
+     """""""""""""""""""""
+     function! MyFugitive()
+       try
+         if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+           let mark = ''  " edit here for cool mark
+           let _ = fugitive#head()
+           return strlen(_) ? mark._ : ''
+         endif
+       catch
+       endtry
+       return ''
+     endfunction
+
+     """"""""""""""""""""
+     " vim-JSX Settings "
+     """"""""""""""""""""
+     let g:javascript_enable_domhtmlcss = 1  " Enables HTML/CSS syntax highlighting in your Javascript file
+     let g:jsx_ext_required = 0              " jsx syntax highlighting for all javascript files
+
+     """"""""""""""""""
+     " Kolor Settings "
+     """"""""""""""""""
+     let base16colorspace=256                  " Access colors present in 256 colorspace
+     colorscheme base16-eighties
+     " colorscheme base16-tomorrow
+     " colorscheme base16-ocean
+     " colorscheme base16-monokai
+     " colorscheme base16-3024
+     " colorscheme base16-default
+
+     set background=dark             " Cool programmers only use dark themes.
+     " let g:kolor_italic=1                    " Enable italic. Default: 1
+     " let g:kolor_bold=1                      " Enable bold. Default: 1
+     " let g:kolor_underlined=0                " Enable underline. Default: 0
+     " let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
+     " colorscheme kolor
+
+     """"""""""""""""""""
+     " airline Settings "
+     """"""""""""""""""""
+     if !exists('g:airline_symbols')
+       let g:airline_symbols = {}
+     endif
+     " let g:airline_theme='base16'
+     let g:airline_theme='base16_eighties'
+     " let g:airline_theme='lucius'
+     " let g:airline_theme='kolor'
+     let g:airline_symbols.space = "\ua0"
+     let g:airline_powerline_fonts = 1
+     " let g:airline#extensions#tabline#enabled = 1
+     let g:airline#extensions#tmuxline#enabled = 0
+     let g:airline#extensions#ctrlp#color_template = 'normal'
+     let g:airline#extensions#ctrlp#show_adjacent_modes = 1
+
+     """"""""""""""""""""""
+     " lightline Settings "
+     """"""""""""""""""""""
+     " let g:lightline = {
+     "   \ 'colorscheme': 'jellybeans',
+     "   \ 'active':{
+     "   \     'fugitive': 'MyFugitive',
+     "   \  },
+     "   \ 'subseparator': { 'left': '|', 'right': '|' }
+     "   \ }
+
+     """"""""""""""""""
+     " ctrlp Settings "
+     """"""""""""""""""
+     if exists("g:ctrlp_user_command")
+       unlet g:ctrlp_user_command
+     end
+
+     let g:ctrlp_map = '<c-p>'
+     let g:ctrlp_cmd = 'CtrlP'
+     " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+     " let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+     let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+
+     " enable faster searching using ag if enabled https://robots.thoughtbot.com/faster-grepping-in-vim
+     if executable('ag')
+       unlet g:ctrlp_user_command
+       " Use ag over grep
+       set grepprg=ag\ --nogroup\ --nocolor
+       " Use ag in CtrlP for listing files. lightning fast and respects .gitignore
+       let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+       " ag is fast enough that CtrlP doesn't need to cache
+       let g:ctrlp_use_caching = 0
+     endif
+
+     " let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+     let g:ctrlp_custom_ignore = {
+           \ 'dir': '\.git$\|\public$\|log\|tmp$\|node_modules$\|Build$',
+           \ 'file': '\.so$\|\.dat$\|\.DS_Store$\|\.dll$\|\.pyc$\|\.cs$|\.xml$'
+           \ }
+
+     " let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+     set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
+     set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+     let g:ctrlp_working_path_mode = '0'
+
+     """""""""""""""""""""
+     " NerdTree Settings "
+     """""""""""""""""""""
+     " Store the bookmarks file
+     let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
+     let NERDTreeShowBookmarks=1         " Show the bookmarks table on startup
+     let NERDTreeShowFiles=1             " Show hidden files, too
+     let NERDTreeShowHidden=1
+     let NERDTreeQuitOnOpen=1            " Quit on opening files from the tree
+     let NERDTreeHighlightCursorline=1   " Highlight the selected entry in the tree
+
+     " Use a single click to fold/unfold directories and a double click to open files
+     let NERDTreeMouseMode=2
+
+     " Don't display these kinds of files
+     let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
+                  \ '\.o$', '\.so$', '\.egg$', '^\.git$', '__pycache__',
+                  \ '\.DS_Store' ]
+
+     let g:NERDTreeDirArrows = 1
+     let g:NERDTreeDirArrowExpandable = '-'
+     let g:NERDTreeDirArrowExpandable = '▸'
+     let g:NERDTreeDirArrowCollapsible = '▾'
+
+     " Locate file in nerdTree via F4
+     map <F4> :NERDTreeFind<CR>
+     nnoremap <leader>n :NERDTreeFocus<CR>
+     nnoremap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
+     nnoremap <leader>N :NERDTreeClose<CR>
+
+     " }}}
+
+     """"""""""""""""""""""
+     " Syntastic Settings "
+     """"""""""""""""""""""
+     " Override eslint with local version where necessary.
+     " Avoids having to install eslint plugins globally
+     let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
+     if matchstr(local_eslint, "^\/\\w") == ''
+       let local_eslint = getcwd() . "/" . local_eslint
+     endif
+     if executable(local_eslint)
+       let g:syntastic_javascript_eslint_exec = local_eslint
+     endif"
+     let g:syntastic_javascript_checkers = ['eslint']
+     " let g:syntastic_debug = 1;
+     let g:syntastic_enable_signs = 1
+     let g:syntastic_error_symbol = "✗"
+     let g:syntastic_warning_symbol = "⚠"
+
+     """"""""""""""""""""""""""""""""""""""""
+     " Ultisnips and YouCompleteMe Settings "
+     """"""""""""""""""""""""""""""""""""""""
+     " make YCM compatible with UltiSnips (using supertab)
+     " let g:ycm_key_list_select_completion = []
+     " let g:ycm_key_list_previous_completion = []
+     let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+     let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+     let g:SuperTabDefaultCompletionType = '<C-n>'
+
+     " better key bindings for UltiSnipsExpandTrigger
+     let g:UltiSnipsListSnippets="<c-l>"
+     let g:UltiSnipsExpandTrigger="<tab>"
+     " let g:UltiSnipsJumpForwardTrigger="<tab>"
+     " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+     let g:UltiSnipsEditSplit="vertical"
+
+     """""""""""""""""""""""
+     " delimitMate Settings"
+     """""""""""""""""""""""
+     let delimitMate_jump_expansion = 1  " nice feature to have jumping when creating ending braces. Read 'delimitMate_jump_expansion'
+     " let delimitMate_expand_inside_quotes = 1
+     " let delimitMate_expand_space = 1
+     let delimitMate_expand_cr = 1
+
+     """""""""""""""""""
+     " Vimwiki Settings"
+     """""""""""""""""""
+     let g:vimwiki_list = [{'path': '~/Projects/journal/vimwiki'}]
+
+ " Mapping:{
+     " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
+     map Y y$
+     " Map <C-L> (redraw screen) to also turn off search highlighting until the
+     " nnoremap <C-L> :nohl<CR><C-L>
+     nnoremap <space> :noh<CR><C-L>
+
+     " Faster shortcut for commenting lines using tcomment
+     map <leader>c <c-_><c-_>
+
+     " line navigation ignores line wrap. Great for working with long lines in  vim
+     map j gj
+     map k gk
+
+     " Map <Esc> to jk for faster getting out of insert mode
+     inoremap jk <esc>
+     " inoremap <esc> <nop>
+
+     " Common mistyping, saves rage
+     nnoremap ; :
+
+     " Stupid shift key fixes
+     " cmap W w
+     " cmap Wq wq
+     " cmap WQ wq
+     " cmap wQ wq
+     " cmap Q q
+
+     " Standard save method. Simpler and shorter
+     map <c-s> :w<CR>
+
+     " Easy window navigation
+     nnoremap <C-J> <C-W><C-J>
+     nnoremap <C-K> <C-W><C-K>
+     nnoremap <C-L> <C-W><C-L>
+     nnoremap <C-H> <C-W><C-H>
+     " window
+     nmap <leader>sw<left>  :topleft  vnew<CR>
+     nmap <leader>sw<right> :botright vnew<CR>
+     nmap <leader>sw<up>    :topleft  new<CR>
+     nmap <leader>sw<down>  :botright new<CR>
+
+     " buffer
+     nmap <leader>s<left>   :leftabove  vnew<CR>
+     nmap <leader>s<right>  :rightbelow vnew<CR>
+     nmap <leader>s<up>     :leftabove  new<CR>
+     nmap <leader>s<down>   :rightbelow new<CR>
+
+     " easy buffer navigation and management
+     " map gn :bn<cr>
+     " map gp :bp<cr>
+     " map gd :bd<cr>
+
+     " Speed up scrolling of the viewport slightly
+     nnoremap <C-e> 3<C-e>
+     nnoremap <C-y> 3<C-y>
+
+     " Use the hjkl keys only!
+     noremap <Up> <NOP>
+     noremap <Down> <NOP>
+     noremap <Left> <NOP>
+     noremap <Right> <NOP>
+
+ " }
+
+ " Custom Functions: {
+     fun! <SID>StripTrailingWhitespaces()
+         let l = line(".")
+         let c = col(".")
+         %s/\s\+$//e
+         call cursor(l, c)
+     endfun
+     " autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+     " Prevent escape from moving the cursor one character to the left
+     " inoremap <silent> <Esc> <C-O>:stopinsert<CR>
+
+     autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() "Removes trailing whitespace on any filetype
+     au BufRead *.html,*.ejs set filetype=htmlm4
+     au BufRead .aliasrc set filetype=bash
+ " }

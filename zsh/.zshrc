@@ -11,11 +11,12 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # If changing colors, make sure to change ~/.vimrc colorscheme and AirlineTheme settings
-# BASE16_SHELL="$HOME/Projects/base16-shell/base16-eighties.dark.sh"
+BASE16_SHELL="$HOME/Projects/base16-shell/base16-eighties.dark.sh"
+# BASE16_SHELL="$HOME/Projects/base16-shell/base16-default.dark.sh"
 # BASE16_SHELL="$HOME/Projects/base16-shell/base16-ocean.dark.sh"
 # BASE16_SHELL="$HOME/Projects/base16-shell/base16-tomorrow.dark.sh"
 # BASE16_SHELL="$HOME/Projects/base16-shell/base16-flat.dark.sh"
-# [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 export EDITOR="vim"
 export USE_EDITOR=$EDITOR
@@ -43,7 +44,7 @@ alias tkill='tmux kill-session -t'
 alias ev='vim ~/.vimrc'
 alias et='vim ~/.tmux.conf'
 alias ez='vim ~/.zshrc'
-
+alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 # Customize to your needs...
 # XDG_CONFIG_HOME+=("$HOME/.config")
 # export XDG_CONFIG_HOME
