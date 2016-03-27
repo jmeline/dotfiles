@@ -6,11 +6,6 @@
  "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
  "    ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
  "
- " http://pastebin.com/u7b5gZj6
- " https://raw.githubusercontent.com/nvie/vimrc/master/vimrc
- " I got a lot of the settings from this pastebin. Thanks!
-
-
  " VUNDLE: {{{
  " Set 'nocompatible' to ward off unexpected things that your distro might
  " have made, as well as sanely reset options when re-sourcing .vimrc
@@ -19,12 +14,10 @@
  set rtp+=$HOME/vimfiles/bundle/Vundle.vim
  call vundle#begin('$HOME/vimfiles/bundle')
  Plugin 'VundleVim/Vundle.vim'
-
- " Personal: {{{
+ " Personal Plugins: {{{
  Plugin 'vimwiki/vimwiki'
  " }}}
-
- " Functional:
+ " Functional Plugins: {{{
  Plugin 'vim-airline/vim-airline'
  Plugin 'vim-airline/vim-airline-themes'
  Plugin 'scrooloose/nerdtree'
@@ -39,28 +32,26 @@
 
  " Plugin 'ervandew/supertab'
  " Plugin 'itchyny/lightline.vim'
-
- " Motion:
+ " }}}
+ " Motion: {{{
  " Plugin 'Lokaltog/vim-easymotion'
-
- " Pretty:
+ " }}}
+ " Pretty: {{{
  Plugin 'mkitt/tabline.vim'
  Plugin 'morhetz/gruvbox'
  Plugin 'elzr/vim-json'            " better json syntax highlighting
-
- " ColorSchemes:
+ " }}}
+ " ColorSchemes: {{{
  Plugin 'zeis/vim-kolor'
  Plugin 'chriskempson/base16-vim'
  Plugin 'edkolev/tmuxline.vim'
-
- " UltiSnippets:
+ " }}}
+ " UltiSnippets: {{{
  Plugin 'SirVer/ultisnips'
  Plugin 'honza/vim-snippets'
  Plugin 'bentayloruk/vim-react-es6-snippets'
-
- """""""""""""""""""""""
- " Language Specifics: "
- """""""""""""""""""""""
+ " }}}
+ " Language Specifics: {{{
  "   Python:
 
  "   LESS:
@@ -77,8 +68,9 @@
  " Plugin 'lervag/vimtex'
  call vundle#end()
  " }}}
-
+"}}}
  " Vimrc Settings and Configurations: {{{
+ " Fonts: {{{
  " using Source Code Pro
  " After setting your font manually using the Font window, if you are unsure exactly what to put type:
  " set guifont
@@ -91,7 +83,7 @@
  " set guifont=Source\ Code\ Pro\ Medium:h11
  " set guifont=DejaVu_Sans_Mono_for_Powerline:h13:cANSI
  set guifont=Sauce\ Code\ Powerline:h13:cANSI
-
+ " }}}
  " Attempt to determine the type of a file based on its name and possibly its
  " contents. Use this to allow intelligent auto-indenting for each filetype,
  " and for plugins that are filetype specific.
@@ -134,7 +126,6 @@
  set shortmess+=I                " hide the launch screen
  set clipboard=unnamed           " normal OS clipboard interaction
  " }}}
-
  " Formatting: {{{
      set expandtab                   " Expand tab characters to space characters.
      set shiftwidth=2                " One tab is now 4 spaces.
@@ -149,7 +140,6 @@
      set lazyredraw                  " Good performance boost when executing macros.
      set viminfo^=%                  " Remember some info on close.
  " }}}
-
  " Searching: {{{
      set ignorecase                  " Search is not case sensitive.
      set smartcase                   " Will override some ignorecase properties, when using caps it will do a special search.
@@ -157,7 +147,6 @@
      set hlsearch                    " Will stop highlighting current search 'hits' when another search is performed.
      set magic                       " Enables regular expressions. They are a bit like magic.
  " }}}
-
  " UI: {{{
      set ffs=unix,dos,mac            " Prioritize unix as the standard file type.
      " set encoding=utf-8              " Vim can now work with a whole bunch more characters.
@@ -186,7 +175,6 @@
      set noshowmode                  " Disables standard -INSERT-, -NORMAL-, etc... Lightline will provide a better looking one for us.
      set t_Co=256                    " This will 'force' terminals to use 256 colors, enabling Lightline and the colorscheme to look correct.
  " }}}
-
  " GVIM: {{{
    if has('gui_running')
      set guioptions-=m
@@ -196,7 +184,6 @@
      set vb noeb novb t_vb=
    endif
  " }}}
-
      """""""""""""""""""""
      " Fugitive Settings "
      """""""""""""""""""""
@@ -215,13 +202,12 @@
      """"""""""""""""""""
      " vim-JSX Settings "
      """"""""""""""""""""
-     let g:javascript_enable_domhtmlcss = 1  " Enables HTML/CSS syntax highlighting in your Javascript file
-     let g:jsx_ext_required = 0              " jsx syntax highlighting for all javascript files
+     let g:jsx_ext_required = 1              " jsx syntax highlighting for all javascript files
 
      """"""""""""""""""
      " Kolor Settings "
      """"""""""""""""""
-     let base16colorspace=256                  " Access colors present in 256 colorspace
+     " let base16colorspace=256                  " Access colors present in 256 colorspace
      colorscheme base16-eighties
      " colorscheme base16-tomorrow
      " colorscheme base16-ocean
@@ -229,13 +215,13 @@
      " colorscheme base16-3024
      " colorscheme base16-default
 
-     set background=dark             " Cool programmers only use dark themes.
      " let g:kolor_italic=1                    " Enable italic. Default: 1
      " let g:kolor_bold=1                      " Enable bold. Default: 1
      " let g:kolor_underlined=0                " Enable underline. Default: 0
      " let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
      " colorscheme kolor
 
+     set background=dark             " Cool programmers only use dark themes.
      """"""""""""""""""""
      " airline Settings "
      """"""""""""""""""""
@@ -411,22 +397,32 @@
      map <c-s> :w<CR>
 
      " Easy window navigation
-     nnoremap <C-J> <C-W><C-J>
-     nnoremap <C-K> <C-W><C-K>
-     nnoremap <C-L> <C-W><C-L>
-     nnoremap <C-H> <C-W><C-H>
+     map <C-J> <C-W><C-J>
+     map <C-K> <C-W><C-K>
+     map <C-L> <C-W><C-L>
+
+     " Neovim sends <BS> instead of H^
+     if has('nvim')
+       nmap <BS> <C-W>h
+     else
+       map <C-H> <C-W><C-H>
+     endif
+
+     set splitbelow
+     set splitright
+
      " window
-     nmap <leader>sw<left>  :topleft  vnew<CR>
-     nmap <leader>sw<right> :botright vnew<CR>
-     nmap <leader>sw<up>    :topleft  new<CR>
-     nmap <leader>sw<down>  :botright new<CR>
+     " nmap <leader>sw<left>  :topleft  vnew<CR>
+     " nmap <leader>sw<right> :botright vnew<CR>
+     " nmap <leader>sw<up>    :topleft  new<CR>
+     " nmap <leader>sw<down>  :botright new<CR>
 
      " buffer
-     nmap <leader>s<left>   :leftabove  vnew<CR>
-     nmap <leader>s<right>  :rightbelow vnew<CR>
-     nmap <leader>s<up>     :leftabove  new<CR>
-     nmap <leader>s<down>   :rightbelow new<CR>
-
+     " nmap <leader>s<left>   :leftabove  vnew<CR>
+     " nmap <leader>s<right>  :rightbelow vnew<CR>
+     " nmap <leader>s<up>     :leftabove  new<CR>
+     " nmap <leader>s<down>   :rightbelow new<CR>
+     "
      " easy buffer navigation and management
      " map gn :bn<cr>
      " map gp :bp<cr>
@@ -441,7 +437,6 @@
      noremap <Down> <NOP>
      noremap <Left> <NOP>
      noremap <Right> <NOP>
-
  " }
 
  " Custom Functions: {
