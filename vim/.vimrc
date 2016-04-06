@@ -6,74 +6,55 @@
  "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
  "    ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
  "
- " VUNDLE: {{{
- " Set 'nocompatible' to ward off unexpected things that your distro might
- " have made, as well as sanely reset options when re-sourcing .vimrc
+ " Plug: {{{
  if !has('nvim')
    set nocompatible
  endif
- filetype off
- set rtp+=$HOME/vimfiles/bundle/Vundle.vim
- call vundle#begin('$HOME/vimfiles/bundle')
- Plugin 'VundleVim/Vundle.vim'
- " Personal Plugins: {{{
- Plugin 'vimwiki/vimwiki'
- " }}}
- " Functional Plugins: {{{
- Plugin 'vim-airline/vim-airline'
- Plugin 'vim-airline/vim-airline-themes'
- Plugin 'scrooloose/nerdtree'
- Plugin 'scrooloose/syntastic'
- Plugin 'tpope/vim-fugitive'
- Plugin 'tpope/vim-surround'
- Plugin 'Raimondi/delimitMate'
- Plugin 'tomtom/tcomment_vim'
- Plugin 'ctrlpvim/ctrlp.vim'
- Plugin 'christoomey/vim-tmux-navigator'
- Plugin 'Valloric/YouCompleteMe'
 
- " Plugin 'ervandew/supertab'
- " Plugin 'itchyny/lightline.vim'
- " }}}
- " Motion: {{{
- " Plugin 'Lokaltog/vim-easymotion'
- " }}}
- " Pretty: {{{
- Plugin 'mkitt/tabline.vim'
- Plugin 'morhetz/gruvbox'
- Plugin 'elzr/vim-json'            " better json syntax highlighting
- Plugin 'ryanoasis/vim-devicons'   " Nice devicons
- " }}}
- " ColorSchemes: {{{
- Plugin 'zeis/vim-kolor'
- Plugin 'chriskempson/base16-vim'
- Plugin 'edkolev/tmuxline.vim'
- Plugin 'vim-scripts/xoria256.vim'
- Plugin 'vim-scripts/wombat256.vim'
- Plugin 'sjl/badwolf'
- Plugin 'flazz/vim-colorschemes'
- " }}}
- " UltiSnippets: {{{
- Plugin 'SirVer/ultisnips'
- Plugin 'honza/vim-snippets'
- Plugin 'bentayloruk/vim-react-es6-snippets'
- " }}}
- " Language Specifics: {{{
- "   Python:
+ " Install vim-plug if it doesn't exist
+ if empty(glob('~/.vim/autoload/plug.vim'))
+   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+   autocmd VimEnter * PlugInstall | source $MYVIMRC
+ endif
 
- "   LESS:
- Plugin 'groenewege/vim-less'
+ function! BuildYCM(info)
+   " info is a dictionary with 3 fields
+   " - name:   name of the plugin
+   " - status: 'installed', 'updated', or 'unchanged'
+   " - force:  set on PlugInstall! or PlugUpdate!
+   if a:info.status == 'installed' || a:info.force
+     !./install.py --tern-completer --omnisharp-completer
+   endif
+ endfunction
 
- "   Javascript:
- Plugin 'pangloss/vim-javascript'  " Required by vim-jsx
- Plugin 'mxw/vim-jsx'
-
- "   CPlusPlus:
- " Bundle 'vim-scripts/c.vim'
-
- " Latex:
- " Plugin 'lervag/vimtex'
- call vundle#end()
+ call plug#begin('~/.vim/plugged')
+ Plug 'vimwiki/vimwiki'
+ Plug 'vim-airline/vim-airline'
+ Plug 'vim-airline/vim-airline-themes'
+ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFocus' }
+ Plug 'scrooloose/syntastic'
+ Plug 'tpope/vim-surround'
+ Plug 'Raimondi/delimitMate'
+ Plug 'tomtom/tcomment_vim'
+ Plug 'ctrlpvim/ctrlp.vim'
+ Plug 'christoomey/vim-tmux-navigator'
+ Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+ Plug 'mkitt/tabline.vim'
+ Plug 'morhetz/gruvbox'
+ Plug 'elzr/vim-json'            " better json syntax highlighting
+ Plug 'ryanoasis/vim-devicons'   " Nice devicons
+"  Plug 'zeis/vim-kolor'
+"  Plug 'chriskempson/base16-vim'
+ Plug 'edkolev/tmuxline.vim'
+ Plug 'flazz/vim-colorschemes'
+ Plug 'SirVer/ultisnips'
+ Plug 'honza/vim-snippets'
+ Plug 'bentayloruk/vim-react-es6-snippets', { 'for': 'javascript'}
+ Plug 'groenewege/vim-less', { 'for': 'less' }
+ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+ Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+ call plug#end()
  " }}}
 "}}}
  " Fonts: {{{
