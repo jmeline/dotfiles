@@ -9,7 +9,9 @@
  " VUNDLE: {{{
  " Set 'nocompatible' to ward off unexpected things that your distro might
  " have made, as well as sanely reset options when re-sourcing .vimrc
- set nocompatible
+ if !has('nvim')
+   set nocompatible
+ endif
  filetype off
  set rtp+=$HOME/vimfiles/bundle/Vundle.vim
  call vundle#begin('$HOME/vimfiles/bundle')
@@ -40,11 +42,16 @@
  Plugin 'mkitt/tabline.vim'
  Plugin 'morhetz/gruvbox'
  Plugin 'elzr/vim-json'            " better json syntax highlighting
+ Plugin 'ryanoasis/vim-devicons'   " Nice devicons
  " }}}
  " ColorSchemes: {{{
  Plugin 'zeis/vim-kolor'
  Plugin 'chriskempson/base16-vim'
  Plugin 'edkolev/tmuxline.vim'
+ Plugin 'vim-scripts/xoria256.vim'
+ Plugin 'vim-scripts/wombat256.vim'
+ Plugin 'sjl/badwolf'
+ Plugin 'flazz/vim-colorschemes'
  " }}}
  " UltiSnippets: {{{
  Plugin 'SirVer/ultisnips'
@@ -69,7 +76,6 @@
  call vundle#end()
  " }}}
 "}}}
- " Vimrc Settings and Configurations: {{{
  " Fonts: {{{
  " using Source Code Pro
  " After setting your font manually using the Font window, if you are unsure exactly what to put type:
@@ -84,6 +90,7 @@
  " set guifont=DejaVu_Sans_Mono_for_Powerline:h13:cANSI
  set guifont=Sauce\ Code\ Powerline:h13:cANSI
  " }}}
+ " General: {{{
  " Attempt to determine the type of a file based on its name and possibly its
  " contents. Use this to allow intelligent auto-indenting for each filetype,
  " and for plugins that are filetype specific.
@@ -106,8 +113,6 @@
 
  " Use <F11> to toggle between 'paste' and 'nopaste'
  set pastetoggle=<F11>
-
- " General: {{{
 
  set autoread                    " Reload file when changed externally.
  set nobackup                    " No need for .bkp files when version control exist.
@@ -150,7 +155,7 @@
  " UI: {{{
      set ffs=unix,dos,mac            " Prioritize unix as the standard file type.
      " set encoding=utf-8              " Vim can now work with a whole bunch more characters.
-     set scrolloff=10                " The screen will only scroll when the cursor is 10 characters from the top/bottom.
+     set scrolloff=7                  " The screen will only scroll when the cursor is 7  characters from the top/bottom.
      set foldmethod=marker
      set noeb vb t_vb=
 
@@ -158,7 +163,7 @@
      set wildmode=list:full          " Show a list when pressing tab and complete first full match
      " set cursorline                  " For easier cursor spotting. Completly optional though. Underline the current line
      set shortmess=a                 " Shorten some command mode messages, will keep you from having to hit ENTER all the time.
-     set cmdheight=2                 " Will also reduce the frequency of having to press ENTER.
+     set cmdheight=1                 " Will also reduce the frequency of having to press ENTER.
      " set stal=2                      " Always show tabs.
 
      set showmatch                   " Will highlight matching brackets.
@@ -184,9 +189,7 @@
      set vb noeb novb t_vb=
    endif
  " }}}
-     """""""""""""""""""""
-     " Fugitive Settings "
-     """""""""""""""""""""
+" Fugitive Settings: {{{
      function! MyFugitive()
        try
          if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
@@ -198,23 +201,24 @@
        endtry
        return ''
      endfunction
-
+" }}}
+" vim-JSX Settings: {{{
      """"""""""""""""""""
-     " vim-JSX Settings "
-     """"""""""""""""""""
-     let g:jsx_ext_required = 1              " jsx syntax highlighting for all javascript files
-
+     let g:jsx_ext_required = 0              " jsx syntax highlighting for all javascript files
+" }}}
+" colorscheme Settings: {{{
      """"""""""""""""""
-     " Kolor Settings "
-     """"""""""""""""""
+     " colorscheme badwolf
      " let base16colorspace=256                  " Access colors present in 256 colorspace
-     colorscheme base16-eighties
+     " colorscheme base16-eighties
      " colorscheme base16-tomorrow
      " colorscheme base16-ocean
      " colorscheme base16-monokai
-     " colorscheme base16-3024
+     " colorscheme base16-solarized
      " colorscheme base16-default
 
+     " colorscheme onedark                       " Atom Text editor's theme
+     colorscheme gruvbox
      " let g:kolor_italic=1                    " Enable italic. Default: 1
      " let g:kolor_bold=1                      " Enable bold. Default: 1
      " let g:kolor_underlined=0                " Enable underline. Default: 0
@@ -222,36 +226,25 @@
      " colorscheme kolor
 
      set background=dark             " Cool programmers only use dark themes.
-     """"""""""""""""""""
-     " airline Settings "
-     """"""""""""""""""""
+" }}}
+" airline Settings: {{{
      if !exists('g:airline_symbols')
        let g:airline_symbols = {}
      endif
      " let g:airline_theme='base16'
-     let g:airline_theme='base16_eighties'
+     " let g:airline_theme='base16_eighties'
+     " let g:airline_theme='base16_solarized'
+     let g:airline_theme='gruvbox'
      " let g:airline_theme='lucius'
      " let g:airline_theme='kolor'
      let g:airline_symbols.space = "\ua0"
      let g:airline_powerline_fonts = 1
-     " let g:airline#extensions#tabline#enabled = 1
+     " let g:airline#extensions#tabline#enabled = 1 "Enable for buffer
      let g:airline#extensions#tmuxline#enabled = 0
      let g:airline#extensions#ctrlp#color_template = 'normal'
      let g:airline#extensions#ctrlp#show_adjacent_modes = 1
-
-     """"""""""""""""""""""
-     " lightline Settings "
-     """"""""""""""""""""""
-     " let g:lightline = {
-     "   \ 'colorscheme': 'jellybeans',
-     "   \ 'active':{
-     "   \     'fugitive': 'MyFugitive',
-     "   \  },
-     "   \ 'subseparator': { 'left': '|', 'right': '|' }
-     "   \ }
-
-     """"""""""""""""""
-     " ctrlp Settings "
+" }}}
+" ctrlp Settings: {{{
      """"""""""""""""""
      if exists("g:ctrlp_user_command")
        unlet g:ctrlp_user_command
@@ -284,9 +277,8 @@
      set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
      set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
      let g:ctrlp_working_path_mode = '0'
-
-     """""""""""""""""""""
-     " NerdTree Settings "
+" }}}
+" NerdTree Settings: {{{
      """""""""""""""""""""
      " Store the bookmarks file
      let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
@@ -315,11 +307,8 @@
      nnoremap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
      nnoremap <leader>N :NERDTreeClose<CR>
 
-     " }}}
-
-     """"""""""""""""""""""
-     " Syntastic Settings "
-     """"""""""""""""""""""
+" }}}
+" Syntastic Settings: {{{
      " Override eslint with local version where necessary.
      " Avoids having to install eslint plugins globally
      let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
@@ -331,12 +320,11 @@
      endif"
      let g:syntastic_javascript_checkers = ['eslint']
      " let g:syntastic_debug = 1;
-     let g:syntastic_enable_signs = 1
+    let g:syntastic_enable_signs = 1
      let g:syntastic_error_symbol = "✗"
      let g:syntastic_warning_symbol = "⚠"
-
-     """"""""""""""""""""""""""""""""""""""""
-     " Ultisnips and YouCompleteMe Settings "
+" }}}
+" Ultisnips and YouCompleteMe Settings: {{{
      """"""""""""""""""""""""""""""""""""""""
      " make YCM compatible with UltiSnips (using supertab)
      " let g:ycm_key_list_select_completion = []
@@ -351,21 +339,26 @@
      " let g:UltiSnipsJumpForwardTrigger="<tab>"
      " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
      let g:UltiSnipsEditSplit="vertical"
-
-     """""""""""""""""""""""
-     " delimitMate Settings"
+" }}}
+" delimitMate Settings: {{{
      """""""""""""""""""""""
      let delimitMate_jump_expansion = 1  " nice feature to have jumping when creating ending braces. Read 'delimitMate_jump_expansion'
      " let delimitMate_expand_inside_quotes = 1
      " let delimitMate_expand_space = 1
      let delimitMate_expand_cr = 1
-
+" }}}
+" Vimwiki Settings: {{{
      """""""""""""""""""
-     " Vimwiki Settings"
-     """""""""""""""""""
-     let g:vimwiki_list = [{'path': '~/Projects/journal/vimwiki'}]
+    let g:vimwiki_list = [{'path': '~/Projects/journal/vimwiki'}]
+    let g:vimwiki_diary_months = {
+          \ 1: 'January', 2: 'February', 3: 'March',
+          \ 4: 'April', 5: 'May', 6: 'June',
+          \ 7: 'July', 8: 'August', 9: 'September',
+          \ 10: 'October', 11: 'November', 12: 'December'
+          \ }
 
- " Mapping:{
+" }}}
+"Custom Mapping: {{{
      " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
      map Y y$
      " Map <C-L> (redraw screen) to also turn off search highlighting until the
@@ -402,7 +395,9 @@
      map <C-L> <C-W><C-L>
 
      " Neovim sends <BS> instead of H^
+     " workaround for https://github.com/neovim/neovim/issues/2048
      if has('nvim')
+       let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
        nmap <BS> <C-W>h
      else
        map <C-H> <C-W><C-H>
@@ -437,9 +432,8 @@
      noremap <Down> <NOP>
      noremap <Left> <NOP>
      noremap <Right> <NOP>
- " }
-
- " Custom Functions: {
+ " }}}
+ " Custom Functions: {{{
      fun! <SID>StripTrailingWhitespaces()
          let l = line(".")
          let c = col(".")
@@ -454,4 +448,4 @@
      autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() "Removes trailing whitespace on any filetype
      au BufRead *.html,*.ejs set filetype=htmlm4
      au BufRead .aliasrc set filetype=bash
- " }
+ " }}}
