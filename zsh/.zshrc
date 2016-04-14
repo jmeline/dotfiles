@@ -46,6 +46,7 @@ alias ev='vim ~/.vimrc'
 alias et='vim ~/.tmux.conf'
 alias ez='vim ~/.zshrc'
 alias vim='nvim'
+alias ctags="`brew --prefix`/bin/ctags"
 # alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 # Customize to your needs...
 # XDG_CONFIG_HOME+=("$HOME/.config")
@@ -58,6 +59,10 @@ alias vim='nvim'
 # Fish-like syntax highlighting
 ## Mac after doing brew install 'zsh-syntax-highlighting'
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# tab completion file for tmuxinator
+# source ~/.bin/tmuxinator.zsh
+
 ## Linux
 # source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
