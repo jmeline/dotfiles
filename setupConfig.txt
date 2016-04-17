@@ -1,0 +1,19 @@
+# Setting up my configurations
+# Install Prezto
+# Use dotfiles
+sudo ln -s /home/${USER}/projects/dotfiles/zsh/.zpreztorc /home/${USER}/.zpreztorc
+sudo ln -s /home/${USER}/projects/dotfiles/zsh/.zshrc /home/${USER}/.zshrc
+sudo ln -s /home/${USER}/projects/dotfiles/xfce4/terminal/terminalrc /home/${USER}/.config/xfce4/terminal/terminalrc
+sudo ln -s /home/${USER}/projects/dotfiles/vim/.vimrc /home/${USER}/.vimrc
+# Run the following to get ctrl-H working properly
+infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
+tic $TERM.ti
+# Install base16-shell
+git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+
+
+
+
+
+
+
