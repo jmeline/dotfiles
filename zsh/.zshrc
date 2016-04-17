@@ -49,6 +49,7 @@ alias ez='vim ~/.zshrc'
 # alias vim='nvim'
 
 setopt HIST_IGNORE_DUPS # Prevent duplicate lines in the history
+# alias ctags="`brew --prefix`/bin/ctags"
 # alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 # Customize to your needs...
 # XDG_CONFIG_HOME+=("$HOME/.config")
@@ -68,5 +69,8 @@ if [[ `uname` == 'Darwin' ]] then
 fi
 [[ -s $ZSH_SYNTAX_HIGHLIGHTING_PATH ]] && source $ZSH_SYNTAX_HIGHLIGHTING_PATH
 [[ -s $AUTO_JUMP_PATH ]] && source $AUTO_JUMP_PATH
+
+# tab completion file for tmuxinator
+# source ~/.bin/tmuxinator.zsh
 
 # (set -x; sudo mount -t vboxsf -o gid=1000,uid=1000 VBox /home/$(whoami)/Shared)

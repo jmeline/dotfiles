@@ -50,12 +50,12 @@
  Plug 'flazz/vim-colorschemes'
  Plug 'SirVer/ultisnips'
  Plug 'honza/vim-snippets'
- Plug 'bentayloruk/vim-react-es6-snippets', { 'for': 'javascript'}
  Plug 'groenewege/vim-less', { 'for': 'less' }
- Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
- Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+ Plug 'bentayloruk/vim-react-es6-snippets', { 'for': 'js'}
+ Plug 'pangloss/vim-javascript', { 'for': 'js' }
+ Plug 'mxw/vim-jsx', { 'for': 'js' }
+"  Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
  call plug#end()
- " }}}
 "}}}
  " Fonts: {{{
  " using Source Code Pro
@@ -360,6 +360,8 @@
      " Common mistyping, saves rage
      nnoremap ; :
 
+     nnoremap <silent><F2> :set rnu!<CR>
+     nnoremap <silent><F3> :set nu!<CR>
      " Stupid shift key fixes
      " cmap W w
      " cmap Wq wq
@@ -429,4 +431,12 @@
      autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() "Removes trailing whitespace on any filetype
      au BufRead *.html,*.ejs set filetype=htmlm4
      au BufRead .aliasrc set filetype=bash
+
+     " Everytime you write the ~/.vimrc, it will auto reload. No more
+     " source ~/.vimrc
+     augroup VimReload
+       autocmd!
+       autocmd BufWritePost $MYVIMRC source $MYVIMRC
+     augroup END
+
  " }}}
