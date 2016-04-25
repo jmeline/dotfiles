@@ -35,11 +35,16 @@
  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFocus' }
  Plug 'scrooloose/syntastic'
  Plug 'tpope/vim-surround'
+ Plug 'rking/ag.vim'
  Plug 'Raimondi/delimitMate'
  Plug 'tomtom/tcomment_vim'
  Plug 'ctrlpvim/ctrlp.vim'
  Plug 'christoomey/vim-tmux-navigator'
+ Plug 'airblade/vim-gitgutter'
+"  Plug 'majutsushi/tagbar'
+ Plug 'Yggdroot/indentLine'
  Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
  Plug 'mkitt/tabline.vim'
  Plug 'morhetz/gruvbox'
  Plug 'elzr/vim-json'            " better json syntax highlighting
@@ -77,8 +82,6 @@
  " and for plugins that are filetype specific.
  filetype indent plugin on
 
- " Show partial commands in the last line of the screen
- set showcmd
 
  " Stop certain movements from always going to the first character of a line.
  " While this behaviour deviates from that of Vi, it does what most users
@@ -147,7 +150,6 @@
      set cmdheight=1                 " Will also reduce the frequency of having to press ENTER.
      " set stal=2                      " Always show tabs.
 
-     set showmatch                   " Will highlight matching brackets.
      set mat=2                       " How long the highlight will last.
      set number                      " Show line numbers on left side.
      " set relativenumber             " Enables the user to easilty see the relative distance between cursor and target line.
@@ -155,6 +157,10 @@
      set ruler                       " Always show current cursor position.
      set hidden                      " Abandon buffer when closed.
      set showtabline=0               " Remove tabline across the top. 1: default
+     set showmatch                   " Will highlight matching brackets.
+     set showcmd                     " Show partial commands in the last line of the screen
+     set linespace=0                 " set line-spacing to minimum
+     set nojoinspaces                " set line-spacing to minimum
 
      syntax on                       " The most important feature when coding. Please give!.
      set laststatus=2                " Always have a status line, this is required in order for Lightline to work correctly.
@@ -248,6 +254,8 @@
        let g:ctrlp_use_caching = 0
      endif
 
+     let g:ctrlp_max_files = 0
+
      " let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
      let g:ctrlp_custom_ignore = {
            \ 'dir': '\.git$\|\public$\|log\|tmp$\|node_modules$\|Build$',
@@ -324,9 +332,11 @@
 " delimitMate Settings: {{{
      """""""""""""""""""""""
      let delimitMate_jump_expansion = 1  " nice feature to have jumping when creating ending braces. Read 'delimitMate_jump_expansion'
-     " let delimitMate_expand_inside_quotes = 1
-     " let delimitMate_expand_space = 1
-     let delimitMate_expand_cr = 1
+     let g:delimitMate_expand_cr = 1
+     let g:delimitMate_expand_space = 1
+     let g:delimitMate_smart_quotes = 1
+     let g:delimitMate_expand_inside_quotes = 0
+     let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
 " }}}
 " Vimwiki Settings: {{{
      """""""""""""""""""
@@ -415,7 +425,25 @@
      noremap <Down> <NOP>
      noremap <Left> <NOP>
      noremap <Right> <NOP>
+
+     " File Type Settings
+     "autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
+     "au BufNewFile,BufRead *.vim setlocal noet ts=2 sw=2 sts=2
+     "au BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
+     "au BufNewFile,BufRead *.md setlocal noet ts=4 sw=4
+     autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
+     au BufNewFile,BufRead *.js setlocal noet ts=2 sw=2 sts=2
  " }}}
+" IndentLine {{{
+  " let g:indentLine_color_term = 239
+  let g:indentLine_concealcursor = 'vc'
+  " let g:indentLine_conceallevel = 0
+  let g:indentLine_color_gui = '#3f3f3f'
+  " let g:indentLine_char = '│'
+ " }}}
+" GitGutter {{{
+  set updatetime=250
+" }}}
  " Custom Functions: {{{
      fun! <SID>StripTrailingWhitespaces()
          let l = line(".")
@@ -432,11 +460,13 @@
      au BufRead *.html,*.ejs set filetype=htmlm4
      au BufRead .aliasrc set filetype=bash
 
-     " Everytime you write the ~/.vimrc, it will auto reload. No more
-     " source ~/.vimrc
-     augroup VimReload
-       autocmd!
-       autocmd BufWritePost $MYVIMRC source $MYVIMRC
-     augroup END
+     " !Needs work ! -  Everytime you write the ~/.vimrc, it will auto reload. No more
+     " augroup VimReload
+     "   autocmd!
+     "   echo 'vim reloaded!'
+     "   autocmd! BufWritePost ~/.vimrc source ~/.vimrc :call AirlineRefresh()
+     " augroup END
 
+    " sort words within a line
+    command! -nargs=0 -range SortWordsInLine <line1>,<line2>call setline('.',join(sort(split(getline('.'),' ')),' '))
  " }}}
