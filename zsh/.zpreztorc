@@ -39,7 +39,6 @@ zstyle ':prezto:load' pmodule \
   'utility' \
   'completion' \
   'prompt' \
-  'python' \
   'tmux' \
   'git'
 
