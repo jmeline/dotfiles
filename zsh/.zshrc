@@ -46,7 +46,8 @@ alias tkill='tmux kill-session -t'
 alias ev='vim ~/.vimrc'
 alias et='vim ~/.tmux.conf'
 alias ez='vim ~/.zshrc'
-# alias vim='nvim'
+alias vim='nvim'
+alias g++='g++ -O3'
 
 setopt HIST_IGNORE_DUPS # Prevent duplicate lines in the history
 # alias ctags="`brew --prefix`/bin/ctags"
@@ -65,7 +66,7 @@ fi
 if [[ `uname` == 'Darwin' ]] then
     ## Mac after doing brew install 'zsh-syntax-highlighting'
     ZSH_SYNTAX_HIGHLIGHTING_PATH="/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-    AUTO_JUMP_PATH="$(brew --prefix)/etc/profile.d/autojump.sh "
+    AUTO_JUMP_PATH="$(brew --prefix)/etc/profile.d/autojump.sh"
 fi
 [[ -s $ZSH_SYNTAX_HIGHLIGHTING_PATH ]] && source $ZSH_SYNTAX_HIGHLIGHTING_PATH
 [[ -s $AUTO_JUMP_PATH ]] && source $AUTO_JUMP_PATH
@@ -76,3 +77,5 @@ fi
 # (set -x; sudo mount -t vboxsf -o gid=1000,uid=1000 VBox /home/$(whoami)/Shared)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="/Users/jacmeli/Bin:/Users/jacmeli/miniconda3/bin:$PATH"
