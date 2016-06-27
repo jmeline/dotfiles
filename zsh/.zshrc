@@ -47,6 +47,8 @@ alias ev='vim ~/.vimrc'
 alias et='vim ~/.tmux.conf'
 alias ez='vim ~/.zshrc'
 alias vim='nvim'
+alias vi='vim'
+alias v='vim'
 alias g++='g++ -O3'
 
 setopt HIST_IGNORE_DUPS # Prevent duplicate lines in the history
