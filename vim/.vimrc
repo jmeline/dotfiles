@@ -231,7 +231,7 @@ highlight link xmlEndTag xmlTag         "https://github.com/mxw/vim-jsx/issues/8
 """"""""""""""""""
 " colorscheme badwolf
 " let base16colorspace=256                  " Access colors present in 256 colorspace
-" colorscheme base16-eighties
+colorscheme base16-eighties
 " colorscheme base16-tomorrow
 " colorscheme base16-ocean
 " colorscheme base16-monokai
@@ -239,7 +239,7 @@ highlight link xmlEndTag xmlTag         "https://github.com/mxw/vim-jsx/issues/8
 " colorscheme base16-default
 
 " colorscheme onedark                       " Atom Text editor's theme
-colorscheme gruvbox
+" colorscheme gruvbox
 " let g:kolor_italic=1                    " Enable italic. Default: 1
 " let g:kolor_bold=1                      " Enable bold. Default: 1
 " let g:kolor_underlined=0                " Enable underline. Default: 0
@@ -253,9 +253,9 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 " let g:airline_theme='base16'
-" let g:airline_theme='base16_eighties'
+let g:airline_theme='base16_eighties'
 " let g:airline_theme='base16_solarized'
-let g:airline_theme='gruvbox'
+" let g:airline_theme='gruvbox'
 " let g:airline_theme='lucius'
 " let g:airline_theme='kolor'
 let g:airline_symbols.space = "\ua0"
