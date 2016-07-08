@@ -225,6 +225,7 @@ endfunction
 " vim-JSX Settings: {{{
 """"""""""""""""""""
 let g:jsx_ext_required = 0              " jsx syntax highlighting for all javascript files
+highlight link xmlEndTag xmlTag         "https://github.com/mxw/vim-jsx/issues/87 - fixes closing tag miscoloration
 " }}}
 " colorscheme Settings: {{{
 """"""""""""""""""
@@ -483,19 +484,6 @@ vmap * <Plug>AgActionVisual
 "au BufNewFile,BufRead *.md setlocal noet ts=4 sw=4
 autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
 au BufNewFile,BufRead *.js setlocal expandtab ts=2 sw=2 sts=2
-" }}}
-" IndentLine {{{
-" let g:indentLine_color_term = 239
-" let g:indentLine_leadingSpaceEnabled = 1
-" let g:indentLine_concealcursor = 'inc'
-" let g:indentLine_color_gui = '#3f3f3f'
-" let g:indentLine_leadingSpaceChar = '·'
-" let g:indentLine_leadingSpaceChar = '˽'
-" let g:indentLine_char = '│'
-" let g:indentLine_char = '┆'
-" }}}
-" GitGutter {{{
-" set updatetime=250
 " }}}
 " Custom Functions: {{{
 fun! <SID>StripTrailingWhitespaces()
