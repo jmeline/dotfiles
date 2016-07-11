@@ -375,7 +375,12 @@ let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
 " }}}
 " Vimwiki Settings: {{{
 """""""""""""""""""
-let g:vimwiki_list = [{'path': '~/Projects/journal/vimwiki'}]
+let g:vimwiki_list = [
+      \ {'path': '~/Projects/journal/vimwiki'},
+      \ {'path': '~/Projects/journal/twwiki/twwiki'},
+      \ {'path': '~/Projects/journal/spiritualwiki'},
+      \ {'path': '~/Projects/journal/linuxwiki'} ]
+
 let g:vimwiki_diary_months = {
       \ 1: 'January', 2: 'February', 3: 'March',
       \ 4: 'April', 5: 'May', 6: 'June',
