@@ -125,4 +125,4 @@ cf() {
   fi
 }
 
-export PATH="/Users/jacmeli/Bin:/Users/jacmeli/miniconda3/bin:$PATH"
+export PATH="/Users/jacmeli/Bin:$PATH:/Users/jacmeli/miniconda3/bin"

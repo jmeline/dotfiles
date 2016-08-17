@@ -56,6 +56,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'   " Nice devicons
 Plug 'zeis/vim-kolor'
+Plug 'dracula/vim'
 "C / C++
 Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp'] }
 "Haskell
@@ -225,18 +226,15 @@ endfunction
 " vim-JSX Settings: {{{
 """"""""""""""""""""
 let g:jsx_ext_required = 0              " jsx syntax highlighting for all javascript files
-highlight link xmlEndTag xmlTag         "https://github.com/mxw/vim-jsx/issues/87 - fixes closing tag miscoloration
+highlight link xmlEndTag xmlTag         " https://github.com/mxw/vim-jsx/issues/87 - fixes closing tag miscoloration
 " }}}
 " colorscheme Settings: {{{
 """"""""""""""""""
 " colorscheme badwolf
 " let base16colorspace=256                  " Access colors present in 256 colorspace
 colorscheme base16-eighties
-" colorscheme base16-tomorrow
 " colorscheme base16-ocean
-" colorscheme base16-monokai
-" colorscheme base16-solarized
-" colorscheme base16-default
+" colorscheme base16-solarized-dark
 
 " colorscheme onedark                       " Atom Text editor's theme
 " colorscheme gruvbox
@@ -245,6 +243,7 @@ colorscheme base16-eighties
 " let g:kolor_underlined=0                " Enable underline. Default: 0
 " let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
 " colorscheme kolor
+" colorscheme dracula
 
 set background=dark             " Cool programmers only use dark themes.
 " }}}
@@ -388,6 +387,8 @@ let g:vimwiki_diary_months = {
       \ 10: 'October', 11: 'November', 12: 'December'
       \ }
 
+let g:vimwiki_listsyms = '✗○◐●✓'
+let g:vimwiki_folding = 'expr'
 " }}}
 " Python Settings: {{{
 let g:pymode_syntax = 1
