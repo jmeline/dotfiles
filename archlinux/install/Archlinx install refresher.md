@@ -107,7 +107,6 @@ pacman -S xorg-server xorg-server-utils xorg-xinit \
 
 # for linux kernel choose virtualbox-guest-modules-arch
 pacman -S virtualbox-guest-modules-arch 
-
 ## or ##
 # for linux-lts kernel choose virtualbox-guest-dkms
 #	You also need to install linux-headers and linux-lts-headers
@@ -129,6 +128,10 @@ cd ~/.local/share/fonts && curl -fLo "Sauce Code Pro Black Nerd Font Complete Mo
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
 ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
+ln -sf $(pwd)/zsh/.preztorc ~/.zpreztorc
+
+## Add fish-style syntax highlighting to zsh prompt
+sudo pacman -S zsh-syntax-highlighting
 
 # install nvim from source
 ln -sf $(pwd)/vim/.vimrc ~/.vimrc
@@ -144,6 +147,10 @@ base16-builder -s eighties -t termite -b dark >> ~/.config/termite/config
 # install tmux and silver surfer
 sudo pacman -S the_silver_searcher tmux
 ln -sf $(pwd)/tmux/.tmux.conf ~/.tmux.conf
+## in order to fix <c-h> in vim tmux navigator, in termite Archlinux vimrc
+#if has('nvim')
+#  nmap <bs> :<c-u>TmuxNavigateLeft<cr>
+#endif
 
 # install neovim
 git clone https://github.com/neovim/neovim
@@ -152,5 +159,7 @@ cd neovim
 make CMAKE_BUILD_TYPE=Release
 sudo make install
 
+# i3 configuration
+sudo pacman -S lxappearance feh
 
 
