@@ -11,14 +11,19 @@ if !has('nvim')
   set nocompatible
 endif
 
-" Install vim-plug if it doesn't exist
-if empty(glob('~/.config/nvim/autoload/plug.vim')) && has('nvim')
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+function! GetVimPlug(directory)
+  silent !curl -fLo &a:directory --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
-elseif empty(glob('~/.vim/autoload/plug.vim')) && !has('nvim')
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endfunction
+
+" Install vim-plug if it doesn't exist
+let s:nvim_config = '~/.config/nvim/autoload/plug.vim'
+let s:vim_config ='~/.vim/autoload/plug.vim'
+if empty(glob(s:nvim_config)) && has('nvim')
+  call GetVimPlug(s:nvim_config)
+elseif empty(glob(s:vim_config)) && !has('nvim')
+  call GetVimPlug(s:vim_config)
 endif
 
 
