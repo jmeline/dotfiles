@@ -127,6 +127,10 @@ cd ~/.local/share/fonts && curl -fLo "Sauce Code Pro Black Nerd Font Complete Mo
 # install yaourt
 # get it from here: https://archlinux.fr/yaourt-en
 
+# install rofi, the dmenu replacement
+sudo pacman -S rofi
+# add 'rofi -show run' to the MOD+d shortcut
+
 # setup arc theme
 yaourt -S gtk-theme-arc arc-icon-theme
 
@@ -135,6 +139,8 @@ git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$H
 
 ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
 ln -sf $(pwd)/zsh/.preztorc ~/.zpreztorc
+ln -sf ${pwd}/i3/config ~/.config/i3/config
+ln -sf ${pwd}/compton/.compton.conf ~/.compton.conf
 
 ## Add fish-style syntax highlighting to zsh prompt
 sudo pacman -S zsh-syntax-highlighting
@@ -164,7 +170,8 @@ ln -sf $(pwd)/tmux/.tmux.conf ~/.tmux.conf
 #endif
 
 # i3 configuration
-sudo pacman -S lxappearance feh 
+sudo pacman -S lxappearance feh compton
+yaourt -S i3blocks
 
 ## setup awesome font
 ### download latest: https://github.com/FortAwesome/Font-Awesome/releases
@@ -177,3 +184,20 @@ sudo pacman -S xorg-xprop
 
 # setup firefox's developer edition
 yaourt -S firefox-developer
+
+# git setup
+# generate ssh key
+sudo pacman -S openssh
+# ecdsa -> Elliptic curve
+#	ECDSA (Elliptic Curve Digital Signature Algorithm) -> P-256 
+#		is a variant of the DSA which uses elliptic curve cryptography
+# As with elliptic-curve cryptography in general, the bit size of the public key believed to be needed for ECDSA is about twice the size of the security level, in bits. For example, at a security level of 80 bits (meaning an attacker requires the equivalent of about 2 80 {\displaystyle 2^{80}} 2^{80} operations to find the private key) the size of an ECDSA public key would be 160 bits, whereas the size of a DSA public key is at least 1024 bits. On the other hand, the signature size is the same for both DSA and ECDSA: 4 t {\displaystyle 4t} 4t bits, where t {\displaystyle t} t is the security level measured in bits, that is, about 320 bits for a security level of 80 bits. (much smaller key than RSA but same security)
+
+#	Ed25519 -> Curve25519 (newer and not as widespread) (smaller keys than RSA and ECDSA)
+#
+sudo pacman -S xclip
+ssh-keygen -t ecdsa -b 521 -C "my@email.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ecdsa
+# copy and add it to github.com
+xclip -sel clip < ~/.ssh/id_ecdsa.pub 
