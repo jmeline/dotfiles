@@ -124,6 +124,12 @@ sudo systemctl enable vboxservice.service
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts && curl -fLo "Sauce Code Pro Black Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/Black/complete/Sauce%20Code%20Pro%20Black%20Nerd%20Font%20Complete.ttf
 
+# install yaourt
+# get it from here: https://archlinux.fr/yaourt-en
+
+# setup arc theme
+yaourt -S gtk-theme-arc arc-icon-theme
+
 # install prezto
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
@@ -133,7 +139,12 @@ ln -sf $(pwd)/zsh/.preztorc ~/.zpreztorc
 ## Add fish-style syntax highlighting to zsh prompt
 sudo pacman -S zsh-syntax-highlighting
 
-# install nvim from source
+# install neovim from source
+git clone https://github.com/neovim/neovim
+sudo pacman -S base-devel cmake unzip python-neovim lua ninja
+cd neovim
+make CMAKE_BUILD_TYPE=Release
+sudo make install
 ln -sf $(pwd)/vim/.vimrc ~/.vimrc
 mkdir -p ~/.config/nvim
 ln -sf ~/.vimrc ~/.config/nvim/init.vim
@@ -152,14 +163,17 @@ ln -sf $(pwd)/tmux/.tmux.conf ~/.tmux.conf
 #  nmap <bs> :<c-u>TmuxNavigateLeft<cr>
 #endif
 
-# install neovim
-git clone https://github.com/neovim/neovim
-sudo pacman -S base-devel cmake unzip python-neovim lua ninja
-cd neovim
-make CMAKE_BUILD_TYPE=Release
-sudo make install
-
 # i3 configuration
-sudo pacman -S lxappearance feh
+sudo pacman -S lxappearance feh 
 
+## setup awesome font
+### download latest: https://github.com/FortAwesome/Font-Awesome/releases
+### unzip and move fontawesome.ttf to ~/.local/share/fonts
+### head on over to the cheatsheet: http://fontawesome.io/cheatsheet/
 
+# Setup windows on different workspaces
+sudo pacman -S xorg-xprop 
+## xorg-xprop: use the second entry under class when finding the window name
+
+# setup firefox's developer edition
+yaourt -S firefox-developer
