@@ -12,11 +12,15 @@ if !has('nvim')
 endif
 
 " Install vim-plug if it doesn't exist
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('~/.config/nvim/autoload/plug.vim')) && has('nvim')
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
+elseif empty(glob('~/.vim/autoload/plug.vim')) && !has('nvim')
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
+
 
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
@@ -443,7 +447,8 @@ map <C-L> <C-W><C-L>
 if has('nvim')
   set termguicolors
   let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
-  nmap <BS> <C-W>h
+  " nmap <BS> <C-W>h
+  nmap <bs> :<c-u>TmuxNavigateLeft<cr>
 else
   map <C-H> <C-W><C-H>
 endif
@@ -501,18 +506,11 @@ endfun
 " autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " Prevent escape from moving the cursor one character to the left
-" inoremap <silent> <Esc> <C-O>:stopinsert<CR>
+inoremap <silent> <Esc> <C-O>:stopinsert<CR>
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() "Removes trailing whitespace on any filetype
 au BufRead *.html,*.ejs set filetype=htmlm4
 au BufRead .aliasrc set filetype=bash
-
-" !Needs work ! -  Everytime you write the ~/.vimrc, it will auto reload. No more
-" augroup VimReload
-"   autocmd!
-"   echo 'vim reloaded!'
-"   autocmd! BufWritePost ~/.vimrc source ~/.vimrc :call AirlineRefresh()
-" augroup END
 
 " sort words within a line
 command! -nargs=0 -range SortWordsInLine <line1>,<line2>call setline('.',join(sort(split(getline('.'),' ')),' '))

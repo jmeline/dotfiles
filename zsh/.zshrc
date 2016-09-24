@@ -22,7 +22,7 @@ BASE16_SHELL="$HOME/.config/base16-shell/base16-eighties.dark.sh"
 # BASE16_SHELL="$HOME/.config/base16-shell/base16-flat.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 
@@ -46,9 +46,12 @@ alias tkill='tmux kill-session -t'
 alias ev='vim ~/.vimrc'
 alias et='vim ~/.tmux.conf'
 alias ez='vim ~/.zshrc'
+alias etc='vim ~/.config/termite/config'
+alias ei3='vim ~/.config/i3/config'
 alias vim='nvim'
 alias vi='vim'
 alias v='vim'
+
 alias g++='g++ -O3'
 
 setopt HIST_IGNORE_DUPS # Prevent duplicate lines in the history
@@ -125,4 +128,4 @@ cf() {
   fi
 }
 
-export PATH="/Users/jacmeli/Bin:$PATH:/Users/jacmeli/miniconda3/bin"
+export PATH="/home/jmeline/Bin:$PATH"
