@@ -128,4 +128,8 @@ cf() {
   fi
 }
 
+# mount shared folder
+# arg0 = name of the shared folder
+# arg1 = name of the mount point on the Filesystem
+sudo mount -t vboxsf shared ~/Share/
 export PATH="/home/jmeline/Bin:$PATH"

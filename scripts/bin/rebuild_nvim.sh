@@ -2,13 +2,13 @@
 
 echo "Grabbing latest neovim from github"
 OLDPATH=`pwd`
-cd $(pwd)/project/neovim/
+cd ~/project/neovim/
 
 function neovim_make()
 {
   make clean
   make CMAKE_BUILD_TYPE=Release
-  make install
+  sudo make install
 }
 
 function clean_build() {
