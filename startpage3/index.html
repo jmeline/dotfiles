@@ -1,43 +1,61 @@
-<!doctype html>
+<doctype html>
 <html>
 	<head>
 		<title>home</title>
     <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="./materialIcons/material" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection"/>
     <link rel="stylesheet" href="main.css">
 		<link rel="stylesheet" href="./font-awesome-4.6.3/css/font-awesome.min.css">
 	</head>
-
 	<body>
     <div class="container">
-      <div class="row ">
+      <div class="row">
         <div class="col s12">
           <ul class="tabs teal lighten-3">
-            <li class="tab col s6 grey darken-3 active"><a href="#test1"><i class="fa fa-at"></i>&nbsp;Home</a></li>
-            <li class="tab col s6 grey darken-3"><a href=""><i class="fa fa-at"></i>&nbsp;Work</a></li>
+            <li class="tab col s6 grey darken-3"><a onClick="changePage('home')"><i class="fa fa-at"></i>&nbsp;Home</a></li>
+            <li class="tab col s6 grey darken-3"><a onClick="changePage('work')"><i class="fa fa-at"></i>&nbsp;Work</a></li>
           </ul>
         </div>
       </div>
-      <div class="row">
+      <div id="work" style="display:none" class="row">
         <div class="col s6">
-          <li>General</li>
+          <li>Important Sites</li>
           <div class="container">
-            <li><a href="https://mail.google.com/"><i class="fa fa-google fa-lg"></i>&nbsp;Inbox</a></li>
+            <li><a href="https://mail.google.com/"><i class="material-icons left">email</i>&nbsp;Inbox</a></li>
             <li><a href="https://github.com/jmeline/"><i class="fa fa-github fa-lg"></i>&nbsp;Github</a></li>
             <li><a href="https://bitbucket.org/dashboard/overview"><i class="fa fa-bitbucket fa-lg"></i>&nbsp;Bitbucket</a></li>
             <li><a href="https://youtube.com"><i class="fa fa-youtube fa-lg"></i>&nbsp;Youtube</a></li>
           </div>
         </div>
+      </div>
+      <div id="home" class="row">
+        <div class="col s6">
+          <li>General</li>
+          <div class="container">
+            <li><a class="waves-effect red lighten-3 waves-red btn" href="https://mail.google.com/">
+              <i class="material-icons left">email</i>Inbox</a>
+            </li>
+            <li><a class="waves-effect red lighten-3 waves-red btn" href="https://github.com/jmeline/">
+              <i class="fa fa-github fa-lg"></i>&nbsp;Github</a>
+            </li>
+            <li><a class="waves-effect red lighten-3 waves-red btn" href="https://bitbucket.org/dashboard/overview">
+              <i class="fa fa-bitbucket fa-lg"></i>&nbsp;Bitbucket</a>
+            </li>
+            <li><a class="waves-effect red lighten-3 waves-red btn" href="https://youtube.com">
+              <i class="fa fa-youtube fa-lg"></i>&nbsp;Youtube</a>
+            </li>
+          </div>
+        </div>
         <div class='col s6'>
           <li>Dev Katas</li>
           <div class="container">
-            <li><a href="https://www.codewars.com/kata/search/javascript?q=&r%5B%5D=-8&r%5B%5D=-7&r%5B%5D=-6&xids=played&beta=false&order_by=popularity+desc">Codewars</a></li>
-            <li><a href="https://www.hackerrank.com/domains?h_r=logo">Hackerrank</a></li>
-            <li><a href="https://projecteuler.net/archives">ProjectEuler</a></li>
-            <li><a href="https://www.4clojure.com/problems">4Clojure</a></li>
-            <li><a href="https://www.reddit.com/r/dailyprogrammer/">/r/dailyprogrammer</a></li>
+            <li><a class="waves-effect red lighten-3 waves-red btn" href="https://www.codewars.com/kata/search/javascript?q=&r%5B%5D=-8&r%5B%5D=-7&r%5B%5D=-6&xids=played&beta=false&order_by=popularity+desc">Codewars</a></li>
+            <li><a class="waves-effect red lighten-3 waves-red btn" href="https://www.hackerrank.com/domains?h_r=logo">Hackerrank</a></li>
+            <li><a class="waves-effect red lighten-3 waves-red btn" href="https://projecteuler.net/archives">ProjectEuler</a></li>
+            <li><a class="waves-effect red lighten-3 waves-red btn" href="https://www.4clojure.com/problems">4Clojure</a></li>
+            <li><a class="waves-effect red lighten-3 waves-red btn" href="https://www.reddit.com/r/dailyprogrammer/">/r/dailyprogrammer</a></li>
           </div>
         </div>
         <div class='col s6'>
@@ -82,7 +100,21 @@
           </div>
         </div>
     </div>
+    <script>
+      function changePage(desiredPage) {
+        var d1 = document.getElementById('home');
+        var d2 = document.getElementById('work');
+        if (desiredPage === "work") {
+          d1.style.display = "none";
+          d2.style.display = "block";
+        } else {
+          d1.style.display = "block";
+          d2.style.display = "none";
+        }
+      }
+
+    </script>
 	</body>
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="./jquery-3.1.1.min.js"></script>
   <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 </html>
