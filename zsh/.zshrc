@@ -51,6 +51,8 @@ alias ei3='vim ~/.config/i3/config'
 alias vim='nvim'
 alias vi='vim'
 alias v='vim'
+alias cdWin='/Volumes/C/Projects'
+
 
 alias g++='g++ -O3'
 
@@ -131,5 +133,7 @@ cf() {
 # mount shared folder
 # arg0 = name of the shared folder
 # arg1 = name of the mount point on the Filesystem
-sudo mount -t vboxsf shared ~/Share/
-export PATH="/home/jmeline/Bin:$PATH"
+# sudo mount -t vboxsf shared ~/Share/
+export PATH="/Users/jacmeli/Bin:$PATH"
+# hacktoberfest
+export GITHUB_TOKEN=fbf300c49e3ab8320aef21d9e6d99277c50863a9

@@ -26,7 +26,6 @@ elseif empty(glob(s:vim_config)) && !has('nvim')
   call GetVimPlug(s:vim_config)
 endif
 
-
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
   " - name:   name of the plugin
@@ -57,6 +56,7 @@ Plug 'vimwiki/vimwiki'
 "  Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'mkitt/tabline.vim'
+
 "Themes
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
@@ -81,6 +81,7 @@ Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 "Python
 Plug 'klen/python-mode', { 'for': 'python' }
+Plug 'nvie/vim-flake8', { 'for': 'python' }
 Plug 'mitsuhiko/vim-python-combined', { 'for': 'python' }
 "Javascript
 Plug 'groenewege/vim-less', { 'for': 'less' }
@@ -96,58 +97,35 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 call plug#end()
 "}}}
-" Fonts: {{{
-" using Source Code Pro
-" After setting your font manually using the Font window, if you are unsure exactly what to put type:
-" set guifont
-" This will show you the exact string value you need to put in your .vimrc file, including the typeface.
-" Note: Patching fonts on windows: Powershell.exe -executionpolicy remotesigned -File install.ps1
-" https://github.com/powerline/fonts.git
-
-" set anti enc=utf-8
-"  set enc=utf-8
-" set guifont=Source\ Code\ Pro\ Medium:h11
-" set guifont=DejaVu_Sans_Mono_for_Powerline:h13:cANSI
-set guifont=Sauce\ Code\ Powerline:h13:cANSI
-" }}}
 " General: {{{
+set guifont=Sauce\ Code\ Powerline:h13:cANSI
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
 filetype indent plugin on
-
-
 " Stop certain movements from always going to the first character of a line.
 " While this behaviour deviates from that of Vi, it does what most users
 " coming from other editors would expect.
 set nostartofline
-
 " Instead of failing a command because of unsaved changes, instead raise a
 " dialogue asking if you wish to save changed files.
 set confirm
-
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=0
-
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
-
 set autoread                    " Reload file when changed externally.
 set nobackup                    " No need for .bkp files when version control exist.
 set nowritebackup               " If Vim crashes often then turn backups on again, look at docs for more information.
 set noswapfile                  " Don't create swap files, nowadays we should have enough memory to store a text file.
-
 set undodir=~/.vim_undodir      " Where do we store all this awesomeness?!?!
 set undofile                    " Persistent undos are awesome!
-
 set history=1000                " Defines the number of stored commands that Vim can remember, we have so much memory today it doesn't even matter.
 set undolevels=1000             " use many muchos levels of undo
 let mapleader=','               " Map <leader> to the ',' key. This is used to extend Vims functionality without overwriting any standard bindings.
 " let g:mapleader=','             " Do this globally too.
-
 set mouse=a                     " Enable use of the mouse for all modes
 set shortmess+=I                " hide the launch screen
-
 ""http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
 " works only for OS X
 let os=substitute(system('uname'), '\n', '', '')
@@ -244,7 +222,6 @@ highlight link xmlEndTag xmlTag         " https://github.com/mxw/vim-jsx/issues/
 colorscheme base16-eighties
 " colorscheme base16-ocean
 " colorscheme base16-solarized-dark
-
 " colorscheme onedark                       " Atom Text editor's theme
 " colorscheme gruvbox
 " let g:kolor_italic=1                    " Enable italic. Default: 1
@@ -425,28 +402,10 @@ map k gk
 
 " Map <Esc> to jk for faster getting out of insert mode
 inoremap jk <esc>
-" inoremap <esc> <nop>
-
 " Common mistyping, saves rage
 nnoremap ; :
-
 nnoremap <silent><F2> :set rnu!<CR>
 nnoremap <silent><F3> :set nu!<CR>
-" Stupid shift key fixes
-" cmap :W :w
-" cmap :Wq :wq
-" cmap :WQ :wq
-" cmap :wQ :wq
-" cmap :Q :q
-
-" Standard save method. Simpler and shorter
-map <c-s> :w<CR>
-
-" Easy window navigation
-map <C-J> <C-W><C-J>
-map <C-K> <C-W><C-K>
-map <C-L> <C-W><C-L>
-
 " Neovim sends <BS> instead of H^
 " workaround for https://github.com/neovim/neovim/issues/2048
 if has('nvim')
@@ -454,34 +413,19 @@ if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
   " nmap <BS> <C-W>h
   nmap <bs> :<c-u>TmuxNavigateLeft<cr>
+  " Enables incremental command feedback
+  if exists('&inccommand')
+    set inccommand=nosplit
+  endif
 else
   map <C-H> <C-W><C-H>
 endif
 
 set splitbelow
 set splitright
-
-" window
-" nmap <leader>sw<left>  :topleft  vnew<CR>
-" nmap <leader>sw<right> :botright vnew<CR>
-" nmap <leader>sw<up>    :topleft  new<CR>
-" nmap <leader>sw<down>  :botright new<CR>
-
-" buffer
-" nmap <leader>s<left>   :leftabove  vnew<CR>
-" nmap <leader>s<right>  :rightbelow vnew<CR>
-" nmap <leader>s<up>     :leftabove  new<CR>
-" nmap <leader>s<down>   :rightbelow new<CR>
-"
-" easy buffer navigation and management
-" map gn :bn<cr>
-" map gp :bp<cr>
-" map gd :bd<cr>
-
 " Speed up scrolling of the viewport slightly
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
-
 " Use the hjkl keys only!
 noremap <Up> <NOP>
 noremap <Down> <NOP>
@@ -508,7 +452,6 @@ fun! <SID>StripTrailingWhitespaces()
   %s/\s\+$//e
   call cursor(l, c)
 endfun
-" autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " Prevent escape from moving the cursor one character to the left
 inoremap <silent> <Esc> <C-O>:stopinsert<CR>

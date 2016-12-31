@@ -1,42 +1,69 @@
-<doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-	<head>
-		<title>home</title>
-    <!--Import Google Icon Font-->
-    <link href="./materialIcons/material" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection"/>
-    <link rel="stylesheet" href="main.css">
-		<link rel="stylesheet" href="./font-awesome-4.6.3/css/font-awesome.min.css">
-	</head>
-  <body>
-    <div id="home" class="container">
-      <div class="row">
-        <div class="col s12">
-          <ul class="tabs teal lighten-3">
-            <li class="tab col s6 grey darken-3"><a id='home'><i class="fa fa-at"></i>&nbsp;Home</a></li>
-            <li class="tab col s6 grey darken-3"><a id='work'><i class="fa fa-at"></i>&nbsp;Work</a></li>
-          </ul>
-        </div>
+<body>
+<div id="target">
+  <div class="col s6">
+    <li>Dev</li>
+      <div class="container">
+        <li> <a class='dropdown-button btn red lighten-3' data-activates='towers-watson'>Towers Watson</a></li>
+        <li> <a class="waves-effect red lighten-3 waves-red btn" href="http://github.extendhealth.com"> Github </a></li>
+        <li> <a class="waves-effect red lighten-3 waves-red btn" href="http://jira.extendhealth.com/"> Jira </a></li>
+        <li> <a class="waves-effect red lighten-3 waves-red btn" href="http://teamcity.extendhealth.com/"> TeamCity </a></li>
+        <li> <a class="waves-effect red lighten-3 waves-red btn" href="https://app.pluralsight.com/library/"> PluralSight </a></li>
       </div>
-      <div class="row">
-        <div class="col s6">
-          <li>General</li>
-          <div class="container">
-            <li><a href="https://mail.google.com/"><i class="fa fa-google fa-lg"></i>&nbsp;Inbox</a></li>
-            <li><a href="https://github.com/jmeline/"><i class="fa fa-github fa-lg"></i>&nbsp;Github</a></li>
-            <li><a href="https://bitbucket.org/dashboard/overview"><i class="fa fa-bitbucket fa-lg"></i>&nbsp;Bitbucket</a></li>
-            <li><a href="https://youtube.com"><i class="fa fa-youtube fa-lg"></i>&nbsp;Youtube</a></li>
-          </div>
-        </div>
-    </div>
-    <script>
-      function changePage(desiredPage) {
-        window.location.href = (desiredPage === "work") ? "http://stackoverflow.com" : "index.html";
-      }
+  </div>
+  <div class="col s6">
+    <li>Sites</li>
+      <div class="container">
+          <li><a class='dropdown-button btn red lighten-3' data-activates='oepm'>oepm</a></li>
+          <li><a class='dropdown-button btn red lighten-3' data-activates='calllookup'>calllookup</a></li>
+          <li><a class='dropdown-button btn red lighten-3' data-activates='ssc-main'>ssc</a></li>
 
-    </script>
-	</body>
-  <script type="text/javascript" src="./jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+        </li>
+      </div>
+  </div>
+  <div class="col s6">
+    <li>KB/Confluence</li>
+      <div class="container">
+        <li> <a
+            class="waves-effect red lighten-3 waves-red btn"
+            href="http://kb.extendhealth.com/display/QA/Network+Drives+and+Log+Locations">
+            Network|Log Locations </a>
+        </li>
+      </div>
+  </div>
+  <div>
+    <ul id='towers-watson' class='dropdown-content gray darken-3'>
+      <li><a href="http://vantage.internal.towerswatson.com/Pages/default.aspx">Main Site</a></li>
+      <li><a href="https://appstwprod.willistowerswatson.com/OA_HTML/RF.jsp?function_id=16744&resp_id=60824&resp_appl_id=809&security_group_id=0&
+      lang_code=US&oas=rL_NTk3HL7KC55eiPvwKkw..&params=nMJCs-5bwxICJu8bjNNTJn-yfrD7ibnTpzSzrkNREKQ">New Timecard</a></li>
+      <li><a href="https://appstwprod.willistowerswatson.com/OA_HTML/RF.jsp?function_id=49325&resp_id=56652&resp_appl_id=800&security_group_id=0&lang_code=US">PTO</a></li>
+      <li><a href="http://vantage.internal.towerswatson.com/communities/regions/region-sites/americas/pages/pages/holiday-schedule.aspx#us">Holidays</a></li>
+    </ul>
+
+    <ul id='oepm' class='dropdown-content gray darken-3'>
+      <li><a href="http://devtoolbox.extendhealth.com/adminsuite/one-exchange-product-management">DEV</a></li>
+      <li><a href="http://qatoolbox.extendhealth.com/adminsuite/one-exchange-product-management">QA</a></li>
+      <li><a href="http://stagetoolbox.extendhealth.com/adminsuite/one-exchange-product-management">STAGE</a></li>
+      <li><a href="http://toolbox.extendhealth.com/adminsuite/one-exchange-product-management">PROD</a></li>
+    </ul>
+
+    <ul id='calllookup' class='dropdown-content gray darken-3'>
+      <li><a href="http://devcalllookup.oneexchange.com">DEV</a></li>
+      <li><a href="http://qacalllookup.oneexchange.com">QA</a></li>
+      <li><a href="http://stagecalllookup.oneexchange.com">STAGE</a></li>
+      <li><a href="http://calllookup.oneexchange.com">PROD</a></li>
+    </ul>
+
+    <ul id='ssc-main' class='dropdown-content gray darken-3'>
+      <li><a href="http://devssc.extendhealth.com/">DEV</a></li>
+      <li><a href="http://qassc.extendhealth.com/">QA</a></li>
+      <li><a href="http://stagessc.extendhealth.com/">STAGE</a></li>
+      <li><a href="http://ssc.extendhealth.com/">PROD</a></li>
+    </ul>
+  </div>
+</div>
+
+</body>
 </html>
