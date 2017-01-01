@@ -1,20 +1,20 @@
 #!/bin/bash
 
-echo "Grabbing latest neovim from github"
+echo "Grabbing latest tmux from github"
 OLDPATH=`pwd`
-cd /Users/jacmeli/Projects/neovim/
+cd /Users/jacmeli/Projects/tmux/
 
-function neovim_make()
+function tmux_make()
 {
   make clean
-  make CMAKE_BUILD_TYPE=Release
-  make install
+  sh autogen.sh
+  ./configure && make
+  sudo make install
 }
 
 function clean_build() {
   if [ -d build ]
   then
-    echo "removing build folder"
     rm -rf build
   fi
 }
@@ -33,13 +33,12 @@ function update_git() {
     echo "Need to pull"
     git pull
     clean_build
-    neovim_make
+    tmux_make
   elif [ $REMOTE = $BASE ]; then
     echo "Need to push"
   else
     echo "Diverged"
   fi
 }
-
 update_git
 cd $OLDPATH

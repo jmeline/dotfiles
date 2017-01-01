@@ -1,14 +1,15 @@
 #!/bin/bash
 
-echo "Grabbing latest neovim from github"
+echo "Grabbing latest emacs from git.savannah.gnu.org"
 OLDPATH=`pwd`
-cd /Users/jacmeli/Projects/neovim/
+cd /Users/jacmeli/Projects/emacs/
 
-function neovim_make()
+function emacs_make()
 {
   make clean
-  make CMAKE_BUILD_TYPE=Release
+  ./configure --with-ns
   make install
+  cp ./nextstep/Emacs.app /Applications
 }
 
 function clean_build() {
@@ -33,7 +34,7 @@ function update_git() {
     echo "Need to pull"
     git pull
     clean_build
-    neovim_make
+    emacs_make
   elif [ $REMOTE = $BASE ]; then
     echo "Need to push"
   else
