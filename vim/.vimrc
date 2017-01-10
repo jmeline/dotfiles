@@ -52,8 +52,6 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vimwiki/vimwiki'
-" Plug 'airblade/vim-gitgutter'
-"  Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'mkitt/tabline.vim'
 
@@ -71,6 +69,7 @@ Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp'] }
 "Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 "Clojure and ClojureScript
+Plug 'kien/rainbow_parentheses.vim', { 'for': ['clojure', 'clojurescript'] }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure', 'clojurescript'] }
 Plug 'guns/vim-clojure-static', { 'for': ['clojure', 'clojurescript'] }
 Plug 'guns/vim-clojure-highlight', { 'for': ['clojure', 'clojurescript'] }
@@ -385,6 +384,28 @@ let g:pymode_virtualenv = 1
 let g:pymode_lint = 1
 let g:pymode_lint_checker = "pyflakes,pep8"
 let g:pymode_lint_ignore="E501,W601,C0110"
+" }}}
+" Rainbow Parentheses: {{{
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
 " }}}
 "Custom Mapping: {{{
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
