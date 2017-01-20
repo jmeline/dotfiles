@@ -134,6 +134,6 @@ cf() {
 # arg0 = name of the shared folder
 # arg1 = name of the mount point on the Filesystem
 # sudo mount -t vboxsf shared ~/Share/
-export PATH="/Users/jacmeli/Bin:$PATH"
+export PATH="/home/jmeline/.bin:$PATH"
 # hacktoberfest
 export GITHUB_TOKEN=fbf300c49e3ab8320aef21d9e6d99277c50863a9
