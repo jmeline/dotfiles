@@ -2,7 +2,7 @@
 
 echo "Grabbing latest neovim from github"
 OLDPATH=`pwd`
-cd /Users/jacmeli/Projects/neovim/
+cd /home/jmeline/projects/neovim/
 
 function neovim_make()
 {

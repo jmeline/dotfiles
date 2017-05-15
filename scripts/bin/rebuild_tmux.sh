@@ -2,7 +2,7 @@
 
 echo "Grabbing latest tmux from github"
 OLDPATH=`pwd`
-cd /Users/jacmeli/Projects/tmux/
+cd /home/jmeline/projects/tmux/
 
 function tmux_make()
 {
