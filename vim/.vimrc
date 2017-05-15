@@ -21,9 +21,9 @@ endfunction
 let s:nvim_config = '~/.config/nvim/autoload/plug.vim'
 let s:vim_config ='~/.vim/autoload/plug.vim'
 if empty(glob(s:nvim_config)) && has('nvim')
-  call GetVimPlug(s:nvim_config)
+  " call GetVimPlug(s:nvim_config)
 elseif empty(glob(s:vim_config)) && !has('nvim')
-  call GetVimPlug(s:vim_config)
+  " call GetVimPlug(s:vim_config)
 endif
 
 function! BuildYCM(info)
@@ -36,9 +36,9 @@ function! BuildYCM(info)
   endif
 endfunction
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Raimondi/delimitMate'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -342,11 +342,11 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsListSnippets="<c-l>"
-let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsListSnippets="<c-l>"
+" let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<tab>"
 " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsEditSplit="vertical"
 " }}}
 " delimitMate Settings: {{{
 """""""""""""""""""""""
