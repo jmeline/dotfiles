@@ -84,6 +84,8 @@ Plug 'nvie/vim-flake8', { 'for': 'python' }
 Plug 'mitsuhiko/vim-python-combined', { 'for': 'python' }
 "Javascript
 Plug 'groenewege/vim-less', { 'for': 'less' }
+" Elm
+Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 " Plug 'bentayloruk/vim-react-es6-snippets', { 'for': 'javascript.jsx' }
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
@@ -94,6 +96,7 @@ Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass'] }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
+Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'md'] }
 call plug#end()
 "}}}
 " General: {{{
@@ -218,7 +221,7 @@ highlight link xmlEndTag xmlTag         " https://github.com/mxw/vim-jsx/issues/
 """"""""""""""""""
 " colorscheme badwolf
 " let base16colorspace=256                  " Access colors present in 256 colorspace
-colorscheme base16-eighties
+" colorscheme base16-eighties
 " colorscheme base16-ocean
 " colorscheme base16-solarized-dark
 " colorscheme onedark                       " Atom Text editor's theme
@@ -228,7 +231,7 @@ colorscheme base16-eighties
 " let g:kolor_underlined=0                " Enable underline. Default: 0
 " let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
 " colorscheme kolor
-" colorscheme dracula
+colorscheme dracula
 
 set background=dark             " Cool programmers only use dark themes.
 " }}}
@@ -237,8 +240,8 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 " let g:airline_theme='base16'
-let g:airline_theme='base16_eighties'
-" let g:airline_theme='base16_solarized'
+" let g:airline_theme='base16_eighties'
+let g:airline_theme='dracula'
 " let g:airline_theme='gruvbox'
 " let g:airline_theme='lucius'
 " let g:airline_theme='kolor'
@@ -360,10 +363,10 @@ let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
 " Vimwiki Settings: {{{
 """""""""""""""""""
 let g:vimwiki_list = [
-      \ {'path': '~/projects/journal/vimwiki'},
-      \ {'path': '~/projects/journal/twwiki/twwiki'},
-      \ {'path': '~/projects/journal/spiritualwiki'},
-      \ {'path': '~/projects/journal/linuxwiki'} ]
+      \ {'path': '~/Projects/journal/vimwiki'},
+      \ {'path': '~/Projects/journal/twwiki/twwiki'},
+      \ {'path': '~/Projects/journal/spiritualwiki'},
+      \ {'path': '~/Projects/journal/linuxwiki'} ]
 
 let g:vimwiki_diary_months = {
       \ 1: 'January', 2: 'February', 3: 'March',

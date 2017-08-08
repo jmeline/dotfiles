@@ -583,6 +583,8 @@
 	<integer>0</integer>
 	<key>HotkeyCode</key>
 	<integer>0</integer>
+	<key>HotkeyMigratedFromSingleToMulti</key>
+	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>0</integer>
 	<key>IRMemory</key>
@@ -649,10 +651,12 @@
 	<string>481 413 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>-1586 932 616 174 -2560 0 2560 1417 </string>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>-1588 769 620 392 -2560 0 2560 1418 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>227 327 918 495 0 0 2560 1418 </string>
+	<string>98 294 796 473 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-1069 194 718 863 -1440 180 1440 877 </string>
+	<string>-2560 17 1279 692 -2560 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>4 14 1432 863 0 0 1440 877 </string>
 	<key>NeverWarnAboutShortLivedSessions_6180F3AB-65CA-444E-B2F1-7C2969C4BEF2</key>
@@ -1580,9 +1584,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-05-05T14:34:16Z</date>
-	<key>SUSkippedVersion</key>
-	<string>3.0.8</string>
+	<date>2017-07-20T13:41:27Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1635,6 +1637,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.15</string>
+	<string>3.1.beta.5</string>
 </dict>
 </plist>
