@@ -41,18 +41,19 @@ Plug 'Raimondi/delimitMate'
 " Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'tpope/vim-fugitive'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'honza/vim-snippets'
 Plug 'rking/ag.vim', { 'on': 'Ag' }
 Plug 'Chun-Yang/vim-action-ag'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFocus' }
 Plug 'scrooloose/syntastic'
+Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vimwiki/vimwiki'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'mkitt/tabline.vim'
 
 "Themes
@@ -66,35 +67,22 @@ Plug 'zeis/vim-kolor'
 Plug 'dracula/vim'
 "C / C++
 Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp'] }
-"Haskell
-Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 "Clojure and ClojureScript
 Plug 'kien/rainbow_parentheses.vim', { 'for': ['clojure', 'clojurescript'] }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure', 'clojurescript'] }
-Plug 'guns/vim-clojure-static', { 'for': ['clojure', 'clojurescript'] }
 Plug 'guns/vim-clojure-highlight', { 'for': ['clojure', 'clojurescript'] }
 Plug 'vim-scripts/paredit.vim', { 'for': ['clojure', 'clojurescript'] }
 "Ruby
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 "Python
-Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'nvie/vim-flake8', { 'for': 'python' }
 Plug 'mitsuhiko/vim-python-combined', { 'for': 'python' }
-"Javascript
-Plug 'groenewege/vim-less', { 'for': 'less' }
-" Elm
-Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 " Plug 'bentayloruk/vim-react-es6-snippets', { 'for': 'javascript.jsx' }
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript.jsx' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript.jsx' }
-Plug 'elzr/vim-json' " better json syntax highlighting
 "CSS/LESS
 Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass'] }
-Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'md'] }
 call plug#end()
@@ -252,42 +240,6 @@ let g:airline#extensions#tmuxline#enabled = 0
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ctrlp#color_template = 'normal'
 let g:airline#extensions#ctrlp#show_adjacent_modes = 1
-" }}}
-" ctrlp Settings: {{{
-""""""""""""""""""
-if exists("g:ctrlp_user_command")
-  unlet g:ctrlp_user_command
-end
-
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-" let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
-
-" enable faster searching using ag if enabled https://robots.thoughtbot.com/faster-grepping-in-vim
-if executable('ag')
-  unlet g:ctrlp_user_command
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-  " Use ag in CtrlP for listing files. lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
-
-let g:ctrlp_max_files = 0
-
-" let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
-let g:ctrlp_custom_ignore = {
-      \ 'dir': '\.git$\|\public$\|log\|tmp$\|node_modules$\|Build$',
-      \ 'file': '\.so$\|\.dat$\|\.DS_Store$\|\.dll$\|\.pyc$\|\.cs$|\.xml$'
-      \ }
-
-" let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
-let g:ctrlp_working_path_mode = '0'
 " }}}
 " NerdTree Settings: {{{
 """""""""""""""""""""
@@ -470,6 +422,27 @@ autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
 au BufNewFile,BufRead *.js setlocal expandtab ts=2 sw=2 sts=2
 " }}}
 " Custom Functions: {{{
+
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc...
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
+
+nnoremap <C-p>a :Rg
+nnoremap <leader>o :Files<cr>
+
 fun! <SID>StripTrailingWhitespaces()
   let l = line(".")
   let c = col(".")
