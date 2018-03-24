@@ -41,12 +41,13 @@ Plug 'Raimondi/delimitMate'
 " Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'tpope/vim-fugitive'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'honza/vim-snippets'
 Plug 'rking/ag.vim', { 'on': 'Ag' }
 Plug 'Chun-Yang/vim-action-ag'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFocus' }
 Plug 'scrooloose/syntastic'
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
@@ -85,6 +86,9 @@ Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass'] }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'md'] }
+" Elm
+Plug 'elmcast/elm-vim', { 'for': 'elm' }
+Plug 'juliosueiras/cakebuild.vim', { 'for': 'csx' }
 call plug#end()
 "}}}
 " General: {{{
@@ -241,6 +245,42 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ctrlp#color_template = 'normal'
 let g:airline#extensions#ctrlp#show_adjacent_modes = 1
 " }}}
+" ctrlp Settings: {{{
+""""""""""""""""""
+if exists("g:ctrlp_user_command")
+  unlet g:ctrlp_user_command
+end
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+
+" enable faster searching using ag if enabled https://robots.thoughtbot.com/faster-grepping-in-vim
+if executable('ag')
+  unlet g:ctrlp_user_command
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+  " Use ag in CtrlP for listing files. lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+let g:ctrlp_max_files = 0
+
+" let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = {
+      \ 'dir': '\.git$\|\public$\|log\|tmp$\|node_modules$\|Build$',
+      \ 'file': '\.so$\|\.dat$\|\.DS_Store$\|\.dll$\|\.pyc$\|\.cs$|\.xml$'
+      \ }
+
+" let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+let g:ctrlp_working_path_mode = '0'
+" }}}
 " NerdTree Settings: {{{
 """""""""""""""""""""
 " Store the bookmarks file
@@ -362,6 +402,9 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 " }}}
+" VimPolygot: {{{
+let g:ployglot_disabled = ['elm']
+" }}}
 "Custom Mapping: {{{
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
 map Y y$
@@ -460,3 +503,5 @@ au BufRead .aliasrc set filetype=bash
 " sort words within a line
 command! -nargs=0 -range SortWordsInLine <line1>,<line2>call setline('.',join(sort(split(getline('.'),' ')),' '))
 " }}}
+
+set nofsync
