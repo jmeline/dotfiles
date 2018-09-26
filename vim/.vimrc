@@ -43,10 +43,10 @@ Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'honza/vim-snippets'
-Plug 'rking/ag.vim', { 'on': 'Ag' }
-Plug 'Chun-Yang/vim-action-ag'
+" Plug 'rking/ag.vim', { 'on': 'Ag' }
+" Plug 'Chun-Yang/vim-action-ag'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFocus' }
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 "Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
@@ -64,23 +64,24 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'   " Nice devicons
-Plug 'zeis/vim-kolor'
-Plug 'dracula/vim'
+" Plug 'zeis/vim-kolor'
+Plug 'dracula/vim', { 'as': 'dracula' }
 "C / C++
-Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp'] }
+" Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp'] }
 "Clojure and ClojureScript
 Plug 'kien/rainbow_parentheses.vim', { 'for': ['clojure', 'clojurescript'] }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure', 'clojurescript'] }
 Plug 'guns/vim-clojure-highlight', { 'for': ['clojure', 'clojurescript'] }
 Plug 'vim-scripts/paredit.vim', { 'for': ['clojure', 'clojurescript'] }
-"Ruby
-Plug 'tpope/vim-bundler', { 'for': 'ruby' }
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
 "Python
 Plug 'nvie/vim-flake8', { 'for': 'python' }
 Plug 'mitsuhiko/vim-python-combined', { 'for': 'python' }
+" Javascript
 " Plug 'bentayloruk/vim-react-es6-snippets', { 'for': 'javascript.jsx' }
-Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript.jsx' }
+" Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript.jsx' }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html' ] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'javascript'] }
+Plug 'reasonml-editor/vim-reason-plus', { 'for': ['reason'] }
 "CSS/LESS
 Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass'] }
@@ -89,10 +90,19 @@ Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'md'] }
 " Elm
 Plug 'elmcast/elm-vim', { 'for': 'elm' }
 Plug 'juliosueiras/cakebuild.vim', { 'for': 'csx' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': ':UpdateRemotePlugins',
+    \ }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 "}}}
+"
+
 " General: {{{
-set guifont=Sauce\ Code\ Powerline:h13:cANSI
+" set guifont=Sauce\ Code\ Powerline:h13:cANSI
+set guifont=FuraCode\ NF:h13:cANSI
+" set guifont=Operator\ Mono\ Light\ Italic:h13:cANSI
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
@@ -154,7 +164,7 @@ set magic                       " Enables regular expressions. They are a bit li
 " UI: {{{
 set ffs=unix,dos,mac            " Prioritize unix as the standard file type.
 " set encoding=utf-8              " Vim can now work with a whole bunch more characters.
-set scrolloff=7                  " The screen will only scroll when the cursor is 7  characters from the top/bottom.
+set scrolloff=5                  " The screen will only scroll when the cursor is 7  characters from the top/bottom.
 set foldmethod=marker
 set noeb vb t_vb=
 
@@ -214,29 +224,26 @@ highlight link xmlEndTag xmlTag         " https://github.com/mxw/vim-jsx/issues/
 " colorscheme badwolf
 " let base16colorspace=256                  " Access colors present in 256 colorspace
 " colorscheme base16-eighties
-" colorscheme base16-ocean
-" colorscheme base16-solarized-dark
 " colorscheme onedark                       " Atom Text editor's theme
 " colorscheme gruvbox
-" let g:kolor_italic=1                    " Enable italic. Default: 1
-" let g:kolor_bold=1                      " Enable bold. Default: 1
-" let g:kolor_underlined=0                " Enable underline. Default: 0
-" let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
-" colorscheme kolor
-colorscheme dracula
-
+color dracula
 set background=dark             " Cool programmers only use dark themes.
+" to enable cursive comments
+hi Comment gui=italic cterm=italic
+hi htmlArg gui=italic cterm=italic
+hi xmlAttrib gui=italic cterm=italic
+hi Type gui=italic cterm=italic
+hi Keyword gui=italic cterm=italic
+hi link jsImport Keyword
+hi link jsClassBlock jsStorageClass
 " }}}
 " airline Settings: {{{
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-" let g:airline_theme='base16'
 " let g:airline_theme='base16_eighties'
 let g:airline_theme='dracula'
 " let g:airline_theme='gruvbox'
-" let g:airline_theme='lucius'
-" let g:airline_theme='kolor'
 let g:airline_symbols.space = "\ua0"
 let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#enabled = 1 "Enable for buffer
@@ -311,22 +318,6 @@ nnoremap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
 nnoremap <leader>N :NERDTreeClose<CR>
 
 " }}}
-" Syntastic Settings: {{{
-" Override eslint with local version where necessary.
-" Avoids having to install eslint plugins globally
-let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
-if matchstr(local_eslint, "^\/\\w") == ''
-  let local_eslint = getcwd() . "/" . local_eslint
-endif
-if executable(local_eslint)
-  let g:syntastic_javascript_eslint_exec = local_eslint
-endif"
-let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_debug = 1;
-let g:syntastic_enable_signs = 1
-let g:syntastic_error_symbol = "✗"
-let g:syntastic_warning_symbol = "⚠"
-" }}}
 " Ultisnips and YouCompleteMe Settings: {{{
 """"""""""""""""""""""""""""""""""""""""
 " make YCM compatible with UltiSnips (using supertab)
@@ -370,16 +361,6 @@ let g:vimwiki_diary_months = {
 let g:vimwiki_listsyms = '✗○◐●✓'
 let g:vimwiki_folding = 'expr'
 " }}}
-" Python Settings: {{{
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-let g:pymode_virtualenv = 1
-let g:pymode_lint = 1
-let g:pymode_lint_checker = "pyflakes,pep8"
-let g:pymode_lint_ignore="E501,W601,C0110"
-" }}}
 " Rainbow Parentheses: {{{
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -402,6 +383,14 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 " }}}
+" Language Client {{{
+let g:LanguageClient_serverCommands = {
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'reason': ['ocaml-language-server', '--stdio'],
+    \ 'ocaml': ['ocaml-language-server', '--stdio']
+    \ }
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+"}}}
 " VimPolygot: {{{
 let g:ployglot_disabled = ['elm']
 " }}}

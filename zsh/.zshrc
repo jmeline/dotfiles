@@ -1,4 +1,3 @@
-
 exists() {
   command -v "$1" > /dev/null 2>&1
 }
@@ -14,6 +13,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+plugins=(git ssh-agent)
+
 # If changing colors, make sure to change ~/.vimrc colorscheme and AirlineTheme settings
 BASE16_SHELL="$HOME/.config/base16-shell/base16-eighties.dark.sh"
 # BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
@@ -26,11 +27,12 @@ export EDITOR="nvim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 
+
 # 10ms for key sequences, really helps with vi mode in zsh kill the lag
 export KEYTIMEOUT=1
 
 # want your terminal to support 256 color schemes? I do ...
-# export TERM="xterm-256color"
+export TERM="xterm-256color-italic"
 
 # enable vi mode
 bindkey -v
@@ -48,6 +50,7 @@ alias et='vim ~/.tmux.conf'
 alias ez='vim ~/.zshrc'
 alias etc='vim ~/.config/termite/config'
 alias ei3='vim ~/.config/i3/config'
+alias ekitty='vim ~/Projects/dotfiles/kitty_term/kitty.conf'
 alias vim='nvim'
 alias vi='vim'
 alias v='vim'

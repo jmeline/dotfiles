@@ -14,6 +14,8 @@
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
 	<integer>1</integer>
+	<key>AppleWindowTabbingMode</key>
+	<string>manual</string>
 	<key>AutoHideTmuxClientSession</key>
 	<false/>
 	<key>CheckTestRelease</key>
@@ -778,7 +780,7 @@
 	<key>HideMenuBarInFullscreen</key>
 	<true/>
 	<key>HideScrollbar</key>
-	<false/>
+	<true/>
 	<key>HideTab</key>
 	<true/>
 	<key>HighlightTabLabels</key>
@@ -814,7 +816,7 @@
 	<key>NSFontPanelPreviewHeight</key>
 	<real>100</real>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/iterm-master</string>
+	<string>~/Documents</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{1436, 877}</string>
 	<key>NSNavPanelExpandedSizeForSaveMode</key>
@@ -856,19 +858,33 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>796 408 758 203 0 0 2560 1417 </string>
+	<string>-1088 359 758 352 -2560 0 2560 1417 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>481 413 606 456 0 0 1440 877 </string>
+	<key>NSWindow Frame ProfilesPanel</key>
+	<string>212 125 735 382 0 0 1680 1028 </string>
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>-1586 932 616 174 -2560 0 2560 1417 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>532 476 620 392 0 0 1680 1027 </string>
+	<string>-1569 769 620 392 -2560 0 2560 1418 </string>
+	<key>NSWindow Frame SessionsPreferences</key>
+	<string>-1591 794 597 401 -1920 593 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>-1162 436 796 473 -2560 0 2560 1417 </string>
+	<string>253 117 918 394 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>3 0 1279 1417 0 0 2560 1417 </string>
+	<string>99 547 738 422 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>4 14 1432 863 0 0 1440 877 </string>
+	<string>444 533 379 460 0 0 1680 1028 </string>
+	<key>NSWindow Frame iTerm Window 2</key>
+	<string>31 532 379 213 0 0 1680 1028 </string>
+	<key>NSWindow Frame iTerm Window 3</key>
+	<string>238 781 172 213 0 0 1680 1028 </string>
+	<key>NSWindow Frame iTerm Window 4</key>
+	<string>32 786 172 80 0 0 1680 1028 </string>
+	<key>NSWindow Frame iTerm Window 5</key>
+	<string>133 910 73 80 0 0 1680 1028 </string>
+	<key>NSWindow Frame iTerm Window 6</key>
+	<string>30 910 73 80 0 0 1680 1028 </string>
 	<key>NeverWarnAboutShortLivedSessions_6180F3AB-65CA-444E-B2F1-7C2969C4BEF2</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_6180F3AB-65CA-444E-B2F1-7C2969C4BEF2_selection</key>
@@ -877,6 +893,8 @@
 	<array>
 		<dict>
 			<key>ASCII Anti Aliased</key>
+			<true/>
+			<key>ASCII Ligatures</key>
 			<true/>
 			<key>Allow Title Reporting</key>
 			<false/>
@@ -1463,7 +1481,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>SauceCodeProNerdFontCompleteMono 15</string>
+			<string>OperatorMono-BookItalic 15</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -1641,7 +1659,7 @@
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
-			<integer>0</integer>
+			<integer>12</integer>
 			<key>Working Directory</key>
 			<string>/Users/jacmeli</string>
 		</dict>
@@ -1731,6 +1749,8 @@
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string>/Users/jacmeli/Projects/dotfiles/iTerm2</string>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -1750,8 +1770,10 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-09-21T15:56:30Z</date>
+	<date>2018-05-21T03:14:59Z</date>
 	<key>SavePasteHistory</key>
+	<false/>
+	<key>Secure Input</key>
 	<false/>
 	<key>ShowBookmarkName</key>
 	<false/>
@@ -1800,9 +1822,11 @@
 	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.beta.10</string>
+	<string>3.1.5.beta.2</string>
 </dict>
 </plist>
