@@ -13,13 +13,19 @@ if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
   autocmd VimEnter * PlugInstall | q
 endif
 
-Plug 'tpope/vim-surround'
-Plug 'dracula/vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFocus' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFocus' }
+Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ryanoasis/vim-devicons'   " Nice devicons
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
+" Javascript support
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
+Plug 'dracula/vim'
 call plug#end()

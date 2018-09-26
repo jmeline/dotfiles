@@ -22,17 +22,34 @@ set shiftround                  " Always round up to the nearest tab.
 set tabstop=2                   " This one is also needed to acheive the desired effect.
 set softtabstop=2               " Enables easy removal of an indentation level. 
 set smarttab                    " Insert tabs on the start of a line according to shiftwidth, not tabstop
+set inccommand=nosplit          " Enables incremental command feedback
 
+" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy 
+map Y y$
 " line navigation ignores line wrap. Great for working with long lines in  vim 
 map j gj
 map k gk
 
 " Map <Esc> to jk for faster getting out of insert mode 
 inoremap jk <esc> 
+
 " Common mistyping, saves rage 
 nnoremap ; :
 
 " Prevent escape from moving the cursor one character to the left
 inoremap <silent> <Esc> <C-O>:stopinsert<CR>
+
+set splitbelow 
+set splitright 
+
+" Speed up scrolling of the viewport slightly 
+nnoremap <C-e> 3<C-e> 
+nnoremap <C-y> 3<C-y> 
+
+" Use the hjkl keys only! 
+noremap <Up> <NOP> 
+noremap <Down> <NOP> 
+noremap <Left> <NOP> 
+noremap <Right> <NOP>
 
 colorscheme dracula
