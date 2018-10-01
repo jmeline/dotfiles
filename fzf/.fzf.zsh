@@ -1,22 +1,22 @@
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */home/jmeline/.fzf/bin* ]]; then
-  export PATH="$PATH:/home/jmeline/.fzf/bin"
+if [[ ! "$PATH" == */Users/jacmeli/.fzf/bin* ]]; then
+  export PATH="$PATH:/Users/jacmeli/.fzf/bin"
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/home/jmeline/.fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "/Users/jacmeli/.fzf/shell/completion.zsh" 2> /dev/null
 
 # Key bindings
 # ------------
-source "/home/jmeline/.fzf/shell/key-bindings.zsh"
+source "/Users/jacmeli/.fzf/shell/key-bindings.zsh"
 
 # Extras
 #
 
-source "/home/jmeline/.fzf.extras/git.zsh"
-source "/home/jmeline/.fzf.extras/extras.zsh"
+source "/Users/jacmeli/.fzf.extras/git.zsh"
+source "/Users/jacmeli/.fzf.extras/extras.zsh"
 
 # fkill - kill processes - list only the ones you can kill. Modified the earlier script.
 fkill() {

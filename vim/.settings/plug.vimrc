@@ -18,10 +18,12 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFocus' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
+Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-surround'
+Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ryanoasis/vim-devicons'   " Nice devicons
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
@@ -32,3 +34,4 @@ Plug 'mxw/vim-jsx'
 
 Plug 'dracula/vim'
 call plug#end()
+

@@ -1,6 +1,17 @@
 filetype indent plugin on
 syntax on
 
+set termguicolors
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" hi Comment gui=italic cterm=italic
+" hi htmlArg gui=italic cterm=italic
+" hi xmlAttrib gui=italic cterm=italic
+" hi Type gui=italic cterm=italic
+" hi Keyword gui=italic cterm=italic
+" hi link jsImport Keyword
+" hi link jsClassBlock jsStorageClass
+
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=0
 set ignorecase                  " Search is not case sensitive.
@@ -14,7 +25,7 @@ set wrap                        " Wrap text. This is also quite optional, replac
 set lazyredraw                  " Good performance boost when executing macros.
 set viminfo^=%                  " Remember some info on close.
 set ffs=unix,dos,mac            " Prioritize unix as the standard file type.
-" set encoding=utf-8              " Vim can now work with a whole bunch more characters.
+set encoding=utf-8              " Vim can now work with a whole bunch more characters.
 set scrolloff=7                  " The screen will only scroll when the cursor is 7  characters from the top/bottom.
 set foldmethod=marker
 set noeb vb t_vb=
@@ -48,40 +59,48 @@ set undolevels=1000             " use many muchos levels of undo
 set nostartofline
 set noshowmode                  " Disables standard -INSERT-, -NORMAL-, etc "
 set number	                    " Show line numbers on left side
-set expandtab                   " Expand tab characters to space characters. 
+set expandtab                   " Expand tab characters to space characters.
 set shiftwidth=2                " One tab is now 4 spaces.
 set shiftround                  " Always round up to the nearest tab.
 set tabstop=2                   " This one is also needed to acheive the desired effect.
-set softtabstop=2               " Enables easy removal of an indentation level. 
+set softtabstop=2               " Enables easy removal of an indentation level.
 set smarttab                    " Insert tabs on the start of a line according to shiftwidth, not tabstop
 set inccommand=nosplit          " Enables incremental command feedback
 set background=dark             " Cool programmers only use dark themes
-set splitbelow 
-set splitright 
+set splitbelow
+set splitright
 
-let mapleader=','               " Map <leader> to the ',' key. 
-" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy 
+let mapleader=','               " Map <leader> to the ',' key.
+" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
 map Y y$
-" line navigation ignores line wrap. Great for working with long lines in  vim 
+" line navigation ignores line wrap. Great for working with long lines in  vim
 map j gj
 map k gk
 
-" Map <Esc> to jk for faster getting out of insert mode 
-inoremap jk <esc> 
+" Map <Esc> to jk for faster getting out of insert mode
+inoremap jk <esc>
 
-" Common mistyping, saves rage 
+" Common mistyping, saves rage
 nnoremap ; :
 
 " Prevent escape from moving the cursor one character to the left
 inoremap <silent> <Esc> <C-O>:stopinsert<CR>
 
-" Speed up scrolling of the viewport slightly 
-nnoremap <C-e> 3<C-e> 
-nnoremap <C-y> 3<C-y> 
+" Speed up scrolling of the viewport slightly
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
-" Use the hjkl keys only! 
-noremap <Up> <NOP> 
-noremap <Down> <NOP> 
-noremap <Left> <NOP> 
+" Use the hjkl keys only!
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
 noremap <Right> <NOP>
+
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+
+autocmd BufWritePre * :call DeleteTrailingWS()  "Removes trailing whitespace on any filetype
 
