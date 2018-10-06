@@ -1,0 +1,57 @@
+snippet todo "this is a todo reminder"
+// TODO: ${1:desc} `!v strftime("%c")`
+endsnippet
+
+snippet crc "create react es6 class template"
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+export default class ${1:ClassName} extends Component {
+	constructor(props){
+		super(props);
+	}
+
+	static $1.propTypes = {
+
+	}
+
+	render() {
+		return (
+			<div>
+			</div>
+		);
+	}
+}
+endsnippet
+
+snippet crf "create react es6 stateless template"
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const ${1:ClassName} = ({ }) => (
+	<div>
+	</div>
+);
+
+$1.propTypes = {
+
+}
+
+export default $1;
+endsnippet
+
+snippet crd "create react es6 jest describe template"
+import React from 'react';
+
+describe('${1:DescribeName}', () => {
+	it('${2:TestName}', () => {
+
+	});
+});
+endsnippet
+
+snippet crt "create react es6 jest test template"
+it('${1:TestName}', () => {
+
+});
+endsnippet
