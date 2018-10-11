@@ -5,7 +5,7 @@
 	<key>AdjustWindowForFontSizeChange</key>
 	<true/>
 	<key>AllowClipboardAccess</key>
-	<false/>
+	<true/>
 	<key>AnimateDimming</key>
 	<false/>
 	<key>AppleAntiAliasingThreshold</key>
@@ -818,7 +818,7 @@
 	<key>NSFontPanelPreviewHeight</key>
 	<real>100</real>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Documents</string>
+	<string>~</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{1436, 877}</string>
 	<key>NSNavPanelExpandedSizeForSaveMode</key>
@@ -860,7 +860,7 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>-1088 359 758 352 -2560 0 2560 1417 </string>
+	<string>-965 545 758 218 -2560 -38 2560 1417 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>481 413 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame ProfilesPanel</key>
@@ -868,15 +868,15 @@
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>-1586 932 616 174 -2560 0 2560 1417 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>-1569 769 620 392 -2560 0 2560 1418 </string>
+	<string>551 476 620 392 0 0 1680 1027 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>-1591 794 597 401 -1920 593 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>615 472 1018 447 0 0 2560 1417 </string>
+	<string>67 536 796 486 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>52 56 1200 1306 0 0 2560 1417 </string>
+	<string>865 520 814 502 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>444 533 379 460 0 0 1680 1028 </string>
+	<string>52 6 1624 502 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>31 532 379 213 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -1081,9 +1081,9 @@
 			<key>Blinking Cursor</key>
 			<false/>
 			<key>Blur</key>
-			<false/>
+			<true/>
 			<key>Blur Radius</key>
-			<real>15.047235576923075</real>
+			<real>8.9700408470812185</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -1483,7 +1483,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>DankMono-Regular 18</string>
+			<string>DankMonoNerdFont-Regular 17</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -1630,6 +1630,8 @@
 					<string>\btelnet:([a-z0-9A-Z_]+@)?([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\b</string>
 				</dict>
 			</array>
+			<key>Space</key>
+			<integer>0</integer>
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
@@ -1642,6 +1644,8 @@
 			<real>0.0</real>
 			<key>Triggers</key>
 			<array/>
+			<key>Unicode Normalization</key>
+			<integer>0</integer>
 			<key>Unlimited Scrollback</key>
 			<true/>
 			<key>Use Bold Font</key>
@@ -1681,7 +1685,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>0446D9FC-8243-4A6D-910D-D11F92A976AE</string>
 	<key>NoSyncLastTipTime</key>
-	<real>481170989.34457397</real>
+	<real>559852331.21895504</real>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -1698,6 +1702,7 @@
 	<real>480543264.44317198</real>
 	<key>NoSyncTipsToNotShow</key>
 	<array>
+		<string>000</string>
 		<string>000</string>
 	</array>
 	<key>OnlyWhenMoreTabs</key>
@@ -1750,7 +1755,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/jacmeli/Projects/dotfiles/iTerm2</string>
+	<string>/Users/jacmeli/.dotfiles/iTerm2</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>PromptOnQuit</key>
@@ -1772,7 +1777,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-09-28T14:54:04Z</date>
+	<date>2018-10-11T00:28:19Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Secure Input</key>
@@ -1833,6 +1838,10 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.2.0beta6</string>
+	<string>3.2.2beta3</string>
+	<key>kCPKSelectionViewPreferredModeKey</key>
+	<integer>0</integer>
+	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
+	<false/>
 </dict>
 </plist>
