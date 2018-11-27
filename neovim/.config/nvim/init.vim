@@ -13,3 +13,4 @@ source ~/.config/nvim/.settings/colorschemes.vimrc
 source ~/.config/nvim/.settings/vim_jsx.vimrc
 source ~/.config/nvim/.settings/tcomment.vimrc
 source ~/.config/nvim/.settings/ultisnips.vimrc
+source ~/.config/nvim/.settings/tmux.vimrc
