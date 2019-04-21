@@ -2,9 +2,13 @@
 # wm independent hotkeys
 #
 
+# shutdown prompt
+super + shift + x
+  ~/bin/prompt.sh "Do you want to shutdown?" "shutdown -h now"
+
 # terminal emulator
 super + Return
-	alacritty
+  alacritty
 
 # program launcher
 super + @space

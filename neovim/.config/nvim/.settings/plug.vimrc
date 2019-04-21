@@ -29,6 +29,12 @@ Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ryanoasis/vim-devicons'   " Nice devicons
 Plug 'ternjs/tern_for_vim' ", { 'do': 'npm install && npm install -g tern' }
+
+Plug 'fatih/vim-go', { 'for': 'go' }
+
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+
+
 "
 " Javascript support
 Plug 'pangloss/vim-javascript'
