@@ -1,5 +1,7 @@
 #! /bin/sh
-xrandr --output DVI-1 --mode 1920x1080 --primary --output HDMI-0 --mode 1920x1080 --right-of DVI-1
+./updateScreen.sh
+# xrandr --output DVI-1 --mode 1920x1080 --primary --output HDMI-0 --mode 1920x1080 --right-of DVI-1
+
 # xrandr --output HDMI-0 --mode 1920x1080 --primary --output DVI-1 --mode 1920x1080 --right-of HDMI-0
 # xrandr --output HDMI-A-1 --mode 1920x1080 --primary --output HDMI-A-0 --mode 1920x1080 --right-of HDMI-A-1
 
