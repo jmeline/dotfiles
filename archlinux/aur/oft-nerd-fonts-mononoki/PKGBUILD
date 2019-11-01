@@ -1,0 +1,27 @@
+# Maintainer: jmeline
+
+pkgname=otf-nerd-fonts-mononoki
+pkgver=2.0.0
+pkgrel=3
+pkgdesc="Monospaced Mononoki font from the nerd-fonts library"
+arch=('any')
+url='https://github.com/ryanoasis/nerd-fonts'
+license=('MIT')
+depends=('fontconfig')
+source=(
+    https://github.com/ryanoasis/nerd-fonts/releases/download/v$pkgver/Mononoki.zip
+    https://github.com/ryanoasis/nerd-fonts/raw/v$pkgver/LICENSE
+)
+
+sha256sums=('715813f9bdeddfa35a39681dedf4a61cf1b6cfe8e06b9b3ca19c391cb308a589'
+            'd2a29823384e9194a87936ccad495c764c2ef733b29bfa6f72a1d65803ce02e5')
+
+package() {
+    install -d ${pkgdir}/usr/share/fonts/TTF
+    install -d ${pkgdir}/usr/share/licenses/${pkgname}
+    install -d "$pkgdir/usr/share/fonts/TTF"
+    install -d "$pkgdir/usr/share/licenses/$pkgname"
+    find "$srcdir" -not -name "*Windows Compatible*" -a -name "*.ttf" \
+        -exec install -Dm644 {} "$pkgdir/usr/share/fonts/TTF" \;
+    install -Dm644 "$srcdir/LICENSE" "$pkgdir/usr/share/licenses/$pkgname"
+}
