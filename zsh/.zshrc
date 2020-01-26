@@ -32,7 +32,7 @@ export VISUAL=$EDITOR
 export KEYTIMEOUT=1
 
 # want your terminal to support 256 color schemes? I do ...
-export TERM="xterm-256color-italic"
+# export TERM="xterm-256color-italic"
 
 # enable vi mode
 bindkey -v
@@ -43,6 +43,8 @@ alias ta='tmux attach -t'
 alias tnew='tmux new -s'
 alias tls='tmux ls'
 alias tkill='tmux kill-session -t'
+alias cat='bat --theme OneHalfDark'
+alias ls=lsd
 
 # convenience aliases for editing configs
 alias ev='vim ~/.config/nvim/init.vim'
@@ -56,10 +58,13 @@ alias vi='vim'
 alias v='vim'
 alias cdWin='/Volumes/C/Projects'
 
+alias tf='terraform'
+
 
 alias g++='g++ -O3'
 
 setopt HIST_IGNORE_DUPS # Prevent duplicate lines in the history
+set -o noclobber
 # alias ctags="`brew --prefix`/bin/ctags"
 # alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 # Customize to your needs...
@@ -95,7 +100,8 @@ fi
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 #export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*"'
 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_DEFAULT_COMMAND="fd ."
+# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # bind -x '"\C-p": vim $(fzf);'
 bindkey "^P" 'vim $(fzf);'
@@ -157,4 +163,10 @@ pathadd() {
 pathadd "/home/jmeline/Bin"
 #export PATH="/home/jmeline/Bin:$PATH"
 # hacktoberfest
-#export GITHUB_TOKEN=fbf300c49e3ab8320aef21d9e6d99277c50863a9
+
+pathadd "/Users/jacmeli/.cargo/bin"
+
+# go stuff
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin

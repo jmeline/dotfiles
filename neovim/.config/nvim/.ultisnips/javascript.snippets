@@ -1,5 +1,27 @@
+snippet noop "no operation"
+() => {}
+endsnippet
+
+snippet identity "identity function"
+x => x
+endsnippet
+
 snippet todo "this is a todo reminder"
 // TODO: ${1:desc} `!v strftime("%c")`
+endsnippet
+
+snippet crh "create react hook template"
+import React, { useState, useEffect } from 'react';
+
+const ${1:hook} = () => {
+	const [value, setValue] = useState(0)
+	return (
+		<div />
+  );
+}
+
+export default $1
+
 endsnippet
 
 snippet crc "create react es6 class template"
@@ -42,10 +64,22 @@ endsnippet
 
 snippet crd "create react es6 jest describe template"
 import React from 'react';
+import ${1:Component} from '../$1';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 
-describe('${1:DescribeName}', () => {
+afterEach(cleanup);
+
+describe('$1', () => {
+	const defaultProps = {
+
+	};
+
+	const returnWrapper = (props = defaultProps) =>
+		render(<$1 {...props} />);
+
 	it('${2:TestName}', () => {
-
+			const { asFragment } = returnWrapper();
+			expect(asFragment()).toMatchSnapshot();
 	});
 });
 endsnippet

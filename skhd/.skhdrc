@@ -31,7 +31,10 @@
 
 
 # open terminal, blazingly fast compared to iTerm/Hyper
-cmd - return : bash ~/Applications/iTerm\ 2.app/Contents/MacOS/iTerm2
+# cmd - return : open -a /Applications/Alacritty.app
+# cmd - n : open -a /Applications/Alacritty.app
+
+# cmd - return : bash ~/Applications/iTerm\ 2.app/Contents/MacOS/iTerm2
 # bash ~/Projects/dotfiles/kitty_term/.startKitty.sh
 
 # close focused window

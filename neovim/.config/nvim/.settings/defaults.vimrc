@@ -1,16 +1,17 @@
 filetype indent plugin on
 syntax on
 
+set clipboard=unnamed
 set termguicolors
 " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-" hi Comment gui=italic cterm=italic
-" hi htmlArg gui=italic cterm=italic
-" hi xmlAttrib gui=italic cterm=italic
-" hi Type gui=italic cterm=italic
-" hi Keyword gui=italic cterm=italic
-" hi link jsImport Keyword
-" hi link jsClassBlock jsStorageClass
+hi Comment gui=italic cterm=italic
+hi htmlArg gui=italic cterm=italic
+hi xmlAttrib gui=italic cterm=italic
+hi Type gui=italic cterm=italic
+hi Keyword gui=italic cterm=italic
+hi link jsImport Keyword
+hi link jsClassBlock jsStorageClass
 
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=0

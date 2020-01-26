@@ -13,33 +13,39 @@ if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
   autocmd VimEnter * PlugInstall | q
 endif
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } | Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFocus' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'luochen1990/rainbow'
 Plug 'w0rp/ale'
 Plug 'edkolev/tmuxline.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ryanoasis/vim-devicons'   " Nice devicons
-Plug 'ternjs/tern_for_vim' ", { 'do': 'npm install && npm install -g tern' }
+" Plug 'ternjs/tern_for_vim' ", { 'do': 'npm install && npm install -g tern' }
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
+Plug 'juliosueiras/vim-terraform-completion'
 
-Plug 'fatih/vim-go', { 'for': 'go' }
+" Plug 'fatih/vim-go', { 'for': 'go' }
 
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+" Plug 'mattn/emmet-vim'
 
-
-"
 " Javascript support
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
-Plug 'dracula/vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+
+" Clojure support
+Plug 'Olical/conjure', { 'tag': 'v2.1.2', 'do': 'bin/compile' }
+Plug 'clojure-vim/async-clj-omni'
+
 call plug#end()
 
