@@ -89,3 +89,86 @@ it('${1:TestName}', () => {
 
 });
 endsnippet
+
+snippet rus "react use state"
+const [$1, set${1/\w+\s*/\u$0/}] = useState($2);
+endsnippet
+
+snippet rue "react use effect"
+useEffect(() => {
+
+}, []);
+endsnippet
+
+snippet crg "create request get"
+import request from 'superagent';
+
+const [value, setValue] = useState({});
+
+useEffect(() => {
+	request
+		.get("$1")
+		.set({ Accept: 'application/json' })
+		.end((err, resp) => {
+			if (!err) {
+				setValue(resp.body);
+			}
+		});
+}, [dep1, /* ...depN */]);
+endsnippet
+
+snippet crp "create request post"
+import request from 'superagent';
+
+useEffect(() => {
+	request
+		.post("$1")
+		.send({ ...model })
+		.set({ Accept: 'application/json' })
+		.end(err => {
+			if (!err) {
+			}
+	});
+}, [dep1, /* ...depN */]);
+endsnippet
+
+snippet mrg "mock request get using jest"
+import request from 'superagent';
+
+request.get = jest.fn(url => {
+	expect(url).toBe('');
+	return {
+			set: header => {
+				expect(JSON.stringify(header)).toBe('{\"Accept\":\"application/json\"}');
+				return {
+						end: cb => cb(null, { body })
+				}
+			}
+  }
+});
+endsnippet
+
+snippet mrp "mock request post using jest"
+import request from 'superagent';
+
+request.post = jest.fn(url => {
+  expect(url).toBe('');
+  return {
+      send: payload => {
+					// example payload to test
+          expect(payload.planId).toBe("19072b3d-ccff-4598-bb64-ab1800d4bfd5");
+          expect(payload.year).toBe("2020");
+          expect(payload.carrierId).toBe("dc7a7806-ee60-434f-9402-ab1800d4bdf5");
+          expect(payload.rates.length).toBe(1);
+          return {
+            set: header => {
+              expect(JSON.stringify(header)).toBe('{\"Accept\":\"application/json\"}');
+            return {
+							end: cb => cb()
+          }
+        }
+      }
+    }
+  }
+});
+endsnippet
