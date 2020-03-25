@@ -1,0 +1,3 @@
+#!/bin/sh
+# feh --bg-fill '/home/jmeline/pictures/cyberpunk-red-1920x1080.jpg'
+feh --bg-fill '/home/jmeline/pictures/in_the_woods_by_ryky_dafuns3.png'

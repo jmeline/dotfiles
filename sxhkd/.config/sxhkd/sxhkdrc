@@ -3,16 +3,27 @@
 #
 
 # shutdown prompt
-super + shift + x
+super + shift + q
   ~/bin/prompt.sh "Do you want to shutdown?" "shutdown -h now"
+
+# suspend/sleep prompt
+super + shift + z
+  ~/bin/prompt.sh "Do you want to suspend?" "systemctl suspend"
+
+# hibernate prompt
+super + shift + x
+  ~/bin/prompt.sh "Do you want to hibernate?" "systemctl hibernate"
 
 # terminal emulator
 super + Return
-  alacritty
+  ~/projects/kitty/kitty/launcher/kitty
 
+#super + Return
+#  alacritty
 # program launcher
 super + @space
 	rofi -show run
+  #rofi -combi-modi window,drun,ssh -theme gruvbox-dark-soft -font "hack 10" -show combi
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -123,3 +134,7 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# Rotate focused window
+super + r
+  bspc node @focused:/ --rotate 90
