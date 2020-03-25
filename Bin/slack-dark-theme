@@ -1,0 +1,3 @@
+#!/bin/bash
+npx install-dark-theme
+
