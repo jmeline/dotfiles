@@ -16,6 +16,7 @@ endif
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } | Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFocus' }
 Plug 'SirVer/ultisnips'
+Plug 'tpope/vim-fugitive'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -37,9 +38,13 @@ Plug 'juliosueiras/vim-terraform-completion'
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 " Plug 'mattn/emmet-vim'
 
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+
 " Javascript support
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'sheerun/vim-polyglot'
+Plug 'ap/vim-css-color'
 
 Plug 'dracula/vim', { 'as': 'dracula' }
 

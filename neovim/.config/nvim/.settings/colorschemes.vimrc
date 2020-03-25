@@ -6,3 +6,4 @@ hi link jsExport DraculaPinkItalic
 hi link Keyword DraculaPinkItalic
 hi link jsComment DraculaCommentItalic
 " hi! link jsStorageClass DraculaPinkItalic
+hi link clojureComment DraculaCommentItalic

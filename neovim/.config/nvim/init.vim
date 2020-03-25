@@ -6,6 +6,7 @@ source ~/.config/nvim/.settings/colorschemes.vimrc
 
 " plugin
 source ~/.config/nvim/.settings/rainbow.vimrc
+source ~/.config/nvim/.settings/vim-polygot.vimrc
 source ~/.config/nvim/.settings/vim-terraform.vimrc
 source ~/.config/nvim/.settings/fzf.vimrc
 source ~/.config/nvim/.settings/deoplete.vimrc
