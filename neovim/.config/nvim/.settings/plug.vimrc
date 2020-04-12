@@ -32,6 +32,7 @@ Plug 'ryanoasis/vim-devicons'   " Nice devicons
 " Plug 'ternjs/tern_for_vim' ", { 'do': 'npm install && npm install -g tern' }
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'juliosueiras/vim-terraform-completion'
+Plug 'vimwiki/vimwiki'
 
 " Plug 'fatih/vim-go', { 'for': 'go' }
 
