@@ -34,7 +34,7 @@ Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'juliosueiras/vim-terraform-completion'
 Plug 'vimwiki/vimwiki'
 
-" Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 " Plug 'mattn/emmet-vim'

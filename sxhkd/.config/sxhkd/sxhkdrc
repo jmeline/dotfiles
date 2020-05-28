@@ -16,7 +16,7 @@ super + shift + x
 
 # terminal emulator
 super + Return
-  ~/projects/kitty/kitty/launcher/kitty
+  kitty
 
 #super + Return
 #  alacritty

@@ -14,7 +14,8 @@ TV=DVI-0
 if xrandr | grep "$TV disconnected"; then
   xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR
 else
-  xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR --output $TV --mode 1920x1080 --left-of $LEFT_MONITOR --set underscan on --set "underscan vborder" 35 --set "underscan hborder" 50
+  # xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR --output $TV --mode 1920x1080 --left-of $LEFT_MONITOR --set underscan on --set "underscan vborder" 35 --set "underscan hborder" 50
+  xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR --output $TV --mode 1920x1080 --right-of $RIGHT_MONITOR --set underscan on --set "underscan vborder" 35 --set "underscan hborder" 50
 fi
 
 # xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR --output $TV --mode 1920x1080 --right-of $RIGHT_MONITOR --set underscan on --set "underscan vborder" 35 --set "underscan hborder" 50
