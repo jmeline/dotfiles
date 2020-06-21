@@ -1,8 +1,8 @@
 let g:vimwiki_list = [
-      \ {'path': '~/projects/Journal/vimwiki'},
-      \ {'path': '~/projects/Journal/twwiki/twwiki'},
-      \ {'path': '~/projects/Journal/spiritualwiki'},
-      \ {'path': '~/projects/Journal/linuxwiki'} ]
+      \ {'path': '~/code/Journal/vimwiki'},
+      \ {'path': '~/code/Journal/twwiki/twwiki'},
+      \ {'path': '~/code/Journal/spiritualwiki'},
+      \ {'path': '~/code/Journal/linuxwiki'} ]
 
 let g:vimwiki_diary_months = {
       \ 1: 'January', 2: 'February', 3: 'March',

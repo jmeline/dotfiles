@@ -1,0 +1,23 @@
+# aliases for Tmux
+alias tmux='tmux -2'
+alias ta='tmux attach -t'
+alias tnew='tmux new -s'
+alias tls='tmux ls'
+alias tkill='tmux kill-session -t'
+alias cat='bat --theme OneHalfDark'
+alias la='ls -ah'
+alias ll='ls -lh'
+alias lla='ls -lah'
+alias ls='exa'
+
+# convenience aliases for editing configs
+alias ev='vim ~/.dotfiles/neovim/.config/nvim/init.vim'
+alias et='vim ~/.tmux.conf'
+alias ez='vim ~/.zshrc'
+alias ek='vim ~/.dotfiles/kitty/.config/kitty/kitty.conf'
+alias vim='nvim'
+alias vi='vim'
+alias v='vim'
+alias cdWin='/Volumes/C/Projects'
+alias tf='terraform'
+alias g++='g++ -O3'

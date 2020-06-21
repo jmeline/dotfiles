@@ -48,6 +48,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'ap/vim-css-color'
 
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug '~/.config/nvim/dracula_pro'
 
 " Clojure support
 Plug 'Olical/conjure', { 'tag': 'v2.1.2', 'do': 'bin/compile' }
