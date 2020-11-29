@@ -1,0 +1,10 @@
+[Unit]
+Description=Enable Spidf on startup
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "/home/jmeline/bin/enableSpdif.sh"
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
