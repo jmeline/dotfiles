@@ -5,17 +5,32 @@
 # RIGHT_MONITOR=DVI-D-1
 # xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR
 
-LEFT_MONITOR=DVI-1
-RIGHT_MONITOR=HDMI-0
-TV=DVI-0
+# upstair's setup
+# LEFT_MONITOR=DP-1
+# RIGHT_MONITOR=HDMI-1
+# xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR
+#
+## home setup (using amdgpu)
+LEFT_MONITOR=DVI-I-1
+RIGHT_MONITOR=HDMI-A-0
+TV=DVI-I-0
 
+# if using radeon driver
+# LEFT_MONITOR=DVI-1
+# RIGHT_MONITOR=HDMI-0
+# TV=DVI-0
 # Fix tv overscan issues by setting underscan and vborder, hborder https://wiki.archlinux.org/index.php/Xrandr#Toggle_external_monitor
 
 if xrandr | grep "$TV disconnected"; then
   xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR
 else
+  # use this one if using radeon driver
+  xrandr --output $LEFT_MONITOR --mode 1920x1080 --set underscan off --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR
+   # use this one if using amdgpu driver
+  # xrandr --output DVI-I-1 --mode 1920x1080 --set underscan off --primary --output HDMI-A-0 --mode 1920x1080 --right-of DVI-I-1 --output DVI-I-0 --mode 1920x1080 --right-of HDMI-A-0 --set underscan off --set "underscan vborder" 35 --set "underscan hborder" 50
+
   # xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR --output $TV --mode 1920x1080 --left-of $LEFT_MONITOR --set underscan on --set "underscan vborder" 35 --set "underscan hborder" 50
-  xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR --output $TV --mode 1920x1080 --right-of $RIGHT_MONITOR --set underscan on --set "underscan vborder" 35 --set "underscan hborder" 50
+  # xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR --output $TV --mode 1920x1080 --right-of $RIGHT_MONITOR --set underscan on --set "underscan vborder" 35 --set "underscan hborder" 50
 fi
 
 # xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR --output $TV --mode 1920x1080 --right-of $RIGHT_MONITOR --set underscan on --set "underscan vborder" 35 --set "underscan hborder" 50

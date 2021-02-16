@@ -18,6 +18,10 @@ super + shift + x
 super + Return
   kitty
 
+# yank the screen
+super + shift + s
+  maim -suD ~/.screenshots/$(date +'%m_%d_%y-%H_%M_%S').png
+
 #super + Return
 #  alacritty
 # program launcher

@@ -13,7 +13,7 @@ if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
   autocmd VimEnter * PlugInstall | q
 endif
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } | Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } "| Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFocus' }
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-fugitive'
@@ -44,13 +44,16 @@ Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 " Javascript support
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'sheerun/vim-polyglot'
+Plug 'sbdchd/neoformat', { 'for': 'javascript' }
+"Plug 'sheerun/vim-polyglot'
 Plug 'ap/vim-css-color'
 
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug '~/.config/nvim/dracula_pro'
+Plug '~/.config/nvim/plugged/dracula_pro/vim/'
+" Markdown support
+Plug 'gabrielelana/vim-markdown', { 'for': 'md' }
 
-" Clojure support
+"Clojure support
 Plug 'Olical/conjure', { 'tag': 'v2.1.2', 'do': 'bin/compile' }
 Plug 'clojure-vim/async-clj-omni'
 
