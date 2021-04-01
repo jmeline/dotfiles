@@ -66,7 +66,7 @@ cursor-scroll = ns-resize
 
 [bar/left]
 inherit = section/base
-monitor = ${env:LEFTMONITOR:}
+monitor = ${env:LEFT_MONITOR:}
 modules-left = bspwm
 modules-center =
 ; modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
@@ -74,7 +74,7 @@ modules-right = pulseaudio date
 
 [bar/right]
 inherit = section/base
-monitor = ${env:MONITOR:HDMI-A-0}
+monitor = ${env:RIGHT_MONITOR}
 modules-left = bspwm
 modules-center = filesystem cpu CPUTemp GPUTemp memory
 modules-right =  wired-network pulseaudio date powermenu

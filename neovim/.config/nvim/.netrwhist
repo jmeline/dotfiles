@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/home/jmeline/.dotfiles/polybar/.config/polybar'
+let g:netrw_dirhist_9='/home/jmeline/.dotfiles/polybar/.config'
+let g:netrw_dirhist_8='/home/jmeline/.dotfiles/polybar'
 let g:netrw_dirhist_7='/home/jmeline/code/react-examples/msw-presentation-examples/msw-presentation/src'
 let g:netrw_dirhist_6='/usr/share/icons/Adwaita/16x16/devices'
 let g:netrw_dirhist_5='/usr/share/icons/Adwaita/16x16/status'
@@ -7,6 +10,3 @@ let g:netrw_dirhist_4='/usr/lib'
 let g:netrw_dirhist_3='/usr/lib/modules'
 let g:netrw_dirhist_2='/etc/mkinitcpio.d'
 let g:netrw_dirhist_1='/home/jmeline/games/diablo2/Diablo_II'
-let g:netrw_dirhist_0='/home/jmeline/games/diablo2/Diablo_II/PlugY'
-let g:netrw_dirhist_9='/home/jmeline/games/diablo2/Diablo_II'
-let g:netrw_dirhist_8='/home/jmeline/games/diablo2/Diablo_II/MODS'

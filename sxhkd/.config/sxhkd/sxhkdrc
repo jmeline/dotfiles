@@ -14,13 +14,16 @@ super + shift + z
 super + shift + x
   ~/bin/prompt.sh "Do you want to hibernate?" "systemctl hibernate"
 
+super + shift + t
+  ytfzf -D
+
 # terminal emulator
 super + Return
   kitty
 
 # yank the screen
 super + shift + s
-  maim -suD ~/.screenshots/$(date +'%m_%d_%y-%H_%M_%S').png
+  flameshot gui
 
 #super + Return
 #  alacritty

@@ -15,6 +15,6 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 # fi
 
 # Launch Polybar, using default config location ~/.config/polybar/config
-LEFTMONITOR=DVI-I-1 polybar left &
-RIGHTMONITOR=HDMI-A-0 polybar right &
+RIGHT_MONITOR=DisplayPort-0 polybar right &
+LEFT_MONITOR=HDMI-A-0 polybar left &
 echo "Polybar launched..."
