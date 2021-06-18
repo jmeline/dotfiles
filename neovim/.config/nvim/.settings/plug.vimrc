@@ -54,7 +54,7 @@ Plug '~/.config/nvim/plugged/dracula_pro/vim/'
 Plug 'gabrielelana/vim-markdown', { 'for': 'md' }
 
 "Clojure support
-Plug 'Olical/conjure', { 'tag': 'v2.1.2', 'do': 'bin/compile' }
+Plug 'Olical/conjure', { 'tag': 'v4.20.0' }
 Plug 'clojure-vim/async-clj-omni'
 
 call plug#end()

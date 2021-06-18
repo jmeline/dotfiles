@@ -1,7 +1,8 @@
 filetype indent plugin on
 syntax on
 
-set clipboard=unnamed
+"make all yanking/deleting operations automatically copy to the system clipboard
+set clipboard=unnamedplus
 set termguicolors
 " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
