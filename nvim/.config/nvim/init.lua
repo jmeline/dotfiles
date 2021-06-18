@@ -30,7 +30,7 @@ require 'paq-nvim' {
 
 
 -- load up personal colorscheme --
-opt.runtimepath:append("~/.config/nvim/plugged/dracula_pro/vim");
+opt.runtimepath:append("./dracula_pro/vim");
 cmd 'colorscheme dracula_pro_buffy'
 
 g.mapleader             = "," 		        -- set leader 
