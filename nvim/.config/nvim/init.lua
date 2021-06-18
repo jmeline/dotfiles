@@ -15,17 +15,18 @@ end
 
 -------------------- PLUGINS -----------------------------------
 require 'paq-nvim' {
-    -- Let Paq manage itself
-    'savq/paq-nvim';                  
+  'savq/paq-nvim';                -- Let Paq manage itself
 
-    -- Add your packages
-    -- LSP
-    'neovim/nvim-lspconfig';          
-    'nvim-lua/completion-nvim';
-    'nvim-lua/lsp_extensions.nvim';
-    'hrsh7th/nvim-compe';
-    'kyazdani42/nvim-web-devicons'; -- for file icons
-    'kyazdani42/nvim-tree.lua';
+  -- Add your packages
+  -- lsp 
+  'neovim/nvim-lspconfig';          
+  'nvim-lua/completion-nvim';
+  'nvim-lua/lsp_extensions.nvim';
+
+  'hrsh7th/nvim-compe';           -- completion provided in lua
+  'kyazdani42/nvim-web-devicons'; -- for file icons
+  'kyazdani42/nvim-tree.lua';     -- file explorer in lua
+  'hoob3rt/lualine.nvim';         -- blazingly fast statusline
 }
 
 
@@ -35,6 +36,10 @@ cmd 'colorscheme dracula_pro_buffy'
 
 g.mapleader             = "," 		        -- set leader 
 g.indent_blankline_char = '┊'
+
+
+-------------------- Load PLUGINS ----------------------------------
+require "nvimTree"
 
 -------------------- Mappings ----------------------------------
 _.map("i", "jk", "<ESC>")
@@ -48,6 +53,14 @@ _.map("n", "<leader>p", '"*p')
 _.map("n", "<leader>Y", '"+y')
 _.map("n", "<leader>P", '"+p')
 
+-------------------- User Commands -----------------------------
+cmd(':command! WQ wq')
+cmd(':command! WQ wq')
+cmd(':command! Wq wq')
+cmd(':command! Wqa wqa')
+cmd(':command! W w')
+cmd(':command! Q q')
+
 -------------------- OPTIONS -----------------------------------
 opt.number          = true             -- Display numbers
 opt.tabstop         = 2                -- Number of spaces tabs count for
@@ -55,9 +68,9 @@ opt.shiftwidth      = 2                -- Size of an indent
 opt.expandtab       = true             -- Use spaces instead of tabs
 opt.termguicolors   = true             -- True color support
 opt.completeopt     = { 
-                          "menuone",
-                          "noselect"
-                      }
+  "menuone",
+  "noselect"
+}
 
 require'compe'.setup {
   enabled = true;
