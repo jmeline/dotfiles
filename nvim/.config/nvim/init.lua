@@ -3,8 +3,9 @@ local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
 local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
+local o = vim.o
 
-local _ = require('util.funcs')
+local map = require('util.funcs').map
 
 -- Auto install paq-nvim if it does not exist
 -- https://github.com/savq/paq-nvim
@@ -23,10 +24,10 @@ require 'paq-nvim' {
   'nvim-lua/completion-nvim';
   'nvim-lua/lsp_extensions.nvim';
 
-  'hrsh7th/nvim-compe';           -- completion provided in lua
-  'kyazdani42/nvim-web-devicons'; -- for file icons
-  'kyazdani42/nvim-tree.lua';     -- file explorer in lua
-  'hoob3rt/lualine.nvim';         -- blazingly fast statusline
+  'hrsh7th/nvim-compe';                         -- completion provided in lua
+  'kyazdani42/nvim-web-devicons';               -- for file icons
+  'kyazdani42/nvim-tree.lua';                   -- file explorer in lua
+  'hoob3rt/lualine.nvim';                       -- blazingly fast statusline
 }
 
 
@@ -34,67 +35,52 @@ require 'paq-nvim' {
 opt.runtimepath:append("~/.config/nvim/dracula_pro/vim");
 cmd 'colorscheme dracula_pro_buffy'
 
-g.mapleader             = "," 		        -- set leader 
 g.indent_blankline_char = '┊'
+g.mapleader             = ","  -- Set leader key
+g.noshowmode            = true -- Disables standart -INSERT-, -NORMAL-, etc 
 
 
 -------------------- Load PLUGINS ----------------------------------
 require "nvimTree"
+require "statusline"
+require "completion"
 
 -------------------- Mappings ----------------------------------
-_.map("i", "jk", "<ESC>")
-_.map("i", "<slient> <ESC>", "<C-O>:stopinsert<CR>")
-_.map("n", ";", ":")
-_.map("n", "j", "gj")
-_.map("n", "k", "gk")
-_.map("n", "Y", "y$")
-_.map("n", "<leader>y", '"*y')
-_.map("n", "<leader>p", '"*p')
-_.map("n", "<leader>Y", '"+y')
-_.map("n", "<leader>P", '"+p')
+map("i", "jk", "<ESC>")
+map("i", "<slient> <ESC>", "<C-O>:stopinsert<CR>")
+map("n", ";", ":")
+map("n", "j", "gj")
+map("n", "k", "gk")
+map("n", "Y", "y$")
+map("n", "<leader>y", '"*y')
+map("n", "<leader>p", '"*p')
+map("n", "<leader>Y", '"+y')
+map("n", "<leader>P", '"+p')
 
 -------------------- User Commands -----------------------------
-cmd(':command! WQ wq')
-cmd(':command! WQ wq')
-cmd(':command! Wq wq')
-cmd(':command! Wqa wqa')
-cmd(':command! W w')
-cmd(':command! Q q')
+cmd ':command! WQ wq'
+cmd ':command! WQ wq'
+cmd ':command! Wq wq'
+cmd ':command! Wqa wqa'
+cmd ':command! W w'
+cmd ':command! Q q'
 
 -------------------- OPTIONS -----------------------------------
+local indent, width = 2, 120
 opt.number          = true             -- Display numbers
 opt.tabstop         = 2                -- Number of spaces tabs count for
-opt.shiftwidth      = 2                -- Size of an indent
+opt.softtabstop     = 2
+opt.shiftwidth      = indent           -- Size of an indent
 opt.expandtab       = true             -- Use spaces instead of tabs
 opt.termguicolors   = true             -- True color support
-opt.completeopt     = { 
+opt.signcolumn      = "yes"
+opt.splitbelow      = true
+opt.splitright      = true
+opt.list            = true
+opt.completeopt     = {
   "menuone",
   "noselect"
 }
-
-require'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  resolve_timeout = 800;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = true;
-
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    vsnip = true;
-    ultisnips = true;
-  };
-}
-
+opt.colorcolumn = tostring(width)
+opt.smartcase       = true
+opt.smartindent     = true

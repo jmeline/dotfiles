@@ -51,9 +51,9 @@ g.nvim_tree_icons = {
 -- Mappings for nvimtree
 
 local tree_cb = require "nvim-tree.config".nvim_tree_callback
-local _ = require("util.funcs")
+local map = require("util.funcs").map
 
-_.map("n", "<leader>n", ":NvimTreeToggle<CR>", {noremap = true, silent = true})
+map("n", "<leader>n", ":NvimTreeToggle<CR>", {noremap = true, silent = true})
 
 g.nvim_tree_bindings = {
     ["u"] = ":lua require'some_module'.some_function()<cr>",
