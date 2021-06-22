@@ -44,6 +44,10 @@ require 'paq-nvim' {
 
   'mattn/emmet-vim';
   'christoomey/vim-tmux-navigator';
+
+  'pangloss/vim-javascript';
+  'leafgarland/typescript-vim';
+  'peitalin/vim-jsx-typescript';
 }
 
 
@@ -81,6 +85,7 @@ require "statusline"
 require "compe-completion"
 require "lsp-config"
 require "nvimTreeSitting"
+require "vsnip-config"
 
 -------------------- Mappings ----------------------------------
 map("i", "jk", "<ESC>")
