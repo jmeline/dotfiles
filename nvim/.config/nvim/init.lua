@@ -24,10 +24,15 @@ require 'paq-nvim' {
   'nvim-lua/completion-nvim';
   'nvim-lua/lsp_extensions.nvim';
 
+  'rafamadriz/friendly-snippets';
+  'hrsh7th/vim-vsnip';
+
   'hrsh7th/nvim-compe';                         -- completion provided in lua
+  'onsails/lspkind-nvim';
   'kyazdani42/nvim-web-devicons';               -- for file icons
   'kyazdani42/nvim-tree.lua';                   -- file explorer in lua
   'hoob3rt/lualine.nvim';                       -- blazingly fast statusline
+  {'nvim-treesitter/nvim-treesitter', run=":TSUpdate"};
 
   'junegunn/fzf';
   'junegunn/fzf.vim';
@@ -63,18 +68,19 @@ g['fzf_action'] = {
   ['ctrl-v'] = 'vsplit'
 }
 
---vim.api.nvim_command("command! -bang -nargs=* Rg "
---  .."call fzf#vim#grep('rg --column --line-number --no-heading --color=always "
---  .."--glob '!{node_modules/*,.git/*}' --smart-case -- '.shellescape(<q-args>), 1, "
---  .."fzf#vim#with_preview(), <bang>0")
+vim.api.nvim_command("command! -bang -nargs=* Rg "
+  .."call fzf#vim#grep('rg --column --line-number --no-heading --color=always "
+  .."--glob '!{node_modules/*,.git/*}' --smart-case -- '.shellescape(<q-args>), 1, "
+  .."fzf#vim#with_preview(), <bang>0")
 
 vim.api.nvim_command("command! -bang -nargs=* Find call fzf#vim#grep(\'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob '!.git' --glob '!node_modules' --color 'always'\".shellescape(<q-args>), 1, <bang>0)\"")
 
 -------------------- Load PLUGINS ----------------------------------
 require "nvimTree"
 require "statusline"
-require "completion"
+require "compe-completion"
 require "lsp-config"
+require "nvimTreeSitting"
 
 -------------------- Mappings ----------------------------------
 map("i", "jk", "<ESC>")
@@ -95,6 +101,10 @@ cmd ':command! Wq wq'
 cmd ':command! Wqa wqa'
 cmd ':command! W w'
 cmd ':command! Q q'
+ -- maintain undo history between sessions
+cmd [[ 
+  set undofile
+]]
 
 --cmd 'runtime macros/sandwich/keymap/surround.vim'
 -------------------- OPTIONS -----------------------------------
@@ -117,6 +127,8 @@ opt.completeopt     = {
   "noinsert",
   "noselect"
 }
-opt.colorcolumn = tostring(width)
+
+opt.colorcolumn     = tostring(width)
 opt.smartcase       = true
 opt.smartindent     = true
+opt.clipboard       = "unnamedplus"

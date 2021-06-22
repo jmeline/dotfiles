@@ -5,6 +5,20 @@
 --
 local nvim_lsp = require("lspconfig")
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
+
+nvim_lsp.rust_analyzer.setup {
+  capabilities = capabilities,
+}
+
 local format_async = function(err, _, result, _, bufnr)
   if err ~= nil or result == nil then return end
   if not vim.api.nvim_buf_get_option(bufnr, "modified") then
