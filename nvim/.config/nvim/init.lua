@@ -34,8 +34,12 @@ require 'paq-nvim' {
   'hoob3rt/lualine.nvim';                       -- blazingly fast statusline
   {'nvim-treesitter/nvim-treesitter', run=":TSUpdate"};
 
-  'junegunn/fzf';
-  'junegunn/fzf.vim';
+  -- 'junegunn/fzf';
+  -- 'junegunn/fzf.vim';
+
+  'nvim-lua/popup.nvim';
+  'nvim-lua/plenary.nvim';
+  'nvim-telescope/telescope.nvim';
 
   'machakann/vim-sandwich';
   'tpope/vim-commentary';
@@ -48,6 +52,7 @@ require 'paq-nvim' {
   'pangloss/vim-javascript';
   'leafgarland/typescript-vim';
   'peitalin/vim-jsx-typescript';
+  'Pocco81/TrueZen.nvim';
 }
 
 
@@ -72,12 +77,12 @@ g['fzf_action'] = {
   ['ctrl-v'] = 'vsplit'
 }
 
-vim.api.nvim_command("command! -bang -nargs=* Rg "
-  .."call fzf#vim#grep('rg --column --line-number --no-heading --color=always "
-  .."--glob '!{node_modules/*,.git/*}' --smart-case -- '.shellescape(<q-args>), 1, "
-  .."fzf#vim#with_preview(), <bang>0")
+-- vim.api.nvim_command("command! -bang -nargs=* Rg "
+--   .."call fzf#vim#grep('rg --column --line-number --no-heading --color=always "
+--   .."--glob '!{node_modules/*,.git/*}' --smart-case -- '.shellescape(<q-args>), 1, "
+--   .."fzf#vim#with_preview(), <bang>0")
 
-vim.api.nvim_command("command! -bang -nargs=* Find call fzf#vim#grep(\'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob '!.git' --glob '!node_modules' --color 'always'\".shellescape(<q-args>), 1, <bang>0)\"")
+-- vim.api.nvim_command("command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob '!.git' --glob '!node_modules' --color 'always'\".shellescape(<q-args>), 1, <bang>0)\"")
 
 -------------------- Load PLUGINS ----------------------------------
 require "nvimTree"
@@ -86,6 +91,8 @@ require "compe-completion"
 require "lsp-config"
 require "nvimTreeSitting"
 require "vsnip-config"
+require "trueZen-config"
+require "telescope-config"
 
 -------------------- Mappings ----------------------------------
 map("i", "jk", "<ESC>")
