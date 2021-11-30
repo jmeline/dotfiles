@@ -239,7 +239,7 @@ label =  %gb_used%/%gb_free%
 
 [module/wired-network]
 type = internal/network
-interface = enp7s0
+interface = enp4s0
 interval = 2
 label-active-font=2
 format-margin = 10
@@ -346,7 +346,7 @@ ramp-foreground = ${colors.foreground-alt}
 type = internal/temperature
 thermal-zone = 0
 warn-temperature = 85
-hwmon-path=/sys/devices/pci0000:00/0000:00:03.1/0000:09:00.0/hwmon/hwmon0/temp1_input
+hwmon-path=/sys/devices/pci0000:00/0000:00:03.1/0000:05:00.0/hwmon/hwmon0/temp1_input
 label-active-font=2
 
 format = <ramp> <label>

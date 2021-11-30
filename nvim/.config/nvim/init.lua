@@ -42,7 +42,8 @@ require 'paq-nvim' {
   'nvim-telescope/telescope.nvim';
 
   'machakann/vim-sandwich';
-  'tpope/vim-commentary';
+  'tomtom/tcomment_vim';
+  -- 'tpope/vim-commentary';
   'tpope/vim-fugitive';
   'jiangmiao/auto-pairs';
 
@@ -55,7 +56,6 @@ require 'paq-nvim' {
   'Pocco81/TrueZen.nvim';
 }
 
-
 -- load up personal colorscheme --
 opt.runtimepath:append("~/.config/nvim/dracula_pro/vim");
 cmd 'colorscheme dracula_pro_buffy'
@@ -66,12 +66,15 @@ g.noshowmode            = true -- Disables standart -INSERT-, -NORMAL-, etc
 
 g.user_emmet_leader_key = ","
 
-map('n', '<leader>o', '<cmd>Files<CR>')
-map('n', '<leader>r', '<cmd>Rg<CR>')
-map('n', '<leader>/', '<cmd>BLines<CR>')
-map('n', '<leader>;', '<cmd>History:<CR>')
-map('n', '<leader>g', '<cmd>GitFiles<CR>')
---map('n', 's', '<cmd>Buffers<CR>')
+
+-- map('s', '<leader>c', '<cmd>Commentary<CR>')
+-- map('x', '<leader>c', '<cmd>Commentary<CR>')
+-- map('n', '<leader>c', '<cmd>Commentary<CR>')
+-- map('n', '<leader>o', '<cmd>Files<CR>')
+-- map('n', '<leader>r', '<cmd>Rg<CR>')
+-- map('n', '<leader>/', '<cmd>BLines<CR>')
+-- map('n', '<leader>;', '<cmd>History:<CR>')
+-- map('n', '<leader>g', '<cmd>GitFiles<CR>')
 g['fzf_action'] = {
   ['ctrl-s'] = 'split',
   ['ctrl-v'] = 'vsplit'
@@ -95,6 +98,8 @@ require "trueZen-config"
 require "telescope-config"
 
 -------------------- Mappings ----------------------------------
+map("n", "<leader>c", "<cmd>TComment<CR>")
+map("v", "<leader>c", "<cmd>TCommentBlock<CR>")
 map("i", "jk", "<ESC>")
 map("i", "<slient> <ESC>", "<C-O>:stopinsert<CR>")
 map("n", ";", ":")
