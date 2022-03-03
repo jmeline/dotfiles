@@ -20,6 +20,12 @@ require'nvim-tree'.setup {
     -- allow to open the tree if it was previously closed
     auto_open = true,
   },
+  nvim_tree_hide_dotfiles = 1,
+  nvim_tree_ignore = {
+    ".git",
+    "node_modules",
+    ".cache"
+  },
   -- hijack the cursor in the tree to put it at the start of the filename
   hijack_cursor       = false,
   -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
@@ -76,17 +82,10 @@ opt.termguicolors = true
 
 g.nvim_tree_side = "left"
 g.nvim_tree_width = 25
-g.nvim_tree_ignore = {
-  ".git",
-  "node_modules",
-  ".cache"
-}
 g.nvim_tree_indent_markers = 1
-g.nvim_tree_hide_dotfiles = 1
 g.nvim_tree_git_hl = 1
 g.nvim_tree_root_folder_modifier = ":t"
 g.nvim_tree_allow_resize = 1
-g.nvim_tree_gitignore = 1
 g.nvim_tree_highlight_opened_files= 3
 
 g.nvim_tree_show_icons = {

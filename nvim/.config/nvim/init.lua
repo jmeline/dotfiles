@@ -7,62 +7,71 @@ local o = vim.o
 
 local map = require("util.funcs").map
 
--- Auto install paq-nvim if it does not exist
--- https://github.com/savq/paq-nvim
-local install_path = fn.stdpath("data")..'/site/pack/paqs/start/paq-nvim'
+-- Auto install packer if it does not exist
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  cmd('!git clone --depth 1 https://github.com/savq/paq-nvim.git '..install_path)
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
 -------------------- PLUGINS -----------------------------------
-require 'paq-nvim' {
-  {'savq/paq-nvim', opt=true};                -- Let Paq manage itself
+require('packer').startup(function(use) 
+  use ('wbthomason/packer.nvim')
+  use {
+    'neovim/nvim-lspconfig',
+    'williamboman/nvim-lsp-installer',
+  }
+  use ('nvim-lua/lsp_extensions.nvim')
+  use ('nvim-lua/completion-nvim')
 
-  -- Add your packages
-  -- lsp 
-  'neovim/nvim-lspconfig';
-  'nvim-lua/completion-nvim';
-  'nvim-lua/lsp_extensions.nvim';
+  use ('rafamadriz/friendly-snippets')
+  use ('hrsh7th/vim-vsnip')
 
-  'rafamadriz/friendly-snippets';
-  'hrsh7th/vim-vsnip';
-
-  'hrsh7th/nvim-compe';                         -- completion provided in lua
-  'onsails/lspkind-nvim';
-  'kyazdani42/nvim-web-devicons';               -- for file icons
-  'kyazdani42/nvim-tree.lua';                   -- file explorer in lua
-  'hoob3rt/lualine.nvim';                       -- blazingly fast statusline
-  {'nvim-treesitter/nvim-treesitter', run=":TSUpdate"};
+  use ('hrsh7th/nvim-compe')                        -- completion provided in lua
+  use ('onsails/lspkind-nvim')
+  use ('kyazdani42/nvim-web-devicons')               -- for file icons
+  use ('kyazdani42/nvim-tree.lua')                   -- file explorer in lua
+  use ('hoob3rt/lualine.nvim')                       -- blazingly fast statusline
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
 
   -- 'junegunn/fzf';
   -- 'junegunn/fzf.vim';
 
-  'nvim-lua/popup.nvim';
-  'nvim-lua/plenary.nvim';
-  'nvim-telescope/telescope.nvim';
+  use ('nvim-lua/popup.nvim')
+  use ('nvim-lua/plenary.nvim')
+  use ('nvim-telescope/telescope.nvim')
 
-  'machakann/vim-sandwich';
-  'tomtom/tcomment_vim';
-  -- 'tpope/vim-commentary';
-  'tpope/vim-fugitive';
-  'jiangmiao/auto-pairs';
+  --'machakann/vim-sandwich'
+  --'tomtom/tcomment_vim'
+  -- 'tpope/vim-commentary'
+  --'tpope/vim-fugitive'
+  use ('jiangmiao/auto-pairs')
+  use ('christoomey/vim-tmux-navigator')
 
-  'mattn/emmet-vim';
-  'christoomey/vim-tmux-navigator';
-
-  'pangloss/vim-javascript';
-  'leafgarland/typescript-vim';
-  'peitalin/vim-jsx-typescript';
-  'Pocco81/TrueZen.nvim';
-}
+  use ('mattn/emmet-vim')
+  --use ('pangloss/vim-javascript')
+  --use ('leafgarland/typescript-vim')
+  use ('peitalin/vim-jsx-typescript')
+  use ('Pocco81/TrueZen.nvim')
+  use 'Mofiqul/dracula.nvim'
+end)
 
 -- load up personal colorscheme --
-opt.runtimepath:append("~/.config/nvim/dracula_pro/vim");
+opt.runtimepath:append("~/.config/nvim/dracula_pro/vim")
 cmd 'colorscheme dracula_pro_buffy'
 
 g.indent_blankline_char = '┊'
 g.mapleader             = ","  -- Set leader key
 g.noshowmode            = true -- Disables standart -INSERT-, -NORMAL-, etc 
+g.noswapfile            = true
 
 g.user_emmet_leader_key = ","
 
@@ -91,10 +100,11 @@ g['fzf_action'] = {
 require "nvimTree"
 require "statusline"
 require "compe-completion"
-require "lsp-config"
-require "nvimTreeSitting"
-require "vsnip-config"
-require "trueZen-config"
+require "lsp-installer"
+--require "lsp-config"
+require "nvim-treesitting"
+--require "vsnip-config"
+--require "trueZen-config"
 require "telescope-config"
 
 -------------------- Mappings ----------------------------------
