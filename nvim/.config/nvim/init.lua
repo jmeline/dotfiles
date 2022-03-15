@@ -15,22 +15,22 @@ end
 
 -------------------- PLUGINS -----------------------------------
 require('packer').startup(function(use) 
-  use ('wbthomason/packer.nvim')
+  use 'wbthomason/packer.nvim'
   use {
     'neovim/nvim-lspconfig',
     'williamboman/nvim-lsp-installer',
   }
-  use ('nvim-lua/lsp_extensions.nvim')
-  use ('nvim-lua/completion-nvim')
+  use 'nvim-lua/lsp_extensions.nvim'
+  use 'nvim-lua/completion-nvim'
 
-  use ('rafamadriz/friendly-snippets')
-  use ('hrsh7th/vim-vsnip')
+  use 'rafamadriz/friendly-snippets'
+  use 'hrsh7th/vim-vsnip'
 
-  use ('hrsh7th/nvim-compe')                        -- completion provided in lua
-  use ('onsails/lspkind-nvim')
-  use ('kyazdani42/nvim-web-devicons')               -- for file icons
-  use ('kyazdani42/nvim-tree.lua')                   -- file explorer in lua
-  use ('hoob3rt/lualine.nvim')                       -- blazingly fast statusline
+  use 'hrsh7th/nvim-compe'                        -- completion provided in lua
+  use 'onsails/lspkind-nvim'
+  use 'kyazdani42/nvim-web-devicons'               -- for file icons
+  use 'kyazdani42/nvim-tree.lua'                   -- file explorer in lua
+  use 'hoob3rt/lualine.nvim'                       -- blazingly fast statusline
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
@@ -45,23 +45,23 @@ require('packer').startup(function(use)
   -- 'junegunn/fzf';
   -- 'junegunn/fzf.vim';
 
-  use ('nvim-lua/popup.nvim')
-  use ('nvim-lua/plenary.nvim')
-  use ('nvim-telescope/telescope.nvim')
+  use 'nvim-lua/popup.nvim'
+  use 'nvim-lua/plenary.nvim'
+  use 'nvim-telescope/telescope.nvim'
 
-  --'machakann/vim-sandwich'
+  use 'machakann/vim-sandwich'
   --'tomtom/tcomment_vim'
   -- 'tpope/vim-commentary'
   --'tpope/vim-fugitive'
-  use ('jiangmiao/auto-pairs')
-  use ('christoomey/vim-tmux-navigator')
+  use 'jiangmiao/auto-pairs'
+  use 'christoomey/vim-tmux-navigator'
 
-  use ('mattn/emmet-vim')
-  --use ('pangloss/vim-javascript')
-  --use ('leafgarland/typescript-vim')
-  use ('peitalin/vim-jsx-typescript')
-  use ('Pocco81/TrueZen.nvim')
+  use 'mattn/emmet-vim'
+  use 'peitalin/vim-jsx-typescript'
+  use 'Pocco81/TrueZen.nvim'
   use 'Mofiqul/dracula.nvim'
+
+  use 'adelarsq/neofsharp.vim'
 end)
 
 -- load up personal colorscheme --
@@ -70,7 +70,7 @@ cmd 'colorscheme dracula_pro_buffy'
 
 g.indent_blankline_char = '┊'
 g.mapleader             = ","  -- Set leader key
-g.noshowmode            = true -- Disables standart -INSERT-, -NORMAL-, etc 
+g.noshowmode            = true -- Disables standart -INSERT-, -NORMAL-, etc
 g.noswapfile            = true
 
 g.user_emmet_leader_key = ","
@@ -133,7 +133,7 @@ cmd [[
   set undofile
 ]]
 
---cmd 'runtime macros/sandwich/keymap/surround.vim'
+-- cmd 'runtime macros/sandwich/keymap/surround.vim'
 -------------------- OPTIONS -----------------------------------
 local indent, width = 2, 120
 opt.number          = true             -- Display numbers

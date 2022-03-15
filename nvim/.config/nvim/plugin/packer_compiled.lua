@@ -175,6 +175,11 @@ _G.packer_plugins = {
     path = "/home/jmeline/.local/share/nvim/site/pack/packer/start/vim-jsx-typescript",
     url = "https://github.com/peitalin/vim-jsx-typescript"
   },
+  ["vim-sandwich"] = {
+    loaded = true,
+    path = "/home/jmeline/.local/share/nvim/site/pack/packer/start/vim-sandwich",
+    url = "https://github.com/machakann/vim-sandwich"
+  },
   ["vim-tmux-navigator"] = {
     loaded = true,
     path = "/home/jmeline/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
