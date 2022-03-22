@@ -1,24 +1,20 @@
-local api, g, opt = vim.api, vim.g, vim.opt
+local api = vim.api
+local g   = vim.g
+local opt = vim.opt
 
 require'nvim-tree'.setup {
-  -- disables netrw completely
-  disable_netrw       = true,
-  -- hijack netrw window on startup
-  hijack_netrw        = true,
-  -- open the tree when running this setup function
-  open_on_setup       = false,
-  -- will not open on setup if the filetype is in this list
-  ignore_ft_on_setup  = {},
-  -- closes neovim automatically when the tree is the last **WINDOW** in the view
-  auto_close          = false,
-  -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
+  disable_netrw       = true,  -- disables netrw completely
+  hijack_netrw        = true,  -- hijack netrw window on startup
+  open_on_setup       = false, -- open the tree when running this setup function
+  ignore_ft_on_setup  = {},    -- will not open on setup if the filetype is in this list
+  auto_close          = false, -- closes neovim automatically when the tree is the last **WINDOW** in the view
   open_on_tab         = false,
-  -- hijacks new directory buffers when they are opened.
-  update_to_buf_dir   = {
-    -- enable the feature
+  hijack_cursor       = false, -- hijack the cursor in the tree to put it at the start of the filename
+  update_cwd          = false, -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
+  -- show lsp diagnostics in the signcolumn
+  update_to_buf_dir   = {      -- hijacks new directory buffers when they are opened.
     enable = true,
-    -- allow to open the tree if it was previously closed
-    auto_open = true,
+    auto_open = true,          -- allow to open the tree if it was previously closed
   },
   nvim_tree_hide_dotfiles = 1,
   nvim_tree_ignore = {
@@ -26,11 +22,6 @@ require'nvim-tree'.setup {
     "node_modules",
     ".cache"
   },
-  -- hijack the cursor in the tree to put it at the start of the filename
-  hijack_cursor       = false,
-  -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
-  update_cwd          = false,
-  -- show lsp diagnostics in the signcolumn
   diagnostics = {
     enable = false,
     icons = {
@@ -42,7 +33,6 @@ require'nvim-tree'.setup {
   },
   -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
   update_focused_file = {
-    -- enables the feature
     enable      = false,
     -- update the root directory of the tree to the one of the folder containing the file if the file is not under the current root directory
     -- only relevant when `update_focused_file.enable` is true
@@ -78,7 +68,7 @@ require'nvim-tree'.setup {
   }
 }
 
-opt.termguicolors = true
+-- opt.termguicolors = true
 
 g.nvim_tree_side = "left"
 g.nvim_tree_width = 25
