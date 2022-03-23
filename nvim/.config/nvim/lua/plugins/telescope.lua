@@ -1,6 +1,6 @@
 local map = require("util/funcs").map
 
-require('telescope').setup{
+require'telescope'.setup{
   defaults = {
     vimgrep_arguments = {
       'rg',
@@ -47,7 +47,7 @@ require('telescope').setup{
 }
 
 
-function createCmd(cmd) 
+function createCmd(cmd)
   return "<cmd>Telescope "..cmd.."<CR>"
 end
 

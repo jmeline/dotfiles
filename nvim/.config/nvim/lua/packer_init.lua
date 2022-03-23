@@ -41,6 +41,7 @@ return packer.startup(function()
   -- 'junegunn/fzf';
   -- 'junegunn/fzf.vim';
 
+  use 'akinsho/toggleterm.nvim'
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'

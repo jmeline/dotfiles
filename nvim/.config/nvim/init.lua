@@ -17,8 +17,10 @@ require "plugins/compe-completion"
 require "plugins/nvim-lsp-installer"
 require "plugins/nvim-lspconfig"
 require "plugins/nvim-treesitter"
+require "plugins/toggleterm"
+require "plugins/telescope"
+
 -- require "plugins/vsnip-config"
--- require "telescope-config"
 
 -- map('s', '<leader>c', '<cmd>Commentary<CR>')
 -- map('x', '<leader>c', '<cmd>Commentary<CR>')
