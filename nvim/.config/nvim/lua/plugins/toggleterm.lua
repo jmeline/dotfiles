@@ -1,3 +1,5 @@
+local Terminal = require("toggleterm.terminal").Terminal
+
 require"toggleterm".setup{
   -- size can be a number or function which is passed the current terminal
   size = function(term)
@@ -45,7 +47,6 @@ require"toggleterm".setup{
   }
 }
 
-local Terminal = require("toggleterm.terminal").Terminal
 
 local lazygit =
     Terminal:new(
