@@ -22,9 +22,6 @@ require "plugins/telescope"
 
 -- require "plugins/vsnip-config"
 
--- map('s', '<leader>c', '<cmd>Commentary<CR>')
--- map('x', '<leader>c', '<cmd>Commentary<CR>')
--- map('n', '<leader>c', '<cmd>Commentary<CR>')
 -- map('n', '<leader>o', '<cmd>Files<CR>')
 -- map('n', '<leader>r', '<cmd>Rg<CR>')
 -- map('n', '<leader>/', '<cmd>BLines<CR>')
