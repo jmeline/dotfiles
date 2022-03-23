@@ -10,7 +10,7 @@ end
 cmd [[packadd packer.nvim]]
 local packer = require 'packer'
 
-return packer.startup(function(use)
+return packer.startup(function()
   use 'wbthomason/packer.nvim'
   use {
     'neovim/nvim-lspconfig',

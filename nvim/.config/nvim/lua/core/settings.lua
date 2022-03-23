@@ -15,6 +15,8 @@ local g = vim.g                       -- Global variables
 local opt = vim.opt         		      -- Set options (global/buffer/windows-scoped)
 --local fn = vim.fn       				    -- Call Vim functions
 
+g.noshowmode = true -- Disables standart -INSERT-, -NORMAL-, etc
+g.noswapfile = true
 -----------------------------------------------------------
 -- General
 -----------------------------------------------------------
@@ -79,6 +81,9 @@ cmd [[
   autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml setlocal shiftwidth=2 tabstop=2
 ]]
 
+-- set config files to the correct filetype
+cmd [[ autocmd BufNewFile,BufRead *.conf set ft=conf ]]
+
 cmd ':command! WQ wq'
 cmd ':command! WQ wq'
 cmd ':command! Wq wq'
@@ -86,7 +91,7 @@ cmd ':command! Wqa wqa'
 cmd ':command! W w'
 cmd ':command! Q q'
  -- maintain undo history between sessions
-cmd [[ 
+cmd [[
   set undofile
 ]]
 
@@ -95,7 +100,7 @@ cmd [[
 -----------------------------------------------------------
 
 -- Open a terminal pane on the right using :Term
-cmd [[command Term :botright vsplit term://$SHELL]]
+-- cmd [[command Term :botright vsplit term://$SHELL]]
 
 -- Terminal visual tweaks:
 --- enter insert mode when switching to terminal

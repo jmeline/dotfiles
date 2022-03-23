@@ -1,10 +1,8 @@
 local map = require("util.funcs").map
 
-
 -- Change leader to a comma
-vim.g.mapleader = "," 
+vim.g.mapleader = ","
 
--- 
 map("i", "jk", "<ESC>")
 map("n", ";", ":")
 map("n", "j", "gj")
@@ -22,8 +20,6 @@ map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 
-map("n", "<leader>c", "<cmd>TComment<CR>")
-map("v", "<leader>c", "<cmd>TCommentBlock<CR>")
 map("i", "<slient> <ESC>", "<C-O>:stopinsert<CR>")
 
 map("n", "Y", "y$")
@@ -31,3 +27,21 @@ map("n", "<leader>y", '"*y')
 map("n", "<leader>p", '"*p')
 map("n", "<leader>Y", '"+y')
 map("n", "<leader>P", '"+p')
+
+------------
+-- Packer --
+------------
+map("n", "<leader>pp", ":PackerSync<CR>")
+
+-- Comment.nvim
+-- Linewise toggle current line using C-/
+map('n', '<leader>c', '<CMD>lua require("Comment.api").toggle_current_linewise()<CR>')
+-- Linewise toggle using C-/
+map('x', '<leader>c', '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
+-- Blockwise toggle using <leader>gb
+map('x', '<leader>gb', '<ESC><CMD>lua require("Comment.api").toggle_blockwise_op(vim.fn.visualmode())<CR>')
+
+---------------
+-- Nvim Tree --
+---------------
+map("n", "<leader>n", ":NvimTreeToggle<CR>")

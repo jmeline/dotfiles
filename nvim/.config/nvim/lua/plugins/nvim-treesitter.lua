@@ -1,11 +1,11 @@
 -- require'nvim-treesitter.configs'.setup {
 --   ensure_installed = "maintained",
---   highlight = { 
+--   highlight = {
 --     enable = true
 --   }
 -- }
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained",
+    -- ensure_installed = "maintained",
     ensure_installed = {
         "javascript",
         "clojure",
