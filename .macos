@@ -1,6 +1,6 @@
 
 # Inspired from these repos
-# 
+#
 #
 
 # Install command-line tools using Homebrew.
@@ -72,7 +72,7 @@ brew install grep
 brew install openssh
 
 ## Install main apps
-brew install --cask firefox-developer-edition	
+brew install --cask firefox-developer-edition
 brew install --cask notion 			## notion-enhanced for enhanced edition
 brew install --cask kitty
 brew install --cask alfred			# Application launcher and productivity software
@@ -87,6 +87,8 @@ brew install --cask microsoft-teams		# Meet, chat, call, and collaborate in just
 brew install --cask loom			#
 brew install --cask jetbrains-toolbox
 brew install --cask azure-data-studio
+
+#brew install koekeishiya/formulae/yabai
 
 # Development SDK
 brew install --cask dotnet-sdk			# .Net Core
@@ -106,11 +108,33 @@ brew install exa				# Modern replacement for 'ls', written in rust
 brew install fd					# Simple, fast and user-friendly alternative to find
 brew install ncdu				# NCurses Disk Usage
 brew install fzf				# Command-line fuzzy finder written in Go
-brew install ranger				# File browser 
-brew install p7zip				# 
+brew install ranger				# File browser
+brew install p7zip				#
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+
+###############################################################################
+# Install OH MY ZSH   							      #
+###############################################################################
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+rm ~/.zshrc
+cd .dotfiles
+stow zsh
+. ~/.zshrc
+
+###############################################################################
+# Install Neovim and plugins						      #
+###############################################################################
+
+gh repo clone jmeline/dracula_pro_nvim .dracula_pro_nvim
+gh repo clone jmeline/nvim-config .nvim
+cd .nvim
+stow nvim
+nvim +PackerSync
 
 echo "Running .osx"
 chmod +x ~/.dotfiles/.osx

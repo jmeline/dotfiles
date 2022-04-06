@@ -2,13 +2,14 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/jacmeli/.oh-my-zsh"
+export ZSH="/Users/$(whoami)/.oh-my-zsh"
 
 # 10ms for key sequences, really helps with vi mode in zsh kill the lag
 export KEYTIMEOUT=1
 export EDITOR="nvim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
+export DRACULA_PRO_VIM_DIR="~/.dracula_pro_nvim/dracula"
 # Fish-like syntax highlighting && Autojump setup
 if [[ `uname` == 'Darwin' ]] then
     ## Mac after doing brew install 'zsh-syntax-highlighting'
@@ -17,6 +18,7 @@ if [[ `uname` == 'Darwin' ]] then
 fi
 [[ -s $ZSH_SYNTAX_HIGHLIGHTING_PATH ]] && source $ZSH_SYNTAX_HIGHLIGHTING_PATH
 [[ -s $AUTO_JUMP_PATH ]] && source $AUTO_JUMP_PATH
+source /usr/local/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 setopt HIST_IGNORE_DUPS # Prevent duplicate lines in the history
 set -o noclobber
@@ -89,7 +91,7 @@ ZSH_THEME="sorin"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git cp ssh-agent zsh-vim-mode)
+plugins=(git cp ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 
