@@ -117,22 +117,22 @@ brew cleanup
 ###############################################################################
 # Install OH MY ZSH   							      #
 ###############################################################################
+git clone git@gitlab.com:jmeline/dotfiles.git ~/.dotfiles
+gh repo clone jmeline/dracula_pro_nvim ~/.dracula_pro_nvim
+gh repo clone jmeline/nvim-config ~/.nvim
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone git@gitlab.com:jmeline/dotfiles.git ~/.dotfiles
 
 rm ~/.zshrc
 cd ~/.dotfiles
 stow zsh
-. ~/.zshrc
+source ~/.zshrc
 
 ###############################################################################
 # Install Neovim and plugins						      #
 ###############################################################################
 
-gh repo clone jmeline/dracula_pro_nvim .dracula_pro_nvim
-gh repo clone jmeline/nvim-config .nvim
-cd .nvim
+cd ~/.nvim
 stow nvim
 nvim +PackerSync
 
