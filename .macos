@@ -114,15 +114,15 @@ brew install p7zip				#
 # Remove outdated versions from the cellar.
 brew cleanup
 
-
 ###############################################################################
 # Install OH MY ZSH   							      #
 ###############################################################################
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone git@gitlab.com:jmeline/dotfiles.git ~/.dotfiles
 
 rm ~/.zshrc
-cd .dotfiles
+cd ~/.dotfiles
 stow zsh
 . ~/.zshrc
 
