@@ -110,6 +110,7 @@ brew install ncdu				# NCurses Disk Usage
 brew install fzf				# Command-line fuzzy finder written in Go
 brew install ranger				# File browser
 brew install p7zip				#
+brew install tmux               # Terminal multiplexor
 
 # Remove outdated versions from the cellar.
 brew cleanup
@@ -135,6 +136,9 @@ source ~/.zshrc
 cd ~/.nvim
 stow nvim
 nvim +PackerSync
+
+cd ~/.dotfiles
+stow tmux
 
 echo "Running .osx"
 chmod +x ~/.dotfiles/.osx
