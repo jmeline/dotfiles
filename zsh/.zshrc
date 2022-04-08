@@ -10,12 +10,15 @@ export EDITOR="nvim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 export DRACULA_PRO_VIM_DIR="~/.dracula_pro_nvim/dracula"
+export NVM_DIR="$HOME/.nvm"
 # Fish-like syntax highlighting && Autojump setup
+
 if [[ `uname` == 'Darwin' ]] then
     ## Mac after doing brew install 'zsh-syntax-highlighting'
     ZSH_SYNTAX_HIGHLIGHTING_PATH="/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
     AUTO_JUMP_PATH="$(brew --prefix)/etc/profile.d/autojump.sh"
 fi
+
 [[ -s $ZSH_SYNTAX_HIGHLIGHTING_PATH ]] && source $ZSH_SYNTAX_HIGHLIGHTING_PATH
 [[ -s $AUTO_JUMP_PATH ]] && source $AUTO_JUMP_PATH
 source /usr/local/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
@@ -97,6 +100,7 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -d ~/.zsh ] && source ~/.zsh/.zshrc.aliases
+
 
 # User configuration
 
