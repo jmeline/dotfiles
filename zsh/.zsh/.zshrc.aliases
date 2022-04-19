@@ -22,4 +22,13 @@ alias cdWin='/Volumes/C/Projects'
 alias tf='terraform'
 alias g++='g++ -O3'
 
-alias lg='lazygit'
+alias bup='brew update && brew upgrade'
+
+# Unlock bitwarden and save session key
+alias bwu='export BW_SESSION="$(bw unlock --raw)"'
+alias bwl='export BW_SESSION='
+
+alias sqlLogin='kinit jmeline@COEXIST.LOCAL && klist'
+
+alias g="git"
+alias gs="git status"
