@@ -19,7 +19,8 @@ super + shift + t
 
 # terminal emulator
 super + Return
-  ~/code/kitty/kitty/launcher/kitty
+    kitty
+  # ~/code/kitty/kitty/launcher/kitty
 
 # yank the screen
 super + shift + s
