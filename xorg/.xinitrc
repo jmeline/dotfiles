@@ -31,13 +31,19 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  done
  unset f
 fi
+#
+export _JAVA_AWT_WM_NONREPARENTING=1
 
-eval $(ssh-agent -s)
-/usr/bin/VboxClient-all
-exec i3
+## Set the keyboard repeat rate to something much faster
+xset r rate 175 25
 
-# twm &
-# xclock -geometry 50x50-1+1 &
-# xterm -geometry 80x50+494+51 &
-# xterm -geometry 80x20+494-0 &
-# exec xterm -geometry 80x66+0+0 -name login
+picom --config ~/.dotfiles/picom/.picom.conf &
+# redshift -l 40.76:-111.89 & # salt lake city
+redshift &
+# nitrogen --restore &
+~/.fehbg &
+sxhkd &
+~/.dotfiles/bspwm/.config/bspwm/updateScreen.sh
+# sudo ~/bin/enableSpdif.sh
+# sudo ~/bin/archlinux/sleep.sh
+exec bspwm
