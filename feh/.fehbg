@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-scale '/home/jmeline/pictures/wallpaper/superbloom_dragon_wall.jpg' 
+feh --no-fehbg --bg-max '/home/jmeline/pictures/in_the_woods_by_ryky_dafuns3.png' 
