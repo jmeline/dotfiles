@@ -26,8 +26,10 @@ super + Return
 super + shift + s
   flameshot gui
 
-#super + Return
-#  alacritty
+# lock computer
+super + alt + x
+    betterlockscreen -l
+
 # program launcher
 super + @space
 	rofi -show run
