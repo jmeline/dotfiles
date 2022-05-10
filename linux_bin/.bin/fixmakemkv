@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# load the scsi generic driver for makemkv to be able to see disks
+sudo modprobe sg

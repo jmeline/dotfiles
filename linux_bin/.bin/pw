@@ -1,0 +1,10 @@
+#!/bin/bash
+
+## Build a password for you and save it to clipboard
+PASS_LENGTH="${1:=128}"
+password=$(keepassxc-cli generate --length $PASS_LENGTH --lower --upper --numeric --special --exclude-similar --every-group)
+# password=$(keepassxc-cli generate --length $PASS_LENGTH --lower --upper --numeric --special --exclude-similar --every-group -e)
+
+echo "$password"
+echo "$password" | xclip -selection clipboard
+dunstify "Password {$PASS_LENGTH} created && copied to clipboard"
