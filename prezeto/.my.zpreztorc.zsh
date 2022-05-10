@@ -1,4 +1,4 @@
-xset r rate 200 25
+xset r rate 200 25 > /dev/null
 
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow 2> /dev/null"
 export FZF_CTRLT_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -70,6 +70,12 @@ function lg()
     fi
 }
 
+function pathadd() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
+}
+
 function cpr() {
   rsync -v --archive -hh --partial --info=stats1 --info=progress2 --modify-window=1 "$@"
 }
@@ -93,6 +99,8 @@ plugins=(ssh-agent)
 
 # Find the command support for zsh using pacman
 #source /usr/share/doc/find-the-command/ftc.zsh quiet noprompt info
+
+pathadd ~/.bin
 
 fpath+=~/.zfunc
 
