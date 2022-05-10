@@ -1,3 +1,4 @@
+xset r rate 200 25
 
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow 2> /dev/null"
 export FZF_CTRLT_T_COMMAND="$FZF_DEFAULT_COMMAND"
