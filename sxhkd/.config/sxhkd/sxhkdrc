@@ -4,15 +4,15 @@
 
 # shutdown prompt
 super + shift + q
-  ~/bin/prompt.sh "Do you want to shutdown?" "shutdown -h now"
+  ~/.bin/prompt.sh "Do you want to shutdown?" "shutdown -h now"
 
 # suspend/sleep prompt
 super + shift + z
-  ~/bin/prompt.sh "Do you want to suspend?" "systemctl suspend -i"
+  ~/.bin/prompt.sh "Do you want to suspend?" "systemctl suspend -i"
 
 # hibernate prompt
 super + shift + x
-  ~/bin/prompt.sh "Do you want to hibernate?" "systemctl hibernate"
+  ~/.bin/prompt.sh "Do you want to hibernate?" "systemctl hibernate"
 
 super + shift + t
   ytfzf -D
