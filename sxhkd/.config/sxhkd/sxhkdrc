@@ -32,8 +32,9 @@ super + alt + x
 
 # program launcher
 super + @space
-	rofi -show run
-  #rofi -combi-modi window,drun,ssh -theme gruvbox-dark-soft -font "hack 10" -show combi
+	rofi -show run -font "Comic Code Ligatures 12"
+	# rofi -show run
+    # rofi -combi-modi window,drun,ssh -theme gruvbox-dark-soft -font "hack 10" -show combi
 
 # make sxhkd reload its configuration files:
 super + Escape
