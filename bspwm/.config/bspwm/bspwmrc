@@ -3,40 +3,39 @@
 ## home setup (using amdgpu)
 export RIGHT_MONITOR=DisplayPort-0
 export LEFT_MONITOR=HDMI-A-0
-# TV=DVI-I-0
 
-./updateScreen.sh
+## Setup multi monitor configuration
+xrandr \
+    --output $LEFT_MONITOR --mode 2560x1440 --rate 59.95 \
+    --output $RIGHT_MONITOR --mode 2560x1440 --rate 164.83 --right-of $LEFT_MONITOR
 
-# if using radeon driver
-# LEFT_MONITOR=DVI-1
-# RIGHT_MONITOR=HDMI-0
-# TV=DVI-0
-# Fix tv overscan issues by setting underscan and vborder, hborder https://wiki.archlinux.org/index.php/Xrandr#Toggle_external_monitor
+## Setup Polybar
+# Terminate already running bar instances
+killall -q polybar
 
-# if xrandr | grep "$TV disconnected"; then
-#   xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR
+# Wait until the processes have been shut down
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+
+# if type "xrandr"; then
+#   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+#     MONITOR=$m polybar --reload example &
+#   done
 # else
-  # use this one if using radeon driver
-  # xrandr --output $LEFT_MONITOR --mode 1920x1080 --set underscan off --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR
-   # use this one if using amdgpu driver
-  # xrandr --output DVI-I-1 --mode 1920x1080 --set underscan off --primary --output HDMI-A-0 --mode 1920x1080 --right-of DVI-I-1 --output DVI-I-0 --mode 1920x1080 --right-of HDMI-A-0 --set underscan off --set "underscan vborder" 35 --set "underscan hborder" 50
-
-# xrandr --output DVI-I-1 --mode 2560x1440 --set underscan off --primary --output HDMI-A-0 --mode 1920x1080 --right-of DVI-I-1
-
-  # xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR --output $TV --mode 1920x1080 --left-of $LEFT_MONITOR --set underscan on --set "underscan vborder" 35 --set "underscan hborder" 50
-  # xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR --output $TV --mode 1920x1080 --right-of $RIGHT_MONITOR --set underscan on --set "underscan vborder" 35 --set "underscan hborder" 50
+#   polybar --reload example &
 # fi
 
-# xrandr --output $LEFT_MONITOR --mode 1920x1080 --primary --output $RIGHT_MONITOR --mode 1920x1080 --right-of $LEFT_MONITOR --output $TV --mode 1920x1080 --right-of $RIGHT_MONITOR --set underscan on --set "underscan vborder" 35 --set "underscan hborder" 50
+# Launch Polybar, using default config location ~/.config/polybar/config
+RIGHT_MONITOR=$RIGHT_MONITOR polybar right &
+LEFT_MONITOR=$LEFT_MONITOR polybar left &
+echo "Polybar launched..."
 
-# bspc monitor HDMI-0 -d 一 二 三 四 五
-# bspc monitor DVI-1 -d 六 七 八 九 十
-$HOME/.config/polybar/launch.sh
+# $HOME/.config/polybar/launch.sh
 
+# bspc monitor $LEFT_MONITOR -d 一 二 三 四 五 六 七 八 九 十
 bspc monitor $LEFT_MONITOR -d 一 二 三 四 五
 bspc monitor $RIGHT_MONITOR -d 六 七 八 九 十
 ## requires bspwm-rounded-corners from https://github.com/phuhl/bspwm-rounded
-bspc config border_radius 8
+bspc config border_radius        8
 
 bspc config border_width         3
 bspc config window_gap           8
