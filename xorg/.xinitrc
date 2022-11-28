@@ -44,6 +44,9 @@ redshift &
 ~/.fehbg &
 sxhkd &
 ~/.dotfiles/bspwm/.config/bspwm/updateScreen.sh
+
+# Japanese keyboard input
+fcitx5 --replace -d &
 # sudo ~/bin/enableSpdif.sh
 # sudo ~/bin/archlinux/sleep.sh
 exec bspwm
