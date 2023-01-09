@@ -1,4 +1,5 @@
 xset r rate 200 25 > /dev/null
+cd ~
 
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow 2> /dev/null"
 export FZF_CTRLT_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -19,7 +20,7 @@ export DOTNET_ROOT=~/.dotnet
 export MSBuildSDKsPath=${DOTNET_ROOT}/sdk/$(${DOTNET_ROOT}/dotnet --version)/Sdks
 export PATH=${PATH}:${DOTNET_ROOT}
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
-
+export CHROME_BIN=/usr/bin/chromium
 # Customize to your needs...
 
 # git aliases
@@ -79,6 +80,21 @@ function pathadd() {
 
 function cpr() {
   rsync -v --archive -hh --partial --info=stats1 --info=progress2 --modify-window=1 "$@"
+}
+
+# fkill - kill processes - list only the ones you can kill. Modified the earlier script.
+fkill() {
+    local pid
+    if [ "$UID" != "0" ]; then
+        pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
+    else
+        pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+    fi
+
+    if [ "x$pid" != "x" ]
+    then
+        echo $pid | xargs kill -${1:-9}
+    fi
 }
 
 if [[ `uname` == 'Linux' ]] then
