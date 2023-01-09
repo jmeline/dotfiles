@@ -86,30 +86,43 @@ tabspaces: 8
 #   - https://wiki.archlinux.org/index.php/font_configuration#Fontconfig_configuration
 #   - file:///usr/share/doc/fontconfig/fontconfig-user.html
 # Font configuration (changes require restart)
+
+ # Font configuration
+  # Bold italic font face
+
 font:
   # The normal (roman) font face to use.
   normal:
     # family: DankMono Nerd Font
     # family: mononoki Nerd Font Mono
-    family: FuraCode Nerd Font Mono Medium
+    family: Comic Code Ligatures Medium
     # Style can be specified to pick a specific face.
     style: Regular
 
-  # The bold font face
-  bold:
-    family: FuraCode Nerd Font Mono Medium
-    # family: mononoki Nerd Font Mono
-    style: Bold
-
   # The italic font face
   italic:
-    family: FuraCode Nerd Font Mono Medium
+    family: Comic Code Ligatures Medium Italic
     # family: mononoki Nerd Font Mono
     # Style can be specified to pick a specific face.
     style: Italic
 
+  # The bold font face
+  bold:
+    family: Comic Code Ligatures Bold
+    # family: mononoki Nerd Font Mono
+    style: Bold
+
+  bold_italic:
+    # Font family
+    # If the bold italic family is not specified, it will fall back to the
+    # value specified for the normal font.
+    family: Comic Code Ligatures Bold Italic
+
+    # The `style` can be specified to pick a specific face.
+    style: Bold Italic
+
   # Point size
-  size: 15.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -212,7 +225,7 @@ visual_bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.9
+window.opacity: 0.9
 
 # Mouse bindings
 #
