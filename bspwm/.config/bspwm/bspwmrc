@@ -4,6 +4,21 @@
 export RIGHT_MONITOR=DisplayPort-0
 export LEFT_MONITOR=HDMI-A-0
 
+
+## Set the keyboard repeat rate to something much faster
+xset r rate 175 25
+
+## Start compositor
+picom --config ~/.dotfiles/picom/.picom.conf &
+
+## Set the background
+~/.fehbg &
+
+sxhkd &
+
+# Japanese keyboard input
+fcitx5 --replace -d &
+
 ## Setup multi monitor configuration
 xrandr \
     --output $LEFT_MONITOR --mode 2560x1440 --rate 59.95 \

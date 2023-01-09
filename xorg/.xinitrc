@@ -32,21 +32,41 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 #
-export _JAVA_AWT_WM_NONREPARENTING=1
 
-## Set the keyboard repeat rate to something much faster
-xset r rate 175 25
+session=${1:-kde}
 
-picom --config ~/.dotfiles/picom/.picom.conf &
-# redshift -l 40.76:-111.89 & # salt lake city
-redshift &
-# nitrogen --restore &
-~/.fehbg &
-sxhkd &
-~/.dotfiles/bspwm/.config/bspwm/updateScreen.sh
+case $session in
+    kde    )
+        export DESKTOP_SESSION=plasma
+        exec startplasma-x11;;
+    bspwm  )
+        # xset r rate 175 25
+        # picom --config ~/.dotfiles/picom/.picom.conf &
+        # ~/.fehbg &
+        # sxhkd &
+        # ~/.dotfiles/bspwm/.config/bspwm/updateScreen.sh
+        # fcitx5 --replace -d &
+        exec bspwm;;
+esac
 
-# Japanese keyboard input
-fcitx5 --replace -d &
-# sudo ~/bin/enableSpdif.sh
-# sudo ~/bin/archlinux/sleep.sh
-exec bspwm
+#export DESKTOP_SESSION=plasma
+# exec startplasma-x11
+
+# export _JAVA_AWT_WM_NONREPARENTING=1
+#
+# ## Set the keyboard repeat rate to something much faster
+# xset r rate 175 25
+#
+# picom --config ~/.dotfiles/picom/.picom.conf &
+# # redshift -l 40.76:-111.89 & # salt lake city
+# redshift &
+# # nitrogen --restore &
+# ~/.fehbg &
+# sxhkd &
+# ~/.dotfiles/bspwm/.config/bspwm/updateScreen.sh
+#
+# # Japanese keyboard input
+# fcitx5 --replace -d &
+# # sudo ~/bin/enableSpdif.sh
+# # sudo ~/bin/archlinux/sleep.sh
+# exec bspwm
