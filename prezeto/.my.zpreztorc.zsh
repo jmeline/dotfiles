@@ -8,8 +8,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # building xanmod with modprobe-db to include only the modules I need
 # export _localmodcfg="y"
 export _microarchitecture=99
-# export use_numa="n"
-# export use_tracers="n"
+export use_numa="n"
+export use_tracers="n"
+export use_pds="n"
 
 export VISUAL=nvim
 export EDITOR=nvim
