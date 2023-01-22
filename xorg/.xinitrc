@@ -33,21 +33,22 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 #
 
-session=${1:-kde}
+session=${1:-bspwm}
 
 case $session in
     kde    )
         export DESKTOP_SESSION=plasma
         exec startplasma-x11;;
     bspwm  )
-        # xset r rate 175 25
-        # picom --config ~/.dotfiles/picom/.picom.conf &
-        # ~/.fehbg &
-        # sxhkd &
-        # ~/.dotfiles/bspwm/.config/bspwm/updateScreen.sh
-        # fcitx5 --replace -d &
         exec bspwm;;
 esac
+
+# xset r rate 175 25
+# picom --config ~/.dotfiles/picom/.picom.conf &
+# ~/.fehbg &
+# sxhkd &
+# ~/.dotfiles/bspwm/.config/bspwm/updateScreen.sh
+# fcitx5 --replace -d &
 
 #export DESKTOP_SESSION=plasma
 # exec startplasma-x11
