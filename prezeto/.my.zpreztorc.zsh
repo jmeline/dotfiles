@@ -58,6 +58,7 @@ alias cpr='rsync -avzz'
 alias g++='g++ -O3'
 alias ara='paru'
 alias rm='trash-put'
+alias ff='fastfetch'
 
 alias yt="yt-dlp"
 
