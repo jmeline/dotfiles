@@ -122,6 +122,9 @@ pathadd ~/.bin
 
 fpath+=~/.zfunc
 
+## Add powerlevel10k theme
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
 # BEGIN_KITTY_SHELL_INTEGRATION
 # if test -e "$HOME/code/kitty/shell-integration/kitty.zsh"; then source "$HOME/code/kitty/shell-integration/kitty.zsh"; fi
 # END_KITTY_SHELL_INTEGRATION
