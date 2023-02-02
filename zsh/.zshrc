@@ -1,7 +1,13 @@
-# Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/zshrc.pre.zsh"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export XDG_CONFIG_HOME="$HOME/.config"
 
 USER=$(whoami)
 # Path to your oh-my-zsh installation.
@@ -103,7 +109,7 @@ bindkey -M vicmd v edit-command-line
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git cp ssh-agent)
+plugins=(git cp ssh-agent vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -162,6 +168,7 @@ pathadd() {
 pathadd "/Users/$USER/bin"
 pathadd "/Users/$USER/.jetbrains"
 
+source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 pathadd "/Users/jacmeli/.cargo/bin"
 
@@ -170,3 +177,5 @@ pathadd "/Users/jacmeli/.cargo/bin"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
