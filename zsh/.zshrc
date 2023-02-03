@@ -115,20 +115,7 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -d ~/.zsh ] && source ~/.zsh/.zshrc.aliases
-
-
-function lg()
-{
-    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
-
-    lazygit "$@"
-
-    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
-            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
-            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
-    fi
-}
-
+[ -f ~/.zsh/.zshrc.functions ] && source ~/.zsh/.zshrc.functions
 
 # User configuration
 
