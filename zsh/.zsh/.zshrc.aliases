@@ -21,6 +21,7 @@ alias v='fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvi
 alias cdWin='/Volumes/C/Projects'
 alias tf='terraform'
 alias g++='g++ -O3'
+alias ra='ranger'
 
 alias bup='brew update && brew upgrade'
 
