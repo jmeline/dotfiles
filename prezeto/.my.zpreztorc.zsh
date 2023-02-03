@@ -61,18 +61,6 @@ alias ff='fastfetch'
 
 alias yt="yt-dlp"
 
-function lg()
-{
-    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
-
-    lazygit "$@"
-
-    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
-            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
-            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
-    fi
-}
-
 function pathadd() {
     if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
         PATH="${PATH:+"$PATH:"}$1"
@@ -106,6 +94,8 @@ fi
 [[ -s $ZSH_SYNTAX_HIGHLIGHTING_PATH ]] && source $ZSH_SYNTAX_HIGHLIGHTING_PATH
 [[ -s $AUTO_JUMP_PATH ]] && source $AUTO_JUMP_PATH
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.zsh/.zshrc.aliases ] && source ~/.zsh/.zshrc.aliases
+[ -f ~/.zsh/.zshrc.functions ] && source ~/.zsh/.zshrc.functions
 
 plugins=(ssh-agent)
 
