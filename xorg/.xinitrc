@@ -33,14 +33,21 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 #
 
-session=${1:-bspwm}
+# exec startplasma-x11
+exec bspwm
 
+session=${1:-bspwm}
+echo $session
 case $session in
-    kde    )
+    kde)
+        echo "Trying to start $session"
         export DESKTOP_SESSION=plasma
-        exec startplasma-x11;;
-    bspwm  )
-        exec bspwm;;
+        exec startplasma-x11
+        ;;
+    bspwm)
+        echo "Trying to start $session"
+        exec bspwm
+        ;;
 esac
 
 # xset r rate 175 25
