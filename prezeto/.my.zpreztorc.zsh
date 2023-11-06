@@ -6,7 +6,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # building xanmod with modprobe-db to include only the modules I need
 # export _localmodcfg="y"
-export _microarchitecture=99
+export _microarchitecture=36
 export use_numa="n"
 export use_tracers="n"
 export use_pds="n"
@@ -52,12 +52,14 @@ alias epoly='vim ~/.config/polybar/config'
 alias epolylaunch='vim ~/.config/polybar/launch.sh'
 alias vim='nvim'
 alias vi='vim'
-alias v='vim'
+# alias v='vim'
 alias cpr='rsync -avzz'
 alias g++='g++ -O3'
 alias ara='paru'
 alias rm='trash-put'
 alias ff='fastfetch'
+# alias n='nnn -d'
+# alias N='sudo -E nnn -dH'
 
 alias yt="yt-dlp"
 
