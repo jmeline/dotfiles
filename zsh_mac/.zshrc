@@ -155,7 +155,7 @@ pathadd() {
 pathadd "/Users/$USER/bin"
 pathadd "/Users/$USER/.jetbrains"
 
-source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
+# source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 pathadd "/Users/jacmeli/.cargo/bin"
 
@@ -166,4 +166,6 @@ export PATH=$PATH:$GOPATH/bin
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
 eval "$(zoxide init zsh)"
