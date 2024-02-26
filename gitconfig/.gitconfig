@@ -3,6 +3,7 @@
 	name = Jacob Meline
 [core]
     pager = delta
+    autocrlf = input
 
 [interactive]
     diffFilter = delta --color-only
@@ -12,7 +13,15 @@
     light = false
 
 [merge]
-    conflictstyle = diff3
+    ; conflictstyle = diff3
+    tool = p4mergetool
+
+[mergetool "p4mergetool"]
+  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+  keepBackup = false
+  keepTemporaries = false
+  trustExitCode = false
+  prompt = false
 
 [diff]
     colorMoved = default
