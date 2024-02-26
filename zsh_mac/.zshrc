@@ -22,14 +22,14 @@ export DRACULA_PRO_VIM_DIR="~/.dracula_pro_nvim/dracula"
 export NVM_DIR="$HOME/.nvm"
 # Fish-like syntax highlighting && Autojump setup
 
-if [[ `uname` == 'Darwin' ]] then
-    ## Mac after doing brew install 'zsh-syntax-highlighting'
-    ZSH_SYNTAX_HIGHLIGHTING_PATH="/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-    AUTO_JUMP_PATH="$(brew --prefix)/etc/profile.d/autojump.sh"
-fi
+# if [[ `uname` == 'Darwin' ]] then
+#     ## Mac after doing brew install 'zsh-syntax-highlighting'
+#     ZSH_SYNTAX_HIGHLIGHTING_PATH="/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+#     AUTO_JUMP_PATH="$(brew --prefix)/etc/profile.d/autojump.sh"
+# fi
 
 [[ -s $ZSH_SYNTAX_HIGHLIGHTING_PATH ]] && source $ZSH_SYNTAX_HIGHLIGHTING_PATH
-[[ -s $AUTO_JUMP_PATH ]] && source $AUTO_JUMP_PATH
+# [[ -s $AUTO_JUMP_PATH ]] && source $AUTO_JUMP_PATH
 source /usr/local/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 setopt HIST_IGNORE_DUPS # Prevent duplicate lines in the history
@@ -166,3 +166,4 @@ export PATH=$PATH:$GOPATH/bin
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(zoxide init zsh)"
