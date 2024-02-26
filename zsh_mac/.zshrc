@@ -154,6 +154,7 @@ pathadd() {
 }
 pathadd "/Users/$USER/bin"
 pathadd "/Users/$USER/.jetbrains"
+pathadd "/Users/$USER/.dotnet/tools"
 
 # source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 
