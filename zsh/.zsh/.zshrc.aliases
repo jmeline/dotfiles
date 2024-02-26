@@ -21,6 +21,8 @@ alias cdWin='/Volumes/C/Projects'
 alias tf='terraform'
 alias g++='g++ -O3'
 alias ra='ranger'
+alias r='rider .'
+alias r1='rider1 .' ## Early access version of Rider
 
 alias bup='brew update && brew upgrade'
 
