@@ -22,6 +22,7 @@ alias cdWin='/Volumes/C/Projects'
 alias tf='terraform'
 alias g++='g++ -O3'
 alias ra='ranger'
+alias yy='yazi'
 alias r='rider .'
 alias r1='rider1 .' ## Early access version of Rider
 
