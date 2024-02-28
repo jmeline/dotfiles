@@ -58,6 +58,7 @@ alias g++='g++ -O3'
 alias ara='paru'
 alias rm='trash-put'
 alias ff='fastfetch'
+alias yy='yazi'
 # alias n='nnn -d'
 # alias N='sudo -E nnn -dH'
 
@@ -88,13 +89,13 @@ fkill() {
     fi
 }
 
-if [[ `uname` == 'Linux' ]] then
-    ZSH_SYNTAX_HIGHLIGHTING_PATH="/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-    AUTO_JUMP_PATH="/etc/profile.d/autojump.zsh"
-fi
+# if [[ `uname` == 'Linux' ]] then
+#     ZSH_SYNTAX_HIGHLIGHTING_PATH="/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+#     AUTO_JUMP_PATH="/etc/profile.d/autojump.zsh"
+# fi
 
 [[ -s $ZSH_SYNTAX_HIGHLIGHTING_PATH ]] && source $ZSH_SYNTAX_HIGHLIGHTING_PATH
-[[ -s $AUTO_JUMP_PATH ]] && source $AUTO_JUMP_PATH
+# [[ -s $AUTO_JUMP_PATH ]] && source $AUTO_JUMP_PATH
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.zsh/.zshrc.aliases ] && source ~/.zsh/.zshrc.aliases
 [ -f ~/.zsh/.zshrc.functions ] && source ~/.zsh/.zshrc.functions
@@ -120,3 +121,5 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # BEGIN_KITTY_SHELL_INTEGRATION
 # if test -e "$HOME/code/kitty/shell-integration/kitty.zsh"; then source "$HOME/code/kitty/shell-integration/kitty.zsh"; fi
 # END_KITTY_SHELL_INTEGRATION
+
+eval "$(zoxide init zsh)"
