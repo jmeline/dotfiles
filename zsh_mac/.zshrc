@@ -46,9 +46,15 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # ZSH_THEME="sorin"
 
 ## Edit commandlind in full screen editor in zsh
-autoload -U edit-command-line
+autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
+bindkey -M vicmd 'vv' edit-command-line
+# autoload -z edit-command-line
+# zle -N edit-command-line
+# bindkey "^X^E" edit-command-line
+# autoload -U edit-command-line
+# zle -N edit-command-line
+# bindkey -M vicmd v edit-command-line
 
 
 # Set list of themes to pick from when loading at random

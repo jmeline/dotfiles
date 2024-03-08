@@ -1,5 +1,5 @@
 
-function lg()
+lg()
 {
     export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
 
@@ -12,7 +12,7 @@ function lg()
 }
 
 # nvim either opens a file or fuzzy searches for file to opens
-function v()
+vv()
 {
     if [ -n "$1" ]
     then
