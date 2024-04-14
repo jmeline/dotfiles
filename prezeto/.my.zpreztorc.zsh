@@ -58,7 +58,6 @@ alias g++='g++ -O3'
 alias ara='paru'
 alias rm='trash-put'
 alias ff='fastfetch'
-alias yy='yazi'
 # alias n='nnn -d'
 # alias N='sudo -E nnn -dH'
 
