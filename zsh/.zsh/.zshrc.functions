@@ -66,6 +66,8 @@ vg() {
 
 # yazi - Yet Another Zsh Integration
 # https://yazi-rs.github.io/docs/quick-start
+# use /usr/bin/cat instead of cat if you've aliased cat to bat
+# https://github.com/sxyazi/yazi/issues/857#issuecomment-2029319266
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
 	yazi "$@" --cwd-file="$tmp"
