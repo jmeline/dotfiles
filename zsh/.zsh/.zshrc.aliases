@@ -10,6 +10,14 @@ alias ll='ls -lh'
 alias lla='ls -lah'
 alias ls='exa'
 
+alias ys='yarn start'
+alias yi='yarn install'
+
+alias ns='npm start'
+alias nt='npm test'
+alias ni='npm install'
+alias nk='rm -rf node_modules'
+
 # convenience aliases for editing configs
 alias ev='vim ~/.config/nvim/init.vim'
 alias et='vim ~/.tmux.conf'
