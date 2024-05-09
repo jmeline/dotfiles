@@ -1,0 +1,48 @@
+# aliases for Tmux
+alias tmux='tmux -2'
+alias ta='tmux attach -t'
+alias tnew='tmux new -s'
+alias tls='tmux ls'
+alias tkill='tmux kill-session -t'
+alias cat='bat --theme OneHalfDark'
+alias la='ls -ah'
+alias ll='ls -lh'
+alias lla='ls -lah'
+alias ls='eza'
+alias yy='yazi'
+
+alias ys='yarn start'
+alias yi='yarn install'
+
+alias ns='npm start'
+alias nt='npm test'
+alias ni='npm install'
+alias nk='rm -rf node_modules'
+
+# convenience aliases for editing configs
+alias ev='vim ~/.config/nvim/init.vim'
+alias et='vim ~/.tmux.conf'
+alias ez='vim ~/.zshrc'
+alias ea='vim ~/.zsh/.zshrc.aliases'
+alias ef='vim ~/.zsh/.zshrc.functions'
+alias ek='vim ~/.config/kitty/kitty.conf'
+alias vim='nvim'
+alias vi='vim'
+alias v='vim'
+alias cdWin='/Volumes/C/Projects'
+alias tf='terraform'
+alias g++='g++ -O3'
+alias ra='ranger'
+alias r='rider .'
+alias r1='rider1 .' ## Early access version of Rider
+
+alias bup='brew update && brew upgrade'
+
+# Unlock bitwarden and save session key
+alias bwu='export BW_SESSION="$(bw unlock --raw)"'
+alias bwl='export BW_SESSION='
+
+alias sqlLogin='kinit jmeline@COEXIST.LOCAL && klist'
+
+alias g="git"
+alias gs="git status"

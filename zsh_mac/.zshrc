@@ -19,7 +19,6 @@ export EDITOR="nvim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 export DRACULA_PRO_VIM_DIR="~/.dracula_pro_nvim/dracula"
-export NVM_DIR="$HOME/.nvm"
 # Fish-like syntax highlighting && Autojump setup
 
 # if [[ `uname` == 'Darwin' ]] then
@@ -29,8 +28,6 @@ export NVM_DIR="$HOME/.nvm"
 # fi
 
 [[ -s $ZSH_SYNTAX_HIGHLIGHTING_PATH ]] && source $ZSH_SYNTAX_HIGHLIGHTING_PATH
-# [[ -s $AUTO_JUMP_PATH ]] && source $AUTO_JUMP_PATH
-source /usr/local/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 setopt HIST_IGNORE_DUPS # Prevent duplicate lines in the history
 set -o noclobber
@@ -171,8 +168,13 @@ pathadd "/Users/jacmeli/.cargo/bin"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+## Setup nvim
+export NVM_DIR="$HOME/.nvm"
+source $(brew --prefix nvm)/nvm.sh
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 eval "$(zoxide init zsh)"
