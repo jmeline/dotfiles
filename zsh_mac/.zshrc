@@ -157,7 +157,10 @@ pathadd() {
 }
 pathadd "/Users/$USER/bin"
 pathadd "/Users/$USER/.jetbrains"
-pathadd "/Users/$USER/.dotnet/tools"
+pathadd "$HOME/.dotnet"
+
+## Setup dotnet
+export DOTNET_ROOT=$HOME/.dotnet
 
 # source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 
@@ -177,4 +180,4 @@ source $(brew --prefix nvm)/nvm.sh
 source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
