@@ -9,7 +9,6 @@ alias la='ls -ah'
 alias ll='ls -lh'
 alias lla='ls -lah'
 alias ls='eza'
-alias yy='yazi'
 
 alias ys='yarn start'
 alias yi='yarn install'
@@ -32,7 +31,6 @@ alias v='vim'
 alias cdWin='/Volumes/C/Projects'
 alias tf='terraform'
 alias g++='g++ -O3'
-alias ra='ranger'
 alias r='rider .'
 alias r1='rider1 .' ## Early access version of Rider
 
