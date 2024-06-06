@@ -175,9 +175,18 @@ export PATH=$PATH:$GOPATH/bin
 export NVM_DIR="$HOME/.nvm"
 source $(brew --prefix nvm)/nvm.sh
 
+## Setup Python
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+## Azure cli completions
+## https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-macos#completion-isnt-working
+source $(brew --prefix)/etc/bash_completion.d/az
 
 eval "$(zoxide init --cmd cd zsh)"
