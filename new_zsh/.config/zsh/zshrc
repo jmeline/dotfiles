@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# some useful options (man zshoptions)
+setopt extendedglob menucomplete
+
+# beeping is annoying
+unsetopt BEEP
