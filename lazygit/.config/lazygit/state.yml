@@ -1,6 +1,7 @@
 lastupdatecheck: 0
 recentrepos:
     - /Users/jacobmeline/.dotfiles
+<<<<<<< HEAD
     - /Users/jacobmeline/.mac_setup
     - /Users/jacobmeline/.nvim
     - /Users/jacobmeline/code/vault
@@ -15,11 +16,53 @@ recentrepos:
     - /Users/jacobmeline/code/servicing/bc.logic.communication.api
     - /Users/jacobmeline/code/servicing/bc.data.testharness.api
     - /Users/jacobmeline/code/personal_projects/jacob-meline
+=======
+    - /Users/jacobmeline/code/servicing/bc.logic.ai-bot.api
+    - /Users/jacobmeline/code/servicing/bc.logic.payments.api
+    - /Users/jacobmeline/code/servicing/bc.logic.recovery.api
+    - /Users/jacobmeline/code/personal_projects/ebook-reader
+    - /Users/jacobmeline/code/vault
+    - /Users/jacobmeline/code/dataScience/bc.logic.chatbot-poc-sk-net.script
+    - /Users/jacobmeline/code/dataScience/bc.model.bridget-llm.ml
+    - /Users/jacobmeline/code/servicing/bc.data.contactstrategy.api
+    - /Users/jacobmeline/code/servicing/BridgecrestAPI-Account
+    - /Users/jacobmeline/code/templates/cx.logic.devops.fastapi-starter.template
+    - /Users/jacobmeline/.nvim
+    - /Users/jacobmeline/code/servicing/bc.gateway.bridgecrestaccounts.schema
+    - /Users/jacobmeline/code/servicing/bc.data.customerpayments.api
+    - /Users/jacobmeline/code/servicing/bc.logic.accounts.api
+    - /Users/jacobmeline/code/servicing/bc.gateway.federation.schema
+    - /Users/jacobmeline/code/argo/bc.data.rnd-telephone-validation.argo
+    - /Users/jacobmeline/code/servicing/bc.ui.customer-portal.apps
+    - /Users/jacobmeline/code/servicing/bc.logic.customers.api
+    - /Users/jacobmeline/.mac_setup
+    - /Users/jacobmeline/code/servicing/bc.logic.communication.api
+    - /Users/jacobmeline/code/servicing/Vision2020
+    - /Users/jacobmeline/code/init.vim
+    - /Users/jacobmeline/code/other/hotchocolate-examples
+    - /Users/jacobmeline/code/servicing/bc.logic.linchpin-automation.apps
+    - /Users/jacobmeline/bin/script-commands
+    - /Users/jacobmeline/code/personal_projects/https-sweetwater-guitar-price-scraper
+    - /Users/jacobmeline/code/personal_projects/https-staraudiobook-go-scraper
+    - /Users/jacobmeline/code/personal_projects/GetMyPullRequests
+    - /Users/jacobmeline/code/servicing/VisionClassic
+    - /Users/jacobmeline/code/servicing/bc.data.testharness.api
+    - /Users/jacobmeline/.personal-fonts
+    - /Users/jacobmeline/code/personal_projects/jacob-meline
+    - /Users/jacobmeline/code/personal_projects/harrypotteraudio_scraper
+    - /Users/jacobmeline/code/servicing/Self-Service-Portal
+    - /Users/jacobmeline/code/other/Sandbox.ApiVersioning
+    - /Users/jacobmeline/code/servicing/bc.gateway.recovery.schema
+    - /Users/jacobmeline/code/servicing/Platform.Communication.Sms
+    - /Users/jacobmeline/code/servicing/bc.logic.queuing.function
+    - /Users/jacobmeline/code/servicing/cx.logic.communication-email.api
+>>>>>>> 781df94 (Update lazygit state.yml)
     - /Users/jacobmeline/code/servicing/bc.logic.payments-queuing.function
     - /Users/jacobmeline/code/servicing/DriveTime.IOS.Services
     - /Users/jacobmeline/code/personal_projects/fantastic-soup-example
     - /Users/jacobmeline/code/personal_projects/maxniessl_scraper
     - /Users/jacobmeline/code/servicing/bc.data.sharedloandata.api
+<<<<<<< HEAD
     - /Users/jacobmeline/code/servicing/bc.logic.accounts.api
     - /Users/jacobmeline/code/servicing/bc.logic.customers.api
     - /Users/jacobmeline/code/servicing/bc.data.service-bus-queue.api
@@ -31,6 +74,13 @@ recentrepos:
     - /Users/jacobmeline/code/servicing/bc.logic.loans.api
     - /Users/jacobmeline/code/servicing/bc.logic.payments.api
     - /Users/jacobmeline/code/servicing/bc.data.contactstrategy.api
+=======
+    - /Users/jacobmeline/code/servicing/bc.data.service-bus-queue.api
+    - /Users/jacobmeline/code/argo/bc.data.genesys-twt-file-upload.argo
+    - /Users/jacobmeline/code/presentations/11_16_2023_dotnet8
+    - /Users/jacobmeline/code/drivetimeinc/cx.template.base-images.docker
+    - /Users/jacobmeline/code/servicing/bc.logic.loans.api
+>>>>>>> 781df94 (Update lazygit state.yml)
     - /Users/jacobmeline/code/angular_projects
     - /Users/jacobmeline/code/personal_projects/ChurchTalks
     - /Users/jacobmeline/code/drivetimeinc/DT.Template.NetCore.Api
@@ -39,7 +89,10 @@ recentrepos:
     - /Users/jacobmeline/code/neovim
     - /Users/jacobmeline/code/argo/bc.logic.vendorscoring.argo
     - /Users/jacobmeline/code/servicing/cx.logic.eventsource.dotnet
+<<<<<<< HEAD
     - /Users/jacobmeline/code/servicing/bc.data.customerpayments.api
+=======
+>>>>>>> 781df94 (Update lazygit state.yml)
     - /Users/jacobmeline/code/servicing/bc.logic.queuing.function2
     - /Users/jacobmeline/code/dotnet-examples
     - /Users/jacobmeline/code/servicing/DT.Servicing.Endpoints-API
@@ -47,14 +100,23 @@ recentrepos:
     - /Users/jacobmeline/code/dotnet_examples/InMemoryCaches
     - /Users/jacobmeline/code/retail/bc.logic.scoringenginecorems.api
     - /Users/jacobmeline/code/drivetimeinc/bc.data.bcnext-auth.script
+<<<<<<< HEAD
     - /Users/jacobmeline/.personal-fonts
+=======
+>>>>>>> 781df94 (Update lazygit state.yml)
     - /Users/jacobmeline/.dracula_pro_nvim
 startuppopupversion: 5
 lastversion: HEAD-f598da0
 customcommandshistory:
+<<<<<<< HEAD
     - q
     - wq
     - git pull --rebase
+=======
+    - git pull --rebase
+    - q
+    - wq
+>>>>>>> 781df94 (Update lazygit state.yml)
     - git reset --hard origin/remove-rxjs-compat
 hidecommandlog: false
 ignorewhitespaceindiffview: false
