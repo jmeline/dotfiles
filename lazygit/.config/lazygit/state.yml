@@ -1,24 +1,29 @@
 lastupdatecheck: 0
 recentrepos:
     - /Users/jacobmeline/.dotfiles
+    - /Users/jacobmeline/.nvim
+    - /Users/jacobmeline/.dracula_pro_nvim
     - /Users/jacobmeline/code/servicing/bc.logic.ai-bot.api
+    - /Users/jacobmeline/code/vault
+    - /Users/jacobmeline/code/servicing/bc.ui.customer-portal.apps
+    - /Users/jacobmeline/code/servicing/bc.gateway.integrationtests.api
+    - /Users/jacobmeline/code/personal_projects/rust-book
+    - /Users/jacobmeline/code/dataScience/bc.logic.chatbot-poc-sk-net.script
+    - /Users/jacobmeline/code/servicing/bc.data.testharness.api
+    - /Users/jacobmeline/code/servicing/bc.gateway.process.schema
     - /Users/jacobmeline/code/servicing/bc.logic.payments.api
+    - /Users/jacobmeline/code/servicing/bc.logic.customers.api
+    - /Users/jacobmeline/code/servicing/BridgecrestAPI-Account
+    - /Users/jacobmeline/code/dataScience/bc.model.bridget-llm.ml
     - /Users/jacobmeline/code/servicing/bc.logic.recovery.api
     - /Users/jacobmeline/code/personal_projects/ebook-reader
-    - /Users/jacobmeline/code/vault
-    - /Users/jacobmeline/code/dataScience/bc.logic.chatbot-poc-sk-net.script
-    - /Users/jacobmeline/code/dataScience/bc.model.bridget-llm.ml
     - /Users/jacobmeline/code/servicing/bc.data.contactstrategy.api
-    - /Users/jacobmeline/code/servicing/BridgecrestAPI-Account
     - /Users/jacobmeline/code/templates/cx.logic.devops.fastapi-starter.template
-    - /Users/jacobmeline/.nvim
     - /Users/jacobmeline/code/servicing/bc.gateway.bridgecrestaccounts.schema
     - /Users/jacobmeline/code/servicing/bc.data.customerpayments.api
     - /Users/jacobmeline/code/servicing/bc.logic.accounts.api
     - /Users/jacobmeline/code/servicing/bc.gateway.federation.schema
     - /Users/jacobmeline/code/argo/bc.data.rnd-telephone-validation.argo
-    - /Users/jacobmeline/code/servicing/bc.ui.customer-portal.apps
-    - /Users/jacobmeline/code/servicing/bc.logic.customers.api
     - /Users/jacobmeline/.mac_setup
     - /Users/jacobmeline/code/servicing/bc.logic.communication.api
     - /Users/jacobmeline/code/servicing/Vision2020
@@ -30,7 +35,6 @@ recentrepos:
     - /Users/jacobmeline/code/personal_projects/https-staraudiobook-go-scraper
     - /Users/jacobmeline/code/personal_projects/GetMyPullRequests
     - /Users/jacobmeline/code/servicing/VisionClassic
-    - /Users/jacobmeline/code/servicing/bc.data.testharness.api
     - /Users/jacobmeline/.personal-fonts
     - /Users/jacobmeline/code/personal_projects/jacob-meline
     - /Users/jacobmeline/code/personal_projects/harrypotteraudio_scraper
@@ -46,7 +50,6 @@ recentrepos:
     - /Users/jacobmeline/code/personal_projects/maxniessl_scraper
     - /Users/jacobmeline/code/servicing/bc.data.sharedloandata.api
     - /Users/jacobmeline/code/servicing/bc.logic.accounts.api
-    - /Users/jacobmeline/code/servicing/bc.logic.customers.api
     - /Users/jacobmeline/code/servicing/bc.data.service-bus-queue.api
     - /Users/jacobmeline/code/personal_projects/harrypotteraudio_scraper
     - /Users/jacobmeline/code/argo/bc.data.genesys-twt-file-upload.argo
@@ -54,7 +57,6 @@ recentrepos:
     - /Users/jacobmeline/code/drivetimeinc/cx.template.base-images.docker
     - /Users/jacobmeline/code/argo/bc.data.rnd-telephone-validation.argo
     - /Users/jacobmeline/code/servicing/bc.logic.loans.api
-    - /Users/jacobmeline/code/servicing/bc.logic.payments.api
     - /Users/jacobmeline/code/servicing/bc.data.contactstrategy.api
     - /Users/jacobmeline/code/servicing/bc.data.service-bus-queue.api
     - /Users/jacobmeline/code/argo/bc.data.genesys-twt-file-upload.argo
@@ -78,9 +80,8 @@ recentrepos:
     - /Users/jacobmeline/code/retail/bc.logic.scoringenginecorems.api
     - /Users/jacobmeline/code/drivetimeinc/bc.data.bcnext-auth.script
     - /Users/jacobmeline/.personal-fonts
-    - /Users/jacobmeline/.dracula_pro_nvim
 startuppopupversion: 5
-lastversion: HEAD-f598da0
+lastversion: HEAD-a04ad24
 customcommandshistory:
     - q
     - wq

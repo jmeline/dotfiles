@@ -1,0 +1,17 @@
+
+# Dracula Pro Buffy color scheme
+
+[colors]
+cursor_bg = "#9F70A9"
+selection_bg = "#544158"
+background = "#2A212C"
+foreground = "#F8F8F2"
+
+# Normal colors (ansi)
+ansi = ["#2A212C", "#FF9580", "#8AFF80", "#FFFF80", "#9580FF", "#FF80BF", "#80FFEA", "#F8F8F2"]
+
+# Bright colors (brights)
+brights = ["#624C67", "#FFAA99", "#A2FF99", "#FFFF99", "#AA99FF", "#FF99CC", "#99FFEE", "#FFFFFF"]
+
+[metadata]
+name = "Dracula Pro Buffy"

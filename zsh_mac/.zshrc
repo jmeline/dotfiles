@@ -157,9 +157,10 @@ pathadd() {
 }
 pathadd "/Users/$USER/bin"
 pathadd "/Users/$USER/.jetbrains"
-pathadd "$HOME/.dotnet"
 
 ## Setup dotnet
+pathadd "$HOME/.dotnet"
+pathadd "$HOME/.dotnet/tools"
 export DOTNET_ROOT=$HOME/.dotnet
 
 # source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
@@ -167,9 +168,11 @@ export DOTNET_ROOT=$HOME/.dotnet
 pathadd "/Users/jacmeli/.cargo/bin"
 
 # go stuff
-
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+
+## Setup rust
+pathadd "$HOME/.cargo/bin"
 
 ## Setup nvim
 export NVM_DIR="$HOME/.nvm"
@@ -184,6 +187,13 @@ eval "$(pyenv init -)"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+# Only changing the escape key to `jk` in insert mode, we still
+# keep using the default keybindings `^[` in other modes
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+## Customize Vi mode
+ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
+ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BEAM
 
 ## Azure cli completions
 ## https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-macos#completion-isnt-working
